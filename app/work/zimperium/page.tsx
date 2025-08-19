@@ -1,4 +1,6 @@
 import { Container } from "@/components/layout/Container";
+import { ProjectCard } from "@/components/ProjectCard";
+import { Button } from "@/components/ui/button";
 import {
 	Headline,
 	Subheading,
@@ -25,112 +27,170 @@ import {
 	IconExternalLink,
 	IconBrandGithub,
 } from "@tabler/icons-react";
-import { redirect } from "next/navigation";
-import { ZimpMarquee } from "./ZimpMarquee";
-import { MobileAppPin } from "./MobileAppPin";
-import { AdminConsolePin } from "./AdminConsolePin";
-import { DesignSystemPin } from "./DesignSystemPin";
 
-type Props = {
-	params: { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const slug = params.slug;
-
-	// Check if this is an existing project
-
-	// Default for new work pages
-	return {
-		title: `Work Details | ${slug} | Natcha Pradappet`,
-		description: "Detailed case study and project documentation.",
-	};
-}
-
-export default function WorkDetailsPage({
-	params,
-}: {
-	params: { slug: string };
-}) {
-	const slug = params.slug;
-
-	// For new work pages, use the template below
-	const projectData = {
-		title: "Zimperium",
-		subtitle: "Brief project description or tagline",
-		category: "Category",
-		year: "2024",
-		client: "Client Name",
-		duration: "3 months",
-		team: "Solo / Team of 3",
-		role: "Lead Designer & Developer",
-		status: "Completed",
-		description:
-			"This is a comprehensive project description that explains the context, challenges, and solutions implemented.",
-		technologies: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
-		tags: ["Web Development", "UI/UX", "Frontend"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/username/repo",
-		images: [
-			{ src: "/placeholder.jpg", alt: "Project screenshot 1" },
-			{ src: "/placeholder.jpg", alt: "Project screenshot 2" },
-		],
-	};
-
+export default function Zimperium() {
 	return (
-		<div className="mt-50">
-			<ZimpMarquee />
-			<Container>
-				<div className="flex flex-col w-full items-start justify-start p-1 gap-1">
-					<div className="flex gap-4 flex-row">
-						<div className="text-sm font-light leading-5 text-muted-foreground flex items-center justify-center font-mono">
-							03
+		<>
+			<Container variant="medium">
+				<div className="flex flex-row gap-12">
+					<div className="flex w-full flex-col">
+						<div className="flex flex-row gap-3 items-center w-full h-min ">
+							<span className="tag-id font-mono text-sm text-muted-foreground">
+								01
+							</span>
+							<span className="tag-year text-xs text-secondary-foreground">
+								2025
+							</span>
+							<span className="tag-status bg-secondary px-2 py-1 rounded-full text-foreground text-xs">
+								Live
+							</span>
+							<span className="tag-type bg-accent/40 text-accent-foreground px-2 py-1 rounded-full text-xs">
+								Full-Stack Web Application
+							</span>
 						</div>
-						<div className="text-xs font-light leading-4 text-secondary-foreground flex items-center justify-center">
-							{projectData.year}
+						<h1 className="pt-8">APIdeas</h1>
+						<span className="lede">
+							Veniam ad enim labore magna irure minim aliqua eu laborum velit
+							sint sunt veniam ullamco enim.
+						</span>
+						<p className="pt-8">
+							Officia non ipsum laborum eu ad aute culpa magna labore. Dolore
+							deserunt dolore culpa irure aute laboris est ea irure adipisicing
+							reprehenderit. Ex velit pariatur deserunt labore ea eiusmod ipsum
+							dolor ad duis ut Lorem ex culpa nulla.
+						</p>
+
+						<div className="flex gap-12 mt-12">
+							<div className="flex flex-col gap-1">
+								<span className="eyebrow">Role</span>
+								<small className="">Designer & Developer</small>
+							</div>
+							<div className="flex flex-col gap-1">
+								<span className="eyebrow">Duration</span>
+								<small className="">2 weeks</small>
+							</div>
+							<div className="flex flex-col gap-1">
+								<span className="eyebrow">Year</span>
+								<small className="">2025</small>
+							</div>
+							<div className="flex flex-col gap-1">
+								<span className="eyebrow">Status</span>
+								<small className="">Live</small>
+							</div>
 						</div>
-						<div className="bg-secondary px-3 py-1 text-xs font-medium leading-4 text-secondary-foreground flex items-center justify-center rounded-full">
-							project
+						<div className="flex gap-12 mt-12">
+							<div className="flex flex-col gap-1">
+								<span className="eyebrow">Technologies Used</span>
+
+								<div className="flex flex-row gap-3">
+									<span className="tag-status bg-secondary px-2 py-1 rounded-full text-foreground text-xs">
+										Live
+									</span>
+									<span className="tag-status bg-secondary px-2 py-1 rounded-full text-foreground text-xs">
+										Live
+									</span>
+									<span className="tag-status bg-secondary px-2 py-1 rounded-full text-foreground text-xs">
+										Live
+									</span>
+									<span className="tag-status bg-secondary px-2 py-1 rounded-full text-foreground text-xs">
+										Live
+									</span>
+								</div>
+							</div>
 						</div>
-						<div className="bg-primary px-3 py-1 text-xs font-medium leading-4 text-primary-foreground flex items-center justify-center rounded-full">
-							category
+						<div className="flex flex-row gap-3 pt-8">
+							<Button className="w-min">View Live Project</Button>
+							<Button className="w-min" variant="secondary">
+								View Source Code
+							</Button>
 						</div>
 					</div>
-					<div className="w-full text-foreground font-light text-6xl leading-16">
-						{projectData.title}
-					</div>
-					<div className="w-full flex gap-4 flex-col text-secondary-foreground">
-						<div>
-							In an era where digital threats are constantly evolving, Zimperium
-							stands at the forefront of mobile cybersecurity.
-						</div>
-
-						<div>
-							As the sole UX/UI designer for this innovative company, I was
-							tasked with reimagining and redesigning their entire cybersecurity
-							suite.
-						</div>
-
-						<div>
-							This case study details the journey of creating the Hyperion
-							Design System, revamping the zConsole dashboard, and conducting
-							crucial UX research for the zIPS mobile security app.
-						</div>
-					</div>
-
-					<div className="flex gap-1 flex-row">
-						<div className="border p-1">duration</div>
-						<div className="border p-1">team</div>
-						<div className="border p-1">role</div>
-						<div className="border p-1">type</div>
+					<div className="bg-secondary-foreground/10 border flex w-full min-h-full items-center justify-center">
+						xx
 					</div>
 				</div>
 			</Container>
-			<div className="mt-10 flex flex-col md:flex-row">
-				<MobileAppPin />
-				<AdminConsolePin />
-				<DesignSystemPin />
+			<div className="mt-50 p-20 bg-secondary w-screen">
+				<Container variant="medium">
+					<h2>Project Overview</h2>
+					<div className="flex flex-row gap-12">
+						<div className="flex flex-col w-full">
+							<h3>Challenge</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+						<div className="flex flex-col w-full">
+							<h3>Solution</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+						<div className="flex flex-col w-full">
+							<h3>Outcome</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+					</div>
+				</Container>
 			</div>
-		</div>
+			<div className="mt-50 p-20 w-screen">
+				<Container variant="medium" className="flex flex-col gap-4">
+					<h2>Process</h2>
+					<div className="flex flex-row gap-12">
+						<div className="bg-secondary-foreground text-secondary rounded-full p-4 grid place-content-center h-[40px] w-[40px]">
+							1
+						</div>
+						<div className="flex flex-col w-full">
+							<h3>Research</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+					</div>
+					<div className="flex flex-row gap-12">
+						<div className="bg-secondary-foreground text-secondary rounded-full p-4 grid place-content-center h-[40px] w-[40px]">
+							2
+						</div>
+						<div className="flex flex-col w-full">
+							<h3>Research</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+					</div>
+					<div className="flex flex-row gap-12">
+						<div className="bg-secondary-foreground text-secondary rounded-full p-4 grid place-content-center h-[40px] w-[40px]">
+							3
+						</div>
+						<div className="flex flex-col w-full">
+							<h3>Research</h3>
+							<p>
+								Exercitation esse minim quis ut in minim excepteur laboris
+								consequat ea veniam dolor aliquip excepteur. Nulla labore
+								deserunt voluptate labore qui adipisicing nulla dolor qui dolore
+								incididunt anim.
+							</p>
+						</div>
+					</div>
+				</Container>
+			</div>
+		</>
 	);
 }

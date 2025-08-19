@@ -32,7 +32,7 @@ export default function RootLayout({
 			<html lang="en" suppressHydrationWarning>
 				<head />
 				{/* <body className="prose dark:prose-invert"> */}
-				<body>
+				<body className="mt-50">
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
