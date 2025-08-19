@@ -43,12 +43,6 @@
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
 
-	/* Typography - Museum Quality */
-	--font-weight-light: 300;
-	--font-weight-normal: 400;
-	--font-weight-medium: 500;
-	--font-weight-semibold: 600;
-
 	/* Perfect Scale */
 	--space-1: 0.25rem; /* 4px */
 	--space-2: 0.5rem; /* 8px */
@@ -158,38 +152,59 @@
 
 h1 {
 	font-size: clamp(2.5rem, 6vw, 4rem);
-	font-weight: var(--font-weight-light);
-	line-height: var(--line-height-tight);
-	margin-bottom: var(--space-8);
+	font-weight: 300;
+	line-height: 1.1;
+	margin-bottom: 2rem;
+	color: var(--foreground);
+
+	@media (max-width: 500px) {
+		font-size: 2.5rem;
+	}
 }
-/* Typography */
-/* h1 { */
-/* 	@apply scroll-m-20 text-4xl font-light tracking-tight lg:text-5xl; */
-/* } */
-/**/
-/* h2 { */
-/* 	@apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0; */
-/* } */
-/**/
-/* h3 { */
-/* 	@apply scroll-m-20 text-2xl font-semibold tracking-tight; */
-/* } */
-/**/
-/* h4 { */
-/* 	@apply scroll-m-20 text-xl font-semibold tracking-tight; */
-/* } */
-/**/
-/* p { */
-/* 	@apply leading-7 [&:not(:first-child)]:mt-6; */
-/* } */
-/**/
-/* blockquote { */
-/* 	@apply mt-6 border-l-2 pl-6 italic; */
-/* } */
-/**/
-/* code { */
-/* 	@apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold; */
-/* } */
+
+h2 {
+	font-size: 2rem;
+	font-weight: 300;
+	margin-bottom: 3rem;
+
+	@media (max-width: 480px) {
+		font-size: 1.5rem;
+	}
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+
+.lede {
+	font-size: 1.25rem;
+	line-height: 1.7;
+	color: var(--secondary-foreground);
+
+	@media (max-width: 500px) {
+		font-size: 1.125rem;
+	}
+}
+
+p {
+	font-size: 1rem;
+	line-height: 1.7;
+	margin-bottom: 1rem;
+
+	:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.project-tag #id {
+	color: red;
+}
+
+.project-tag #year {
+	color: red;
+}
 
 .eyebrow {
 	@apply font-mono text-sm font-bold uppercase tracking-wider;

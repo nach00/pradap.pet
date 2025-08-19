@@ -1,103 +1,205 @@
-import Image from "next/image";
+"use client";
+import Link from "next/link";
+import { Container } from "@/components/layout/Container";
 
+import React, { useEffect, useState } from "react";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { Button } from "@/components/ui/button";
+// import "@/styles/global.css";
+// import "@/styles/typography.css";
+import { cn } from "@/lib/utils";
+import { FeaturedWorkGrid } from "@/components/FeaturedWorkGrid";
+import {
+	Headline,
+	DataPair,
+	SectionHeading,
+	Subheading,
+	Paragraph,
+	Lede,
+	Eyebrow,
+	Status,
+} from "@/components/typography";
+import { ProjectCard } from "@/components/ProjectCard";
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+	const getStatusColor = (status: string) => {
+		switch (status?.toLowerCase()) {
+			case "live":
+				return "text-green-500";
+			case "development":
+				return "text-yellow-500";
+			case "prototype":
+				return "text-orange-500";
+			case "research":
+				return "text-blue-500";
+			default:
+				return "text-gray-500";
+		}
+	};
+	return (
+		<>
+			<Container>
+				<div id="hero" className="h-screen flex flex-col justify-center">
+					<h1 className="max-w-[10ch]">Design Engineer</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+					{/* <p className="max-w-[30ch] leading-7 text-secondary-foreground mt-12"> */}
+					<span className="lede max-w-[30ch]">
+						Crafting digital experiences where precision meets elegance.
+						Currently exploring AI-enhanced design systems.
+					</span>
+
+					<div className="flex gap-12 mt-12">
+						{/* <span className="eyebrow">Location</span> */}
+						{/* <p>Dallas, Texas</p> */}
+						{/* <DataPair label="Location">Dallas, TX</DataPair> */}
+						{/* <DataPair label="Status">Available</DataPair> */}
+						<div className="flex flex-col gap-1">
+							<span className="eyebrow">Location</span>
+							<small className="">Dallas, Texas</small>
+						</div>
+						<div className="flex flex-col gap-1">
+							<span className="eyebrow">Status</span>
+							<small className="">Available</small>
+						</div>
+					</div>
+
+					<div className="flex gap-4 mt-12">
+						<Button>View work</Button>
+						<Button variant="outline">About & Experience</Button>
+					</div>
+				</div>
+			</Container>
+
+			<Container>
+				<div id="featured-work" className="mb-30">
+					<div className="flex flex-row justify-between">
+						<h2 className="">Selected Work</h2>
+						<Button variant="secondary">View all work →</Button>
+					</div>
+					{/* <p className="max-w-3xl"> */}
+					{/* 	Featured projects exploring AI integration, adaptive interfaces, and */}
+					{/* 	human-centered design. */}
+					{/* </p> */}
+
+					{/* <div className="flex flex-col md:flex-row gap-3"> */}
+					{/* 	<ProjectCard /> */}
+					{/* 	<ProjectCard /> */}
+					{/* 	<ProjectCard /> */}
+					{/* </div> */}
+					<FeaturedWorkGrid />
+				</div>
+			</Container>
+
+			<Container>
+				<div id="about" className="mb-30">
+					<div className="">
+						<div className="flex flex-row justify-between">
+							<h2 className="">About</h2>
+							<Button variant="secondary">Full background →</Button>
+						</div>
+						<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+							<div className="lg:col-span-2">
+								<p className="mb-8">
+									Design Engineer with 8+ years of experience creating
+									intelligent interfaces that bridge the gap between human
+									cognition and artificial intelligence. Based in Bangkok,
+									working with teams globally.
+								</p>
+								<p className="mb-12">
+									My approach combines systematic design thinking with deep
+									technical implementation, drawing from cognitive psychology
+									and machine learning to create adaptive systems.
+								</p>
+							</div>
+							<div className="lg:col-span-1 flex flex-col justify-center">
+								<div className="border border-gray-200 rounded-lg p-8 text-right">
+									<Subheading className="mb-2">Natcha Pradappet</Subheading>
+									<Eyebrow>Design Engineer</Eyebrow>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</Container>
+
+			{/* <Container className="w-screen"> */}
+			{/* 	<div id="testimonials"> */}
+			{/* 		<InfiniteMovingCardsDemo /> */}
+			{/* 	</div> */}
+			{/* </Container> */}
+			<Container>
+				<div id="contact">
+					<div className="flex flex-row justify-between">
+						<h2 className="">Contact</h2>
+						{/* <Button variant="secondary">Start a project →</Button> */}
+					</div>
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+						<div className="lg:col-span-2">
+							<h3 className="mb-8">Let&apos;s work together</h3>
+							<p>
+								Available for design engineering projects, research
+								collaborations, and speaking engagements. Particularly
+								interested in AI, adaptive interfaces, and human-centered
+								technology.
+							</p>
+						</div>
+						<div className="lg:col-span-1 flex flex-col justify-center space-y-4">
+							<Link
+								href="/contact"
+								className="inline-flex items-center justify-center px-6 py-4 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 text-center"
+							>
+								Start a project
+							</Link>
+							<div className="border border-gray-200 rounded-md px-6 py-4 text-center">
+								<span className="text-gray-700">natcha@pradap.pet</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</>
+	);
 }
+
+export function InfiniteMovingCardsDemo() {
+	return (
+		<div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+			<InfiniteMovingCards
+				items={testimonials}
+				direction="right"
+				speed="slow"
+			/>
+		</div>
+	);
+}
+
+const testimonials = [
+	{
+		quote:
+			"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+		name: "Charles Dickens",
+		title: "A Tale of Two Cities",
+	},
+	{
+		quote:
+			"To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+		name: "William Shakespeare",
+		title: "Hamlet",
+	},
+	{
+		quote: "All that we see or seem is but a dream within a dream.",
+		name: "Edgar Allan Poe",
+		title: "A Dream Within a Dream",
+	},
+	{
+		quote:
+			"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+		name: "Jane Austen",
+		title: "Pride and Prejudice",
+	},
+	{
+		quote:
+			"Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+		name: "Herman Melville",
+		title: "Moby-Dick",
+	},
+];

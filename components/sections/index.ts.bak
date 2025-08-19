@@ -1,0 +1,10 @@
+// Section Components
+export { default as About } from './About';
+export { Contact } from './Contact';
+export { ContactCTA } from './ContactCTA';
+export { FeaturedWork } from './FeaturedWork';
+export { Hero } from './Hero';
+export { SingleProduct } from './Product';
+export { Products } from './Products';
+export { TechStack } from './TechStack';
+export { WorkHistory } from './WorkHistory';
