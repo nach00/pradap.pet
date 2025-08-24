@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { SectionHeading, Subheading, Paragraph, Eyebrow } from "@/components/typography";
+import { SectionHeading, Subheading, Paragraph, Eyebrow } from "@/components/type";
 
 export default function About() {
 	return (

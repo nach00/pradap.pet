@@ -1,5 +1,5 @@
 import { Container } from "@/components/layout/Container";
-import { LegacyHeading as Heading, LegacyHighlight as Highlight, LegacyParagraph as Paragraph } from "@/components/typography";
+import { LegacyHeading as Heading, LegacyHighlight as Highlight, LegacyParagraph as Paragraph } from "@/components/type";
 import { Projects } from "@/components/sections/Projects";
 import { WorkHistory } from "@/components/sections/WorkHistory";
 import Image from "next/image";

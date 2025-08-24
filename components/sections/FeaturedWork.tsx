@@ -10,7 +10,7 @@ import {
 	Paragraph,
 	Lede,
 	Status,
-} from "@/components/typography";
+} from "@/components/type";
 
 export const FeaturedWork = () => {
 	const getStatusColor = (status: string) => {

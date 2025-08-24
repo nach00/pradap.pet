@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { LegacyHeading as Heading } from "@/components/typography";
+import { LegacyHeading as Heading } from "@/components/type";
 import { twMerge } from "tailwind-merge";
 
 export const TechStack = () => {

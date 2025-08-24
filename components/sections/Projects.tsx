@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { LegacyHeading as Heading } from "@/components/typography";
+import { LegacyHeading as Heading } from "@/components/type";
 import { Project } from "@/types/projects";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 import Image from "next/image";
-import { LegacyParagraph as Paragraph } from "@/components/typography";
+import { LegacyParagraph as Paragraph } from "@/components/type";
 import { motion } from "framer-motion";
 
 export const Projects = () => {

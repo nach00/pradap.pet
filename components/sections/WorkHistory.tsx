@@ -1,7 +1,7 @@
 "use client";
 import { timeline } from "@/data/timeline";
 import React from "react";
-import { LegacyParagraph as Paragraph, LegacyHeading as Heading } from "@/components/typography";
+import { LegacyParagraph as Paragraph, LegacyHeading as Heading } from "@/components/type";
 import {
   IconCheck,
   IconCheckbox,

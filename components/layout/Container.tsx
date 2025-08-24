@@ -78,21 +78,17 @@ export interface ContainerProps
 	asChild?: boolean;
 }
 
-// The component is now simplified and correctly handles `asChild` and `className`.
-export const Container: React.FC<ContainerProps> = ({
+export default function Container({
 	asChild,
 	className,
 	children,
 	variant,
 	...props
-}) => {
-	// Use `Slot` if `asChild` is true, otherwise default to a `div`.
+}: ContainerProps) {
 	const Comp = asChild ? Slot : "div";
-
-	// The `cn` utility correctly merges the variant classes with any custom className prop.
 	return (
 		<Comp className={cn(containerVariants({ variant }), className)} {...props}>
 			{children}
 		</Comp>
 	);
-};
+}

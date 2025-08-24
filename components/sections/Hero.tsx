@@ -1,5 +1,5 @@
 import React from "react";
-import { Headline, Paragraph, DataPair } from "@/components/typography";
+import { Headline, Paragraph, DataPair } from "@/components/type";
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {

@@ -2,7 +2,7 @@
 import { Project } from "@/types/projects";
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
-import { LegacyHeading as Heading, LegacyParagraph as Paragraph } from "@/components/typography";
+import { LegacyHeading as Heading, LegacyParagraph as Paragraph } from "@/components/type";
 import Link from "next/link";
 import { motion } from "framer-motion";
 

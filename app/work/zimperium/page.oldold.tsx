@@ -16,7 +16,7 @@ import {
 	ButtonText,
 	DataPair,
 	DataGrid,
-} from "@/components/typography";
+} from "@/components/type";
 import { SingleProject } from "@/components/sections/Project";
 import { Metadata } from "next";
 import Link from "next/link";

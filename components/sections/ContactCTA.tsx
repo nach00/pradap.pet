@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { SectionHeading, Paragraph } from "@/components/typography";
+import { SectionHeading, Paragraph } from "@/components/type";
 
 export const ContactCTA = () => {
 	return (
