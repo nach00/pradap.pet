@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import WorkTimeline from "@/app/about/WorkTimeline";
 import PageHeader from "@/components/layout/PageHeader";
@@ -8,7 +10,7 @@ import { Metadata } from "next";
 
 const pageTitle: string = "About";
 const pageDescription: string =
-	"Design Engineer with 5+ years of experience creating intelligent interfaces that bridge the gap between human cognition and artificial intelligence. Based in Bangkok, working with teams globally.";
+	"Design Engineer with 5+ years of experience creating intelligent interfaces that bridge the gap between human cognition and artificial intelligence. Based in Dallas, working with teams globally.";
 
 export const metadata: Metadata = {
 	title: pageTitle,
@@ -18,42 +20,71 @@ export const metadata: Metadata = {
 export default function AboutPage() {
 	return (
 		<>
-			{/* Page header */}
+			<HeroSection />
+			<JourneySection />
+		</>
+	);
+}
+
+function HeroSection() {
+	return (
+		<>
 			<Section>
-				<Container className="mb-30 flex flex-row gap-20">
+				<Container className="flex flex-col gap-20">
 					<PageHeader title={pageTitle} description={pageDescription} />
+					<Button className="w-min">
+						<Link href="https://drive.google.com/file/d/103Ur2NEFO2I-4TKUDVG_hBs8w-TJ3n7w/view?usp=drive_link">
+							View resume
+						</Link>
+					</Button>
 				</Container>
 			</Section>
-			{/* Journey */}
+		</>
+	);
+}
+
+function JourneySection() {
+	return (
+		<>
 			<Section>
-				<Container className="mb-30 flex flex-row gap-20">
+				<Container className="flex flex-row justify-between">
 					<div>
 						<h2>Journey</h2>
 						<p className="max-w-[60ch]">
-							My journey began in cognitive psychology, studying how humans
-							process complex information. This foundation led me to design
-							engineering, where I explore the intersection of human cognition
-							and artificial intelligence.
+							I began my career chasing the dream of becoming a restaurateur,
+							studying culinary arts, business, and even interning at Disney
+							World’s Epcot in the Norwegian Pavilion. After nearly a decade in
+							the restaurant industry, I realized my true passion lay in tech. I
+							spent nights and weekends teaching myself web development and
+							design, taking on freelance projects where I first used Adobe XD
+							to bring client ideas to life. Over time, I built a portfolio
+							strong enough to land my first professional role as a UX Designer
+							at Zimperium.
 						</p>
 
 						<p className="max-w-[60ch]">
-							I've spent the last decade working with teams at the forefront of
-							AI, creating interfaces that adapt to user behavior and enhance
-							human decision-making. My approach combines systematic design
-							thinking with deep technical implementation.
+							From there, I expanded my experience in both in-house and agency
+							settings—at Photon as a UX/UI Designer and at Insite as a UX
+							Specialist, focusing on UX strategy. Most recently, I completed a
+							full-stack coding bootcamp at Altcademy, continuing my journey
+							toward becoming a developer.
 						</p>
 					</div>
-					{/* <div className="grid place-items-center bg-accent/15 border w-full rounded-xl"> */}
-					<PixelImage
-						src="https://www.pradap.pet/assets/photos/ai_profile.jpg"
-						grid="8x8"
-						grayscaleAnimation
-					/>
-					{/* </div> */}
+					<div className="flex justify-end items-end">
+						<PixelImage
+							src="https://www.pradap.pet/assets/photos/ai_profile.jpg"
+							grid="8x8"
+							grayscaleAnimation
+						/>
+					</div>
 				</Container>
 			</Section>
-
-			{/* Experience */}
+		</>
+	);
+}
+function TimelinesSection() {
+	return (
+		<>
 			<Section>
 				<Container className="flex flex-row gap-20">
 					<div className="flex flex-col w-full">

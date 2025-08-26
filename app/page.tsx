@@ -1,4 +1,6 @@
 "use client";
+
+import { PixelImage } from "@/components/magicui/pixel-image";
 import Section from "@/components/layout/Section";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
@@ -40,7 +42,7 @@ export default function Home() {
 function HeroSection() {
 	return (
 		<>
-			<Section className="h-screen">
+			<Section className="h-full">
 				<Container className="flex flex-col justify-center">
 					<h1 className="max-w-[10ch]">Design Engineer</h1>
 
@@ -119,12 +121,23 @@ function ProfileSection() {
 								technical implementation, drawing from cognitive psychology and
 								machine learning to create adaptive systems.
 							</p>
+
+							<Button className="w-min">
+								<Link href="https://drive.google.com/file/d/103Ur2NEFO2I-4TKUDVG_hBs8w-TJ3n7w/view?usp=drive_link">
+									View resume
+								</Link>
+							</Button>
 						</div>
 						<div className="lg:col-span-1 flex flex-col justify-center">
-							<div className="border border-gray-200 rounded-lg p-8 text-right">
-								<Subheading className="mb-2">Natcha Pradappet</Subheading>
-								<Eyebrow>Design Engineer</Eyebrow>
-							</div>
+							<PixelImage
+								src="https://www.pradap.pet/assets/photos/ai_profile.jpg"
+								grid="8x8"
+								grayscaleAnimation
+							/>
+							{/* <div className="border border-gray-200 rounded-lg p-8 text-right"> */}
+							{/* 	<Subheading className="mb-2">Natcha Pradappet</Subheading> */}
+							{/* 	<Eyebrow>Design Engineer</Eyebrow> */}
+							{/* </div> */}
 						</div>
 					</div>
 				</Container>
@@ -153,6 +166,25 @@ function ContactSection() {
 								interested in AI, adaptive interfaces, and human-centered
 								technology.
 							</p>
+
+							<div className="flex flex-row gap-8">
+								<Button className="w-min">
+									<Link href="mailto:natcha@pradap.pet">natcha@pradap.pet</Link>
+								</Button>
+								<Button className="w-min">
+									<Link href="https://www.linkedin.com/in/natcha-pradappet/">
+										LinkedIn
+									</Link>
+								</Button>
+								<Button className="w-min">
+									<Link href="https://github.com/nach00">Github</Link>
+								</Button>
+								<Button className="w-min">
+									<Link href="https://calendly.com/npradappet/alpha">
+										Calendly
+									</Link>
+								</Button>
+							</div>
 						</div>
 					</div>
 				</Container>

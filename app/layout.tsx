@@ -70,20 +70,20 @@ export default function RootLayout({
 						rubik.className,
 					)}
 				>
-					{/* <ThemeProvider */}
-					{/* 	attribute="class" */}
-					{/* 	defaultTheme="system" */}
-					{/* 	enableSystem */}
-					{/* 	disableTransitionOnChange */}
-					{/* > */}
-					<TopBar />
-					<BottomBar />
-					{children}
-					<Footer />
-					{/* <ModeToggle /> */}
-					{/* <ThemeToggle /> */}
-					{/* <AnimatedThemeToggler /> */}
-					{/* </ThemeProvider> */}
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="dark"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<TopBar />
+						<BottomBar />
+						{children}
+						<Footer />
+						{/* <ModeToggle /> */}
+						{/* <ThemeToggle /> */}
+						{/* <AnimatedThemeToggler /> */}
+					</ThemeProvider>
 				</body>
 			</html>
 		</>

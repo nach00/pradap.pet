@@ -27,6 +27,7 @@ export const projectDetails = {
 	technologies: ["VS Code", "Adobe XD", "HTML/CSS"],
 	liveUrl: "https://www.fossilgroup.com/",
 	sourceUrl: "",
+	headerImage: "",
 };
 
 export default function Fossil() {

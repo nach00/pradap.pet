@@ -23,6 +23,7 @@ export const projectDetails = {
 	technologies: ["Adobe XD", "Figma"],
 	liveUrl: "",
 	sourceUrl: "",
+	headerImage: "/images/project-scoutify.png",
 };
 
 export default function Scoutify() {

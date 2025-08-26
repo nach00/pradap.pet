@@ -22,6 +22,7 @@ export const projectDetails = {
 	services: ["UX/UI Design"],
 	technologies: ["Adobe XD", "Figma"],
 	liveUrl: "https://zimperium.com",
+	headerImage: "/images/project-zconsole.png",
 };
 
 export default function ZConsole() {

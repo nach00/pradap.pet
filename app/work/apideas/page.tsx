@@ -35,6 +35,7 @@ export const projectDetails: ProjectDetails = {
 	],
 	liveUrl: "https://apideas.fun",
 	sourceUrl: "https://github.com/nach00",
+	headerImage: "",
 } as const;
 
 export default function APideas() {

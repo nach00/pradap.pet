@@ -14,4 +14,5 @@ export type ProjectDetails = {
 	technologies: string[];
 	liveUrl: string;
 	sourceUrl: string;
+	headerImage: string;
 };
