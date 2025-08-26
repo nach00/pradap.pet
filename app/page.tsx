@@ -222,8 +222,8 @@ function BannerSection() {
 						style={{
 							backgroundImage: `repeating-linear-gradient(
 								-45deg,
-								var(--base-1) 0px,
-								var(--base-1) 20px,
+								var(--accent-1) 0px,
+								var(--accent-1) 20px,
 								var(--accent-9) 20px,
 								var(--accent-9) 40px
 							)`,
