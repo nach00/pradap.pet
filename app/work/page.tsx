@@ -20,20 +20,13 @@ export default function WorkPage() {
 	return (
 		<>
 			{/* Page header */}
-			<Section>
-				<Container className="mb-30">
-					<PageHeader title={pageTitle} description={pageDescription} />
-				</Container>
-			</Section>
-
+			{/* <Section> */}
+			{/* 	<Container className="mb-30"> */}
+			{/* 	</Container> */}
+			{/* </Section> */}
+			<HeroSection />
 			{/* Stats */}
-			<Section>
-				<Container className="mb-30 flex flex-row gap-30">
-					<StatStack number={12} label="projects" />
-					<StatStack number={8} label="million users impacted" />
-					<StatStack number={100} label="design patents" />
-				</Container>
-			</Section>
+			{/* <StatsSection /> */}
 
 			{/* Selected work */}
 			<SelectedWorkSection />
@@ -45,7 +38,40 @@ export default function WorkPage() {
 			{/* 	</Container> */}
 			{/* </Section> */}
 
-			<Section className="border-none">
+			<ArchivedWorkSection />
+		</>
+	);
+}
+
+function HeroSection() {
+	return (
+		<>
+			<Section>
+				<Container>
+					<PageHeader title={pageTitle} description={pageDescription} />
+				</Container>
+			</Section>
+		</>
+	);
+}
+
+function StatsSection() {
+	return (
+		<>
+			<Section>
+				<Container>
+					<StatStack number={12} label="projects" />
+					<StatStack number={8} label="million users impacted" />
+					<StatStack number={100} label="design patents" />
+				</Container>
+			</Section>
+		</>
+	);
+}
+function ArchivedWorkSection() {
+	return (
+		<>
+			<Section>
 				<Container>
 					<h2>Archived Work</h2>
 					<p>Projects from previous years. Details available upon request.</p>

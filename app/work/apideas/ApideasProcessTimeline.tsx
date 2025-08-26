@@ -1,38 +1,43 @@
 const steps = [
 	{
-		title: "Research",
+		title: "Course Completion & Project Inception",
 		description:
-			"Gather information and analyze requirements to understand the problem and define objectives.",
+			"After completing all courses from Altcademy, I was tasked with building a final capstone project, applying all the skills learned from the full-stack bootcamp classes.",
 	},
 	{
-		title: "Planning",
+		title: "Initial Prototyping & Brainstorming",
 		description:
-			"Create a roadmap, define the scope, and outline the necessary steps to achieve the goal.",
+			"I built a prototype of an app idea generator that randomly paired 2 APIs from a curated list. An AI tool, Claude, would then generate an app idea, a problem statement, a proposed solution, an implementation method, market potential, and an overall score.",
 	},
 	{
-		title: "Design",
+		title: "Pivoting the Project Idea",
 		description:
-			"Develop wireframes, mockups, and prototypes to visualize the structure and user experience.",
+			"After running the prototype a few times, I realized that creating a completed, polished version of the generator itself would be a more compelling and suitable capstone project.",
 	},
 	{
-		title: "Development",
+		title: "Planning & Feature Definition",
 		description:
-			"Write code, integrate features, and build the core functionality of the application.",
+			"I began planning the project requirements for the full application, defining the necessary pages, the details for each idea card, and the overall scope of the project.",
 	},
 	{
-		title: "Testing",
+		title: "Design & User Experience",
 		description:
-			"Perform quality assurance, fix bugs, and optimize performance before release.",
+			"Developed wireframes and mockups to visualize the application's structure and create an intuitive user experience for the final design.",
 	},
 	{
-		title: "Deployment",
+		title: "Development & Implementation",
 		description:
-			"Launch the project in a live environment and ensure smooth deployment.",
+			"Wrote the code, integrated the features, and built the core functionality of the application, transforming the initial prototype into a fully-featured project.",
 	},
 	{
-		title: "Maintenance",
+		title: "Testing & Deployment",
 		description:
-			"Monitor performance, update features, and provide ongoing support and improvements.",
+			"Performed quality assurance to fix bugs, optimized performance, and launched the project in a live environment at apideas.fun.",
+	},
+	{
+		title: "Final Submission & Outcome",
+		description:
+			"I submitted the completed project as my final capstone. The project was successful, and I passed the class, effectively demonstrating the skills acquired during the bootcamp.",
 	},
 ];
 

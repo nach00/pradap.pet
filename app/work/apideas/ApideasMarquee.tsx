@@ -28,12 +28,10 @@ const fourthRow = reviews.slice(reviews.length / 2);
 const ReviewCard = ({
 	img,
 	name,
-	username,
 	body,
 }: {
 	img: string;
 	name: string;
-	username: string;
 	body: string;
 }) => {
 	return (
@@ -52,7 +50,7 @@ const ReviewCard = ({
 					<figcaption className="text-sm font-medium dark:text-white">
 						{name}
 					</figcaption>
-					<p className="text-xs font-medium dark:text-white/40">{username}</p>
+					<p className="text-xs font-medium dark:text-white/40">{img}</p>
 				</div>
 			</div>
 			<blockquote className="mt-2 text-sm">{body}</blockquote>
@@ -62,7 +60,7 @@ const ReviewCard = ({
 
 export default function ApideasMarquee() {
 	return (
-		<div className="relative flex h-[600px] w-full flex-row items-center justify-center gap-4 overflow-hidden [perspective:300px]">
+		<div className="relative flex h-[400px] w-full flex-row items-center justify-center gap-4 overflow-hidden [perspective:300px]">
 			<div
 				className="flex flex-row items-center gap-4"
 				style={{
@@ -72,22 +70,22 @@ export default function ApideasMarquee() {
 			>
 				<Marquee pauseOnHover vertical className="[--duration:20s]">
 					{firstRow.map((review) => (
-						<ReviewCard key={review.username} {...review} />
+						<ReviewCard key={review.img} {...review} />
 					))}
 				</Marquee>
 				<Marquee reverse pauseOnHover className="[--duration:20s]" vertical>
 					{secondRow.map((review) => (
-						<ReviewCard key={review.username} {...review} />
+						<ReviewCard key={review.img} {...review} />
 					))}
 				</Marquee>
 				<Marquee reverse pauseOnHover className="[--duration:20s]" vertical>
 					{thirdRow.map((review) => (
-						<ReviewCard key={review.username} {...review} />
+						<ReviewCard key={review.img} {...review} />
 					))}
 				</Marquee>
 				<Marquee pauseOnHover className="[--duration:20s]" vertical>
 					{fourthRow.map((review) => (
-						<ReviewCard key={review.username} {...review} />
+						<ReviewCard key={review.img} {...review} />
 					))}
 				</Marquee>
 			</div>

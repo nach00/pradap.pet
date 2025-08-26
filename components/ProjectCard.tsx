@@ -32,7 +32,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
 	return (
 		<Link href={href} className="group block">
-			<article className="relative h-full bg-background border border-border rounded-sm overflow-hidden transition-all duration-300 hover:border-foreground/20 hover:shadow-lg">
+			<article className="relative h-full bg-[var(--base-2)] border border-border rounded-sm overflow-hidden transition-all duration-300 hover:border-foreground/20 hover:shadow-lg">
 				{/* Image/Preview Area */}
 				<div className="relative aspect-[4/3] bg-gradient-to-br from-muted to-muted/50 border-b border-border overflow-hidden">
 					<div className="absolute inset-0 flex items-center justify-center">
@@ -54,12 +54,11 @@ export function ProjectCard({
 							year={tagYear}
 							status={tagStatus}
 							type={tagCategory}
-							className="text-xs"
 						/>
 					</div>
 
 					{/* Title */}
-					<h3 className="text-xl font-normal tracking-tight text-foreground group-hover:text-accent-foreground transition-colors duration-200">
+					<h3 className="text-xl font-normal tracking-tight text-foreground group-hover:text-[var(--base-11)] transition-colors duration-200">
 						{title}
 					</h3>
 

@@ -1,11 +1,14 @@
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
+
+import { cn } from "@/lib/utils";
+import { BottomBar } from "@/components/BottomBar";
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-
-import "@fontsource-variable/rubik";
+import localFont from "next/font/local";
+// import "@fontsource-variable/rubik";
 // import "@fontsource-variable/geist-sans";
 // import "@fontsource-variable/geist-mono";
-import "@fontsource-variable/intel-one-mono";
+// import "@fontsource-variable/intel-one-mono";
 import "@/styles/global.css";
 // import "@/styles/typography.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -22,6 +25,22 @@ import { ThemeToggle } from "@/components/theme-toggle";
 // 	variable: "--font-geist-mono",
 // 	subsets: ["latin"],
 // });
+// const whirlyBats = localFont({
+// 	src: "/fonts/WhirlyBatsVariable.ttf",
+// 	variable: "--font-whirly-bats",
+// });
+import { Rubik, JetBrains_Mono } from "next/font/google";
+
+const jetbrainsMono = JetBrains_Mono({
+	subsets: ["latin"],
+	variable: "--font-jetbrains-mono",
+	display: "swap",
+});
+const rubik = Rubik({
+	subsets: ["latin"],
+	variable: "--font-rubik",
+	display: "swap",
+});
 
 const pageTitle: string = "Natcha Pradappet";
 const pageDescription: string =
@@ -42,7 +61,15 @@ export default function RootLayout({
 			<html lang="en" suppressHydrationWarning>
 				<head />
 				{/* <body className="prose dark:prose-invert"> */}
-				<body className="mt-50">
+				{/* <body className="mt-50"> */}
+				<body
+					className={cn(
+						"mt-50",
+						rubik.variable,
+						jetbrainsMono.variable,
+						rubik.className,
+					)}
+				>
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
@@ -50,10 +77,11 @@ export default function RootLayout({
 						disableTransitionOnChange
 					>
 						<TopBar />
+						<BottomBar />
 						{children}
 						<Footer />
 						{/* <ModeToggle /> */}
-						<ThemeToggle />
+						{/* <ThemeToggle /> */}
 						{/* <AnimatedThemeToggler /> */}
 					</ThemeProvider>
 				</body>

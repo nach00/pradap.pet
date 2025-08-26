@@ -10,6 +10,7 @@ export type ProjectDetails = {
 	duration: string;
 	role: string;
 	team: string;
+	services: string[];
 	technologies: string[];
 	liveUrl: string;
 	sourceUrl: string;

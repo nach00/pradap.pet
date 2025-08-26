@@ -4,19 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-sm text-sm font-medium tracking-wide transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+	"inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-xs text-sm font-medium tracking-wide transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
 	{
 		variants: {
 			variant: {
 				default:
-					"bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-[0.98]",
+					"bg-[var(--base-12)] text-[var(--base-1)] shadow-sm hover:bg-[var(--accent-9)] hover:text-[var(--base-12)] dark:hover:text-[var(--base-1)] active:scale-[0.98] shadow-sm",
 				destructive:
 					"bg-destructive text-white shadow-sm hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
 				outline:
-					"border border-border bg-transparent shadow-sm hover:bg-muted/50 hover:border-foreground/20 active:scale-[0.98]",
+					"border border-border bg-transparent shadow-sm hover:bg-[var(--base-3)] hover:border-[var(--base-8)] active:scale-[0.98]",
 				secondary:
 					"text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 decoration-1",
-				ghost: "hover:bg-muted/50 hover:text-foreground active:bg-muted",
+				ghost:
+					"hover:bg-var(--base-8) hover:text-var(--base-9) active:bg-var(--base-8)",
 				link: "text-primary underline-offset-4 hover:underline decoration-1 p-0 h-auto",
 			},
 			size: {
@@ -51,6 +52,7 @@ function Button({
 		<Comp
 			data-slot="button"
 			className={cn(buttonVariants({ variant, size, className }))}
+			// style={{ borderRadius: ".5em", cornerShape: "superellipse(0)" }}
 			{...props}
 		/>
 	);

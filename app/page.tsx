@@ -40,8 +40,8 @@ export default function Home() {
 function HeroSection() {
 	return (
 		<>
-			<Section>
-				<Container className="flex flex-col h-screen justify-center">
+			<Section className="h-screen">
+				<Container className="flex flex-col justify-center">
 					<h1 className="max-w-[10ch]">Design Engineer</h1>
 
 					{/* <p className="max-w-[30ch] leading-7 text-secondary-foreground mt-12"> */}
@@ -53,18 +53,11 @@ function HeroSection() {
 					<div className="flex gap-12 mt-12">
 						{/* <span className="eyebrow">Location</span> */}
 						{/* <p>Dallas, Texas</p> */}
-						{/* <DataPair label="Location">Dallas, TX</DataPair> */}
-						{/* <DataPair label="Status">Available</DataPair> */}
-						<div className="flex flex-col gap-1">
-							<span className="eyebrow">Location</span>
-							<small className="">Dallas, Texas</small>
-						</div>
-						<div className="flex flex-col gap-1">
-							<span className="eyebrow">Status</span>
-							<small className="">Available</small>
-						</div>
+						<DataPair label="Location">Dallas, TX</DataPair>
+						<DataPair label="Status">Available</DataPair>
 					</div>
 
+					{/* <div className="wb-icon wb-animate text-7xl">E</div> */}
 					<div className="flex gap-4 mt-12">
 						<Button>View work</Button>
 						<Button variant="outline">About & Experience</Button>
@@ -87,7 +80,9 @@ export function SelectedWorkSection() {
 				<Container>
 					<div className="flex flex-row justify-between">
 						<h2 className="text-[var(--accent-11)]">Selected Work</h2>
-						<Button variant="secondary">View all work →</Button>
+						<Button variant="secondary">
+							<Link href="/work">View all work →</Link>
+						</Button>
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{featuredProjects.map((project) => (
@@ -107,7 +102,9 @@ function ProfileSection() {
 				<Container>
 					<div className="flex flex-row justify-between">
 						<h2 className="text-[var(--accent-11)]">Profile</h2>
-						<Button variant="secondary">Full background →</Button>
+						<Button variant="secondary">
+							<Link href="/about">Full background →</Link>
+						</Button>
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 						<div className="lg:col-span-2">
@@ -143,7 +140,9 @@ function ContactSection() {
 				<Container>
 					<div className="flex flex-row justify-between">
 						<h2 className="text-[var(--accent-11)]">Contact</h2>
-						<Button variant="secondary">Start a project →</Button>
+						<Button variant="secondary">
+							<Link href="/contact">Start a project →</Link>
+						</Button>
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 						<div className="lg:col-span-2">

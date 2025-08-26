@@ -166,26 +166,26 @@ export function TagType({ children, className }: TypeProps) {
 
 export function Eyebrow({ children, className }: TypeProps) {
 	return (
-		<div
+		<span
 			className={cn(
-				"text-xs text-[var(--accent-11)] font-bold uppercase tracking-wider font-mono pb-2",
+				"text-xs text-[var(--base-12)] uppercase tracking-wider",
 				className,
 			)}
 		>
 			{children}
-		</div>
+		</span>
 	);
 }
 
 export function TagBox({ children, className }: TypeProps) {
 	return (
-		<div
+		<small
 			className={cn(
-				"border font-light tracking-wide text-sm text-[var(--base-11)] px-2 py-1 flex-shrink-0",
+				"border text-[var(--base-11)] px-2 py-1 flex-shrink-0 hover:bg-[var(--base-3)] hover:border-[var(--base-8)]",
 				className,
 			)}
 		>
 			{children}
-		</div>
+		</small>
 	);
 }

@@ -1,22 +1,16 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
 	Navbar,
 	NavBody,
 	NavItems,
-	MobileNav,
 	NavbarLogo,
-	NavbarButton,
-	MobileNavHeader,
-	MobileNavToggle,
-	MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
-import { ModeToggle } from "./ModeToggle";
-import { ThemeToggle } from "./theme-toggle";
 
 export function TopBar() {
+	const pathname = usePathname();
 	const navItems = [
 		{
 			name: "Home",
@@ -34,58 +28,25 @@ export function TopBar() {
 			name: "Blog",
 			link: "/blog",
 		},
-		// {
-		// 	name: "Contact",
-		// 	link: "/contact",
-		// },
 	];
 
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const navItemsWithActive = navItems.map((item) => ({
+		...item,
+		isActive:
+			pathname === item.link ||
+			(item.link !== "/" && pathname.startsWith(item.link)),
+	}));
 
 	return (
 		<div className="relative w-full">
 			<Navbar className="">
-				{/* Desktop Navigation */}
-				<NavBody className="bg-background">
+				<NavBody className="bg-[var(--base-a1)]">
 					<NavbarLogo />
-					<NavItems items={navItems} />
-					<div className="flex items-center gap-4">
-						{/* <ThemeToggle /> */}
-						<Button variant="ghost">
-							<Link href="/contact">Contact</Link>
-						</Button>
-					</div>
+					<NavItems items={navItemsWithActive} />
+					<Button variant="secondary">
+						<Link href="/contact">Contact</Link>
+					</Button>
 				</NavBody>
-
-				{/* Mobile Navigation */}
-				<MobileNav>
-					<MobileNavHeader>
-						{/* <NavbarLogo /> */}
-						<MobileNavToggle
-							isOpen={isMobileMenuOpen}
-							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-						/>
-					</MobileNavHeader>
-
-					<MobileNavMenu
-						isOpen={isMobileMenuOpen}
-						onClose={() => setIsMobileMenuOpen(false)}
-					>
-						{navItems.map((item, idx) => (
-							<a
-								key={`mobile-link-${idx}`}
-								href={item.link}
-								onClick={() => setIsMobileMenuOpen(false)}
-								className="relative text-neutral-600 dark:text-neutral-300"
-							>
-								<span className="block">{item.name}</span>
-							</a>
-						))}
-						<div className="flex w-full flex-col gap-4">
-							<ModeToggle />
-						</div>
-					</MobileNavMenu>
-				</MobileNav>
 			</Navbar>
 		</div>
 	);

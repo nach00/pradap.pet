@@ -5,6 +5,7 @@ module.exports = {
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
+
 	theme: {
 		extend: {
 			colors: {
@@ -37,6 +38,34 @@ module.exports = {
 					975: "var(--base-975)",
 				},
 			},
+
+			screens: {
+				xxxs: "320px", // Small phones (iPhone SE, older Android)
+				xxs: "375px", // Standard phones (iPhone 12/13/14)
+				xs: "414px", // Large phones (iPhone Plus, Pixel)
+				// Base breakpoints (min-width - mobile first)
+				mobile: "320px",
+				tablet: "768px",
+				laptop: "1024px",
+				desktop: "1280px",
+				wide: "1536px",
+
+				// "Greater than" breakpoints (redundant since base ones are already min-width)
+				// You can remove these or use them for clarity
+				"gt-mobile": "321px",
+				"gt-tablet": "769px",
+				"gt-laptop": "1025px",
+				"gt-desktop": "1281px",
+				"gt-wide": "1537px",
+
+				// "Less than" breakpoints (max-width)
+				"lt-mobile": { max: "319px" }, // Fixed: should be 319px, not 320px
+				"lt-tablet": { max: "767px" }, // Fixed: should be 767px, not 768px
+				"lt-laptop": { max: "1023px" }, // Fixed: should be 1023px, not 1024px
+				"lt-desktop": { max: "1279px" }, // Fixed: should be 1279px, not 1280px
+				"lt-wide": { max: "1535px" }, // Fixed: should be 1535px, not 1536px
+			},
 		},
 	},
+	plugins: [],
 };
