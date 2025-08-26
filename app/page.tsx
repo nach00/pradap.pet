@@ -63,8 +63,12 @@ function HeroSection() {
 
 					{/* <div className="wb-icon wb-animate text-7xl">E</div> */}
 					<div className="flex gap-4 mt-12">
-						<Button>View work</Button>
-						<Button variant="outline">About & Experience</Button>
+						<Button>
+							<Link href="/work">View work</Link>
+						</Button>
+						<Button variant="outline">
+							<Link href="/about">About & Experience</Link>
+						</Button>
 					</div>
 				</Container>
 			</Section>
