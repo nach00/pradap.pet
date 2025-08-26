@@ -3,10 +3,13 @@ import StatStack from "./StatStack";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 import { Metadata } from "next";
-import Link from "next/link";
-import ProductCard from "@/components/work/ProductCard";
-import { NumberTicker } from "@/components/magicui/number-ticker";
 import { SelectedWorkSection } from "@/app/page";
+import { ArchivedItem } from "@/app/work/ArchivedItem";
+
+import { projectDetails as tamaguiProjectDetails } from "@/app/work/tamagui/page";
+import { projectDetails as rfidinterlockProjectDetails } from "@/app/work/rfidinterlock/page";
+import { projectDetails as fossilProjectDetails } from "@/app/work/fossil/page";
+
 const pageTitle: string = "Work";
 const pageDescription: string =
 	"A collection of projects exploring the intersection of design, engineering, and artificial intelligence.";
@@ -19,25 +22,9 @@ export const metadata: Metadata = {
 export default function WorkPage() {
 	return (
 		<>
-			{/* Page header */}
-			{/* <Section> */}
-			{/* 	<Container className="mb-30"> */}
-			{/* 	</Container> */}
-			{/* </Section> */}
 			<HeroSection />
-			{/* Stats */}
 			{/* <StatsSection /> */}
-
-			{/* Selected work */}
 			<SelectedWorkSection />
-			{/* <Section> */}
-			{/* 	<Container> */}
-			{/* 		<h2>Selected Work</h2> */}
-			{/**/}
-			{/* 		<ProductCard /> */}
-			{/* 	</Container> */}
-			{/* </Section> */}
-
 			<ArchivedWorkSection />
 		</>
 	);
@@ -69,12 +56,21 @@ function StatsSection() {
 	);
 }
 function ArchivedWorkSection() {
+	const archivedProjects = [
+		{ href: "/work/tamagui", ...tamaguiProjectDetails },
+		{ href: "/work/rfidinterlock", ...rfidinterlockProjectDetails },
+		{ href: "/work/fossil", ...fossilProjectDetails },
+	];
 	return (
 		<>
 			<Section>
 				<Container>
 					<h2>Archived Work</h2>
 					<p>Projects from previous years. Details available upon request.</p>
+
+					{archivedProjects.map((project) => (
+						<ArchivedItem key={project.href} {...project} />
+					))}
 				</Container>
 			</Section>
 		</>

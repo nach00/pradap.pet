@@ -4,7 +4,7 @@ import Link from "next/link";
 import Container from "@/components/layout/Container";
 
 import { projectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
-import { projectDetails as zimperiumProjectDetails } from "@/app/work/zimperium/page";
+import { projectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
 import { projectDetails as scoutifyProjectDetails } from "@/app/work/scoutify/page";
 
 import React, { useEffect, useState } from "react";
@@ -71,7 +71,7 @@ function HeroSection() {
 export function SelectedWorkSection() {
 	const featuredProjects = [
 		{ href: "/work/apideas", ...apideasProjectDetails },
-		{ href: "/work/zimperium", ...zimperiumProjectDetails },
+		{ href: "/work/zconsole", ...zconsoleProjectDetails },
 		{ href: "/work/scoutify", ...scoutifyProjectDetails },
 	];
 	return (

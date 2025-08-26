@@ -59,21 +59,25 @@ export default function ProjectHeroContent({
 
 			{/* Action Buttons */}
 			<div className="flex flex-row gap-8">
-				<Button className="sm:min-w-[200px]" size="lg" asChild>
-					<a href={liveUrl} target="_blank" rel="noopener noreferrer">
-						View Live Project
-					</a>
-				</Button>
-				<Button
-					className="sm:min-w-[200px]"
-					variant="outline"
-					size="lg"
-					asChild
-				>
-					<a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-						View Source Code
-					</a>
-				</Button>
+				{liveUrl && (
+					<Button className="sm:min-w-[200px]" size="lg" asChild>
+						<a href={liveUrl} target="_blank" rel="noopener noreferrer">
+							View Live Project
+						</a>
+					</Button>
+				)}
+				{sourceUrl && (
+					<Button
+						className="sm:min-w-[200px]"
+						variant="outline"
+						size="lg"
+						asChild
+					>
+						<a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+							View Source Code
+						</a>
+					</Button>
+				)}
 			</div>
 		</div>
 	);
