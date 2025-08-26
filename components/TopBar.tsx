@@ -24,10 +24,10 @@ export function TopBar() {
 			name: "Work",
 			link: "/work",
 		},
-		{
-			name: "Blog",
-			link: "/blog",
-		},
+		// {
+		// 	name: "Blog",
+		// 	link: "/blog",
+		// },
 	];
 
 	const navItemsWithActive = navItems.map((item) => ({

@@ -1,4 +1,5 @@
 "use client";
+import Scene from "@/components/3d/Scene";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 
 import { PixelImage } from "@/components/magicui/pixel-image";
@@ -32,11 +33,22 @@ import { ProjectCard } from "@/components/ProjectCard";
 export default function Home() {
 	return (
 		<>
+			{/* <DemoSection /> */}
 			<BannerSection />
 			<HeroSection />
 			<SelectedWorkSection />
 			<ProfileSection />
 			<ContactSection />
+		</>
+	);
+}
+
+function DemoSection() {
+	return (
+		<>
+			<Section className="h-[600px]">
+				<Scene />
+			</Section>
 		</>
 	);
 }

@@ -30,11 +30,11 @@ export function BottomBar() {
 			icon: <Work className="w-5 h-5" />,
 			link: "/work",
 		},
-		{
-			title: "Blog",
-			icon: <Blog className="w-5 h-5" />,
-			link: "/blog",
-		},
+		// {
+		// 	title: "Blog",
+		// 	icon: <Blog className="w-5 h-5" />,
+		// 	link: "/blog",
+		// },
 		{
 			title: "Contact",
 			icon: <Contact className="w-5 h-5" />,
