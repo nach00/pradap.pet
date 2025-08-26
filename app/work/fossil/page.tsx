@@ -25,8 +25,8 @@ export const projectDetails = {
 		"Template Development",
 	],
 	technologies: ["VS Code", "Adobe XD", "HTML/CSS"],
-	liveUrl: "https://www.fossilgroup.com/",
-	sourceUrl: "",
+	companyUrl: "https://www.fossilgroup.com/",
+
 	headerImage: "",
 };
 

@@ -370,6 +370,7 @@
 		line-height: 1.6;
 		font-weight: 350;
 		color: var(--secondary-foreground);
+		max-width: 60ch;
 
 		@media (max-width: 500px) {
 			font-size: 1.125rem;

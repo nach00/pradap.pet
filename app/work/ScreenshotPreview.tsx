@@ -26,7 +26,7 @@ export default function ScreenshotPreview({
 	// 	}
 	// };
 	return (
-		<div className="relative">
+		<div className="relative flex flex-col gap-1 items-center">
 			{/* <div onClick={handleImageClick} className="cursor-pointer"> */}
 			{/* 	<Safari url="apideas.fun" className="size-full" imageSrc={imageSrc} /> */}
 			{/* </div> */}

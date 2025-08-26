@@ -1,4 +1,5 @@
 "use client";
+import { StickyBanner } from "@/components/ui/sticky-banner";
 
 import { PixelImage } from "@/components/magicui/pixel-image";
 import Section from "@/components/layout/Section";
@@ -31,6 +32,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 export default function Home() {
 	return (
 		<>
+			<BannerSection />
 			<HeroSection />
 			<SelectedWorkSection />
 			<ProfileSection />
@@ -189,6 +191,34 @@ function ContactSection() {
 					</div>
 				</Container>
 			</Section>
+		</>
+	);
+}
+
+function BannerSection() {
+	return (
+		<>
+			<div className="absolute top-0 flex h-[60vh] w-full flex-col overflow-y-auto">
+				<StickyBanner className="relative bg-[var(--accent-9)] text-[var(--base-1)] fill-[var(--base-1)] overflow-hidden">
+					{/* Diagonal stripes background */}
+					<div
+						className="absolute inset-0 opacity-30"
+						style={{
+							backgroundImage: `repeating-linear-gradient(
+								-45deg,
+								var(--base-1) 0px,
+								var(--base-1) 20px,
+								var(--accent-9) 20px,
+								var(--accent-9) 40px
+							)`,
+						}}
+					/>
+					{/* Content */}
+					<span className="relative z-10 font-light tracking-wide text-sm uppercase p-3 bg-[var(--accent-9)]">
+						Always under construction
+					</span>
+				</StickyBanner>
+			</div>
 		</>
 	);
 }

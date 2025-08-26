@@ -21,7 +21,7 @@ export const projectDetails = {
 	team: "Product",
 	services: ["UX/UI Design"],
 	technologies: ["Adobe XD", "Figma"],
-	liveUrl: "https://zimperium.com",
+	companyUrl: "https://zimperium.com",
 	headerImage: "/images/project-zconsole.png",
 };
 

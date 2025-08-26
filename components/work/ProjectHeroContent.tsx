@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ProjectBadges } from "../ProjectBadges";
@@ -18,6 +19,7 @@ interface ProjectHeaderProps {
 	description?: string;
 	liveUrl?: string;
 	sourceUrl?: string;
+	companyUrl?: string;
 	className?: string;
 }
 
@@ -37,6 +39,7 @@ export default function ProjectHeroContent({
 	description,
 	liveUrl,
 	sourceUrl,
+	companyUrl,
 	className,
 }: ProjectHeaderProps) {
 	return (
@@ -58,12 +61,12 @@ export default function ProjectHeroContent({
 			</div>
 
 			{/* Action Buttons */}
-			<div className="flex flex-row gap-8">
+			<div className="flex flex-row gap-12">
 				{liveUrl && (
 					<Button className="sm:min-w-[200px]" size="lg" asChild>
-						<a href={liveUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={liveUrl} target="_blank" rel="noopener noreferrer">
 							View Live Project
-						</a>
+						</Link>
 					</Button>
 				)}
 				{sourceUrl && (
@@ -73,9 +76,21 @@ export default function ProjectHeroContent({
 						size="lg"
 						asChild
 					>
-						<a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={sourceUrl} target="_blank" rel="noopener noreferrer">
 							View Source Code
-						</a>
+						</Link>
+					</Button>
+				)}
+				{companyUrl && (
+					<Button
+						className="sm:min-w-[200px]"
+						variant="default"
+						size="lg"
+						asChild
+					>
+						<Link href={companyUrl} target="_blank" rel="noopener noreferrer">
+							Visit Company Website
+						</Link>
 					</Button>
 				)}
 			</div>
