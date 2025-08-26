@@ -79,7 +79,7 @@ export default function RootLayout({
 						<TopBar />
 						<BottomBar />
 						{children}
-						<Footer />
+						{/* <Footer /> */}
 						{/* <ModeToggle /> */}
 						{/* <ThemeToggle /> */}
 						{/* <AnimatedThemeToggler /> */}
