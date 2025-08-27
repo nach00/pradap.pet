@@ -1,13 +1,13 @@
-import { TagBox, Eyebrow } from "@/components/type";
+import { TagBox } from "@/components/Type";
 
-import DataPair from "@/components/DataPair";
+import { DataPair } from "@/components/DataPair";
 import Container from "@/components/layout/Container";
 import StatStack from "../StatStack";
 import ApideasMarquee from "./ApideasMarquee";
 import Browser from "./Browser";
 import Section from "@/components/layout/Section";
 import Deck from "./Deck";
-import ProjectHeroContent from "@/components/work/ProjectHeroContent";
+import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { ProjectDetails } from "@/types/projectDetails";
 
 export const projectDetails: ProjectDetails = {
@@ -35,7 +35,7 @@ export const projectDetails: ProjectDetails = {
 	],
 	liveUrl: "https://apideas.fun",
 	sourceUrl: "https://github.com/nach00",
-	headerImage: "",
+	headerImage: "/images/project-apideas.png",
 } as const;
 
 export default function APideas() {

@@ -1,4 +1,4 @@
-import { Safari } from "@/components/magicui/safari";
+import { Safari } from "@/components/Safari";
 
 interface BrowserProps {
 	imageSrc?: string;

@@ -1,8 +1,7 @@
 "use client";
-import Scene from "@/components/3d/Scene";
+import { cn } from "@/lib/utils";
 import { StickyBanner } from "@/components/ui/sticky-banner";
-
-import { PixelImage } from "@/components/magicui/pixel-image";
+import Scene from "@/components/3d/App";
 import Section from "@/components/layout/Section";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
@@ -10,45 +9,20 @@ import Container from "@/components/layout/Container";
 import { projectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
 import { projectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
 import { projectDetails as scoutifyProjectDetails } from "@/app/work/scoutify/page";
-
-import React, { useEffect, useState } from "react";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import Image from "next/image";
+import React from "react";
 import { Button } from "@/components/ui/button";
-// import "@/styles/global.css";
-// import "@/styles/typography.css";
-import { cn } from "@/lib/utils";
-import { FeaturedWorkGrid } from "@/components/FeaturedWorkGrid";
-import {
-	Headline,
-	DataPair,
-	SectionHeading,
-	Subheading,
-	Paragraph,
-	Lede,
-	Eyebrow,
-	Status,
-} from "@/components/typography";
+import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
 
 export default function Home() {
 	return (
 		<>
-			{/* <DemoSection /> */}
+			<Scene />
 			<BannerSection />
 			<HeroSection />
 			<SelectedWorkSection />
 			<ProfileSection />
-			<ContactSection />
-		</>
-	);
-}
-
-function DemoSection() {
-	return (
-		<>
-			<Section className="h-[600px]">
-				<Scene />
-			</Section>
 		</>
 	);
 }
@@ -76,10 +50,10 @@ function HeroSection() {
 					{/* <div className="wb-icon wb-animate text-7xl">E</div> */}
 					<div className="flex gap-4 mt-12">
 						<Button>
-							<Link href="/work">View work</Link>
+							<Link href="/work">View work →</Link>
 						</Button>
 						<Button variant="outline">
-							<Link href="/about">About & Experience</Link>
+							<Link href="/about">View resume →</Link>
 						</Button>
 					</div>
 				</Container>
@@ -121,88 +95,44 @@ function ProfileSection() {
 			<Section>
 				<Container>
 					<div className="flex flex-row justify-between">
-						<h2 className="text-[var(--accent-11)]">Profile</h2>
+						<h2>Journey</h2>
+
 						<Button variant="secondary">
-							<Link href="/about">Full background →</Link>
+							<Link href="https://drive.google.com/file/d/103Ur2NEFO2I-4TKUDVG_hBs8w-TJ3n7w/view?usp=drive_link">
+								View resume →
+							</Link>
 						</Button>
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 						<div className="lg:col-span-2">
-							<p className="mb-8">
-								Design Engineer with 8+ years of experience creating intelligent
-								interfaces that bridge the gap between human cognition and
-								artificial intelligence. Based in Bangkok, working with teams
-								globally.
-							</p>
-							<p className="mb-12">
-								My approach combines systematic design thinking with deep
-								technical implementation, drawing from cognitive psychology and
-								machine learning to create adaptive systems.
+							<p className="max-w-[60ch]">
+								I began my career chasing the dream of becoming a restaurateur,
+								studying culinary arts, business, and even interning at Disney
+								World’s Epcot in the Norwegian Pavilion. After nearly a decade
+								in the restaurant industry, I realized my true passion lay in
+								tech. I spent nights and weekends teaching myself web
+								development and design, taking on freelance projects where I
+								first used Adobe XD to bring client ideas to life. Over time, I
+								built a portfolio strong enough to land my first professional
+								role as a UX Designer at Zimperium.
 							</p>
 
-							<Button className="w-min">
-								<Link href="https://drive.google.com/file/d/103Ur2NEFO2I-4TKUDVG_hBs8w-TJ3n7w/view?usp=drive_link">
-									View resume
-								</Link>
-							</Button>
+							<p className="max-w-[60ch]">
+								From there, I expanded my experience in both in-house and agency
+								settings—at Photon as a UX/UI Designer and at Insite as a UX
+								Specialist, focusing on UX strategy. Most recently, I completed
+								a full-stack coding bootcamp at Altcademy, continuing my journey
+								toward becoming a developer.
+							</p>
 						</div>
-						<div className="lg:col-span-1 flex flex-col justify-center">
-							<PixelImage
-								src="https://www.pradap.pet/assets/photos/ai_profile.jpg"
-								grid="8x8"
-								grayscaleAnimation
+						<div>
+							<Image
+								src="/images/ai_profile.jpg"
+								width={500}
+								height={500}
+								alt="Picture of the author"
+								className="rounded-xl"
 							/>
-							{/* <div className="border border-gray-200 rounded-lg p-8 text-right"> */}
-							{/* 	<Subheading className="mb-2">Natcha Pradappet</Subheading> */}
-							{/* 	<Eyebrow>Design Engineer</Eyebrow> */}
-							{/* </div> */}
-						</div>
-					</div>
-				</Container>
-			</Section>
-		</>
-	);
-}
-
-function ContactSection() {
-	return (
-		<>
-			<Section>
-				<Container>
-					<div className="flex flex-row justify-between">
-						<h2 className="text-[var(--accent-11)]">Contact</h2>
-						<Button variant="secondary">
-							<Link href="/contact">Start a project →</Link>
-						</Button>
-					</div>
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-						<div className="lg:col-span-2">
-							<h3 className="mb-8">Let&apos;s work together</h3>
-							<p>
-								Available for design engineering projects, research
-								collaborations, and speaking engagements. Particularly
-								interested in AI, adaptive interfaces, and human-centered
-								technology.
-							</p>
-
-							<div className="flex flex-row gap-8">
-								<Button className="w-min">
-									<Link href="mailto:natcha@pradap.pet">natcha@pradap.pet</Link>
-								</Button>
-								<Button className="w-min">
-									<Link href="https://www.linkedin.com/in/natcha-pradappet/">
-										LinkedIn
-									</Link>
-								</Button>
-								<Button className="w-min">
-									<Link href="https://github.com/nach00">Github</Link>
-								</Button>
-								<Button className="w-min">
-									<Link href="https://calendly.com/npradappet/alpha">
-										Calendly
-									</Link>
-								</Button>
-							</div>
 						</div>
 					</div>
 				</Container>
@@ -214,23 +144,26 @@ function ContactSection() {
 function BannerSection() {
 	return (
 		<>
-			<div className="absolute top-0 flex h-[60vh] w-full flex-col overflow-y-auto">
-				<StickyBanner className="relative bg-[var(--accent-9)] text-[var(--base-1)] fill-[var(--base-1)] overflow-hidden">
-					{/* Diagonal stripes background */}
+			<div className="absolute top-0 w-full overflow-y-auto">
+				<StickyBanner
+					className={cn(
+						"bg-[var(--accent-9)] text-[var(--base-12)] overflow-hidden",
+						"dark:text-[var(--base-1)]",
+					)}
+				>
 					<div
-						className="absolute inset-0 opacity-30"
+						className="absolute inset-0"
 						style={{
 							backgroundImage: `repeating-linear-gradient(
 								-45deg,
-								var(--accent-1) 0px,
-								var(--accent-1) 20px,
-								var(--accent-9) 20px,
-								var(--accent-9) 40px
+								var(--base-a12) 0px,
+								var(--base-a12) 20px,
+								var(--accent-a9) 20px,
+								var(--accent-a9) 40px
 							)`,
 						}}
 					/>
-					{/* Content */}
-					<span className="relative z-10 font-light tracking-wide text-sm uppercase p-3 bg-[var(--accent-9)]">
+					<span className="z-10 font-light tracking-wide text-sm uppercase p-2 bg-[var(--accent-9)]">
 						Always under construction
 					</span>
 				</StickyBanner>

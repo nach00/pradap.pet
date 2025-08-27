@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
-import { Marquee } from "@/components/magicui/marquee";
+import { Marquee } from "@/components/Marquee";
 
 const reviews = [
 	{

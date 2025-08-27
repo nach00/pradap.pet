@@ -5,5 +5,11 @@ interface IconProps {
 }
 
 export function FireIcon({ className }: IconProps) {
-	return <h1 className={cn("", className)}>8</h1>;
+	return <span className={cn("wb-icon wb-animate", className)}>8</span>;
+}
+export function SunIcon({ className }: IconProps) {
+	return <span className={cn("wb-icon wb-animate", className)}>1</span>;
+}
+export function MoonIcon({ className }: IconProps) {
+	return <span className={cn("wb-icon wb-animate", className)}>3</span>;
 }

@@ -20,11 +20,11 @@ export function BottomBar() {
 			icon: <Home className="w-5 h-5" />,
 			link: "/",
 		},
-		{
-			title: "About",
-			icon: <About className="w-5 h-5" />,
-			link: "/about",
-		},
+		// {
+		// 	title: "About",
+		// 	icon: <About className="w-5 h-5" />,
+		// 	link: "/about",
+		// },
 		{
 			title: "Work",
 			icon: <Work className="w-5 h-5" />,
@@ -35,11 +35,11 @@ export function BottomBar() {
 		// 	icon: <Blog className="w-5 h-5" />,
 		// 	link: "/blog",
 		// },
-		{
-			title: "Contact",
-			icon: <Contact className="w-5 h-5" />,
-			link: "/contact",
-		},
+		// {
+		// 	title: "Contact",
+		// 	icon: <Contact className="w-5 h-5" />,
+		// 	link: "/contact",
+		// },
 	];
 
 	const navItemsWithActive = navItems.map((item) => ({

@@ -1,5 +1,5 @@
 "use client";
-import AnimatedCard from "@/components/animated-card";
+import AnimatedCard from "@/components/AnimatedCard";
 import { easeInOut, motion } from "framer-motion";
 import { useState } from "react";
 

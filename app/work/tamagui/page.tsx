@@ -1,9 +1,9 @@
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
-import { TagBox, Eyebrow } from "@/components/type";
-import { DataPair } from "@/components/typography";
+import { TagBox, Eyebrow } from "@/components/Type";
+import { DataPair } from "@/components/DataPair";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
-import ProjectHeroContent from "@/components/work/ProjectHeroContent";
+import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
 export const projectDetails = {
@@ -21,8 +21,8 @@ export const projectDetails = {
 	team: "Open Source",
 	services: ["Design System", "Component Design"],
 	technologies: ["Figma"],
-	liveUrl: "https://tamagui.dev",
-	sourceUrl: "https://www.figma.com/community/file/1326593766534421119",
+	companyUrl: "https://tamagui.dev",
+	liveUrl: "https://www.figma.com/community/file/1326593766534421119",
 };
 
 export default function Tamagui() {
@@ -68,7 +68,7 @@ function DetailsSection() {
 							<DataPair label="Skills">
 								{projectDetails.services &&
 									projectDetails.services.length > 0 && (
-										<div className="flex flex-wrap gap-2">
+										<div className="flex flex-wrap gap-2 border">
 											{projectDetails.services.map((service, index) => (
 												<TagBox key={index}>{service}</TagBox>
 											))}

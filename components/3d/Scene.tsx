@@ -1,60 +1,62 @@
-"use client";
-
-import { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { CameraTracker } from "./CameraTracker";
 import { Canvas } from "@react-three/fiber";
-import { Physics, RapierRigidBody, RigidBody } from "@react-three/rapier";
+import { Physics, RigidBodyApi } from "@react-three/rapier";
+import { OrbitControls, SoftShadows, ContactShadows } from "@react-three/drei";
+import { Toy } from "./Toy";
+import { Ground } from "./Ground";
+import { SpotlightTracker } from "./SpotlightTracker";
+import { useTheme } from "./ThemeContext"; // Import the useTheme hook
+import * as THREE from "three";
 
-// Import the other components
-import { ActionFigure } from "./ActionFigure";
-import { ResponsiveCamera } from "./ResponsiveCamera";
+export function Scene() {
+	const [toyPosition, setToyPosition] = useState<[number, number, number]>([
+		0, 5, 0,
+	]);
+	const [toyRotation, setToyRotation] = useState<[number, number, number]>([
+		0, 5, 0,
+	]);
+	const toyRigidBodyRef = useRef<RigidBodyApi>(null);
 
-// --- Main Scene Component ---
-export default function Scene() {
-	const actionFigureRef = useRef<RapierRigidBody>(null);
+	// Get the current theme from the context
+	const { theme } = useTheme();
+
+	useEffect(() => {
+		const randomX = (Math.random() - 0.5) * 5;
+		const randomZ = (Math.random() - 0.5) * 5;
+		setToyPosition([randomX, 5 + Math.random() * 2, randomZ]);
+		setToyRotation([randomX, 5 + Math.random() * 2, randomZ]);
+	}, []);
+
+	// Determine background color based on theme
+	const backgroundColor = theme === "light" ? "white" : "black";
 
 	return (
-		<Canvas shadows>
-			{/* The camera component handles its own state */}
-			<ResponsiveCamera />
-
-			{/* Add some soft, ambient light to the whole scene */}
+		<Canvas shadows camera={{ position: [0, 6, 8], fov: 50 }}>
+			{/* Set the background color dynamically */}
+			<color attach="background" args={[backgroundColor]} />
+			<SoftShadows size={25} samples={10} focus={0} />
+			<CameraTracker targetRef={toyRigidBodyRef} />
 			<ambientLight intensity={0.5} />
-
-			{/* This is the static key light pointing at the center */}
-			<spotLight
-				position={[-8, 18, 10]}
-				intensity={2.0}
-				angle={0.4}
-				penumbra={0.3}
-				castShadow
-				shadow-mapSize-width={2048}
-				shadow-mapSize-height={2048}
-				shadow-bias={-0.0001}
-				shadow-radius={6}
-			/>
-
-			{/* The physics world */}
+			{/* <ContactShadows */}
+			{/* 	position={[0, 0, 0]} */}
+			{/* 	opacity={0.7} */}
+			{/* 	scale={10} */}
+			{/* 	blur={1} */}
+			{/* 	far={10} */}
+			{/* /> */}
 			<Physics gravity={[0, -9.81, 0]}>
-				{/* The ActionFigure component */}
-				<ActionFigure ref={actionFigureRef} />
-
-				{/* A simple floor for the figure to land on */}
-				<RigidBody
-					type="fixed"
-					colliders="cuboid"
-					restitution={0.2}
-					friction={1}
-				>
-					<mesh
-						receiveShadow
-						position={[0, -0.5, 0]}
-						rotation={[-Math.PI / 2, 0, 0]}
-					>
-						<planeGeometry args={[100, 100]} />
-						<meshStandardMaterial color="#f0f0f0" />
-					</mesh>
-				</RigidBody>
+				<Ground />
+				<Toy
+					ref={toyRigidBodyRef}
+					position={toyPosition}
+					rotation={toyRotation}
+				/>
 			</Physics>
+
+			<SpotlightTracker targetRef={toyRigidBodyRef} />
+
+			{/* <OrbitControls /> */}
 		</Canvas>
 	);
 }

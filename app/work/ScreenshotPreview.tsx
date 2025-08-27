@@ -1,8 +1,7 @@
 "use client";
-import { Safari } from "@/components/magicui/safari";
-import React, { useState } from "react";
+import React from "react";
 
-import ImagePreview from "@/components/image-preview";
+import ImagePreview from "@/components/ImagePreview";
 interface ScreenshotPreviewProps {
 	imageSrc?: string;
 	description?: string;
@@ -18,18 +17,8 @@ export default function ScreenshotPreview({
 	imageWidth = 800,
 	imageHeight = 600,
 }: ScreenshotPreviewProps) {
-	// const [showImagePreview, setShowImagePreview] = useState(false);
-	//
-	// const handleImageClick = () => {
-	// 	if (imageSrc) {
-	// 		setShowImagePreview(true);
-	// 	}
-	// };
 	return (
 		<div className="relative flex flex-col gap-1 items-center">
-			{/* <div onClick={handleImageClick} className="cursor-pointer"> */}
-			{/* 	<Safari url="apideas.fun" className="size-full" imageSrc={imageSrc} /> */}
-			{/* </div> */}
 			<ImagePreview src={imageSrc} width={imageWidth} height={imageHeight} />
 			<small className="grid place-content-center pt-2 pb-8">
 				{description}

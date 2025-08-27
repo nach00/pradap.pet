@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ import {
 	NavItems,
 	NavbarLogo,
 } from "@/components/ui/resizable-navbar";
+import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 
 export function TopBar() {
 	const pathname = usePathname();
@@ -16,10 +18,10 @@ export function TopBar() {
 			name: "Home",
 			link: "/",
 		},
-		{
-			name: "About",
-			link: "/about",
-		},
+		// {
+		// 	name: "About",
+		// 	link: "/about",
+		// },
 		{
 			name: "Work",
 			link: "/work",
@@ -40,12 +42,13 @@ export function TopBar() {
 	return (
 		<div className="relative w-full">
 			<Navbar className="">
-				<NavBody className="bg-[var(--base-a1)]">
+				<NavBody className="bg-[var(--base-a12)]">
 					<NavbarLogo />
 					<NavItems items={navItemsWithActive} />
-					<Button variant="secondary">
-						<Link href="/contact">Contact</Link>
-					</Button>
+					{/* <Button variant="secondary"> */}
+					{/* 	<Link href="/contact">Contact</Link> */}
+					{/* </Button> */}
+					<AnimatedThemeToggler />
 				</NavBody>
 			</Navbar>
 		</div>

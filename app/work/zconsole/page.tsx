@@ -1,9 +1,9 @@
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
-import { TagBox, Eyebrow } from "@/components/type";
-import { DataPair } from "@/components/typography";
+import { TagBox } from "@/components/Type";
+import { DataPair } from "@/components/DataPair";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
-import ProjectHeroContent from "@/components/work/ProjectHeroContent";
+import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
 export const projectDetails = {
