@@ -83,9 +83,9 @@ export const AnimatedThemeToggler = ({ className }: props) => {
 				)}
 			>
 				{isDarkMode ? (
-					<MoonIcon className="text-2xl" />
+					<MoonIcon className="text-4xl" />
 				) : (
-					<SunIcon className="text-2xl" />
+					<SunIcon className="text-4xl" />
 				)}
 			</button>
 		</div>

@@ -42,6 +42,12 @@
 	animation: whirlyAnimate 1s linear infinite;
 }
 
+@theme {
+	--breakpoint-xxxs: 320px;
+	--breakpoint-xxs: 375px;
+	--breakpoint-xs: 414px;
+}
+
 @theme inline {
 	/* --font-sans: var(--font-rubik); */
 	/* --font-mono: var(--font-intel-one); */
@@ -341,6 +347,10 @@
 		color: var(--foreground);
 		letter-spacing: -0.02em;
 
+		/* @media (max-width: 320px) { */
+		/* 	font-size: 1rem; */
+		/* 	color: red; */
+		/* } */
 		@media (max-width: 500px) {
 			font-size: 2.5rem;
 		}
@@ -371,6 +381,10 @@
 		font-weight: 350;
 		color: var(--secondary-foreground);
 		max-width: 60ch;
+
+		/* @media (max-width: 320px) { */
+		/* 	font-size: 0.875rem !important; */
+		/* } */
 
 		@media (max-width: 500px) {
 			font-size: 1.125rem;

@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { StickyBanner } from "@/components/ui/sticky-banner";
-import Scene from "@/components/3d/App";
+import HeroBackground from "@/components/3d/HeroBackground";
 import Section from "@/components/layout/Section";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
@@ -18,7 +18,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 export default function Home() {
 	return (
 		<>
-			<Scene />
+			{/* <Scene /> */}
 			<BannerSection />
 			<HeroSection />
 			<SelectedWorkSection />
@@ -30,24 +30,53 @@ export default function Home() {
 function HeroSection() {
 	return (
 		<>
-			<Section className="h-full">
-				<Container className="flex flex-col justify-center">
-					<h1 className="max-w-[10ch]">Design Engineer</h1>
+			{/* 1. Added 'relative' to make this the positioning parent for its children.
+              2. Added 'overflow-hidden' as a good practice to prevent the background from bleeding out.
+            */}
+			<Section className="h-screen w-screen relative">
+				{/* 3. Changed positioning to fill the parent ('Section') instead of the viewport.
+                  4. Ensured it's positioned at the top-left corner.
+                */}
+				<HeroBackground className="w-full h-full absolute top-0 left-0 z-0" />
 
-					{/* <p className="max-w-[30ch] leading-7 text-secondary-foreground mt-12"> */}
+				{/* 5. Added 'relative' to ensure z-index is applied correctly.
+                     The z-50 places this container and its content on top of the background (z-0).
+                */}
+				<Container className="relative flex flex-col z-10 w-full h-full justify-end md:hidden">
+					<h1 className="max-w-[10ch] text-4xl">Design Engineer</h1>
+
 					<span className="lede max-w-[30ch]">
 						Crafting digital experiences where precision meets elegance.
 						Currently exploring AI-enhanced design systems.
 					</span>
 
 					<div className="flex gap-12 mt-12">
-						{/* <span className="eyebrow">Location</span> */}
-						{/* <p>Dallas, Texas</p> */}
 						<DataPair label="Location">Dallas, TX</DataPair>
 						<DataPair label="Status">Available</DataPair>
 					</div>
 
-					{/* <div className="wb-icon wb-animate text-7xl">E</div> */}
+					<div className="flex gap-4 mt-12">
+						<Button>
+							<Link href="/work">View work →</Link>
+						</Button>
+						<Button variant="outline">
+							<Link href="/about">View resume →</Link>
+						</Button>
+					</div>
+				</Container>
+				<Container className="hidden relative flex-col z-10 w-full h-full justify-end">
+					<h1 className="max-w-[10ch] text-4xl">Design Engineer</h1>
+
+					<span className="lede max-w-[30ch]">
+						Crafting digital experiences where precision meets elegance.
+						Currently exploring AI-enhanced design systems.
+					</span>
+
+					<div className="flex gap-12 mt-12">
+						<DataPair label="Location">Dallas, TX</DataPair>
+						<DataPair label="Status">Available</DataPair>
+					</div>
+
 					<div className="flex gap-4 mt-12">
 						<Button>
 							<Link href="/work">View work →</Link>

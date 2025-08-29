@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 
+import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 import { usePathname } from "next/navigation";
 import Home from "@/components/icons/home";
 import About from "@/components/icons/about";
@@ -55,6 +56,7 @@ export function BottomBar() {
 				className="fixed bottom-4 z-50"
 				items={navItemsWithActive}
 			/>
+			<AnimatedThemeToggler />
 		</div>
 	);
 }

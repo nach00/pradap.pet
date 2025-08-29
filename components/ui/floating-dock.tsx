@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import Link from "next/link";
-
+import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
 export interface FloatingDockItem {
 	title: string;
 	icon: React.ReactNode;
@@ -63,6 +63,7 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 					</span>
 				</Link>
 			))}
+			<AnimatedThemeToggler />
 		</motion.div>
 	);
 }
