@@ -1,5 +1,3 @@
-// import { TagId, TagStatus, TagType, TagYear } from "@/components/type";
-
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -82,6 +80,32 @@ export function TagType({ children, className }: TypeProps) {
 				"border border-[var(--accent-6)] rounded-sm",
 				"text-[var(--accent-11)] bg-[var(--accent-2)]",
 				"transition-colors duration-200",
+				className,
+			)}
+		>
+			{children}
+		</span>
+	);
+}
+
+export function TagBox({ children, className }: TypeProps) {
+	return (
+		<small
+			className={cn(
+				"border text-[var(--base-11)] px-2 py-1 flex-shrink-0 hover:bg-[var(--base-3)] hover:border-[var(--base-8)]",
+				className,
+			)}
+		>
+			{children}
+		</small>
+	);
+}
+
+export function Eyebrow({ children, className }: TypeProps) {
+	return (
+		<span
+			className={cn(
+				"text-xs text-[var(--base-12)] uppercase tracking-wider",
 				className,
 			)}
 		>

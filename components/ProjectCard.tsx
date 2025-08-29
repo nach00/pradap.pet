@@ -1,22 +1,13 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 import { ProjectBadges } from "./ProjectBadges";
-import Container from "@/components/layout/Container";
 import Image from "next/image";
 
 interface ProjectCardProps {
 	href: string;
-	tagId: string;
-	tagYear: string;
-	tagStatus: string;
-	tagCategory: string;
+	id: string;
+	year: string;
+	status: string;
+	category: string;
 	title: string;
 	lede: string;
 	description?: string;
@@ -25,10 +16,10 @@ interface ProjectCardProps {
 
 export function ProjectCard({
 	href,
-	tagId,
-	tagYear,
-	tagStatus,
-	tagCategory,
+	id,
+	year,
+	status,
+	category,
 	title,
 	lede,
 	headerImage,
@@ -54,7 +45,7 @@ export function ProjectCard({
 						<>
 							<div className="absolute inset-0 flex items-center justify-center">
 								<span className="font-mono text-6xl font-light text-muted-foreground/30 tracking-tight transition-transform duration-300 group-hover:scale-110">
-									{tagId}
+									{id}
 								</span>
 							</div>
 							{/* Overlay gradient on hover */}
@@ -67,10 +58,10 @@ export function ProjectCard({
 					{/* Badges */}
 					<div className="flex flex-wrap gap-2">
 						<ProjectBadges
-							id={tagId}
-							year={tagYear}
-							status={tagStatus}
-							type={tagCategory}
+							id={id}
+							year={year}
+							status={status}
+							type={category}
 						/>
 					</div>
 					{/* Title */}

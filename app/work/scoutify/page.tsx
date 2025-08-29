@@ -6,7 +6,7 @@ import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
-export const projectDetails = {
+const projectDetails = {
 	tagId: "03",
 	tagYear: "2021",
 	tagStatus: "In Progress",
@@ -25,6 +25,10 @@ export const projectDetails = {
 	sourceUrl: "",
 	headerImage: "/images/project-scoutify.png",
 };
+
+export function getProjectDetails() {
+	return projectDetails;
+}
 
 export default function Scoutify() {
 	return (

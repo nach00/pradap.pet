@@ -7,9 +7,9 @@ import Link from "next/link";
 import Container from "@/components/layout/Container";
 // import { Metadata } from "next";
 
-import { projectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
-import { projectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
-import { projectDetails as scoutifyProjectDetails } from "@/app/work/scoutify/page";
+import { getProjectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
+import { getProjectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
+import { getProjectDetails as scoutifyProjectDetails } from "@/app/work/scoutify/page";
 import Image from "next/image";
 import React from "react";
 import { Button } from "@/components/ui/button";

@@ -1,12 +1,12 @@
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
-import { TagBox } from "@/components/Type";
+import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
-export const projectDetails = {
+const projectDetails = {
 	tagId: "02",
 	tagYear: "2019",
 	tagStatus: "Complete",
@@ -25,6 +25,9 @@ export const projectDetails = {
 	headerImage: "/images/project-zconsole.png",
 };
 
+export function getProjectDetails() {
+	return projectDetails;
+}
 export default function ZConsole() {
 	return (
 		<>

@@ -1,5 +1,4 @@
-import { TagBox } from "@/components/Type";
-
+import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
 import Container from "@/components/layout/Container";
 import StatStack from "../StatStack";
@@ -10,7 +9,7 @@ import Deck from "./Deck";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { ProjectDetails } from "@/types/projectDetails";
 
-export const projectDetails: ProjectDetails = {
+const projectDetails: ProjectDetails = {
 	tagId: "01",
 	tagYear: "2025",
 	tagStatus: "Live",
@@ -37,6 +36,10 @@ export const projectDetails: ProjectDetails = {
 	sourceUrl: "https://github.com/nach00",
 	headerImage: "/images/project-apideas.png",
 } as const;
+
+export function getProjectDetails() {
+	return projectDetails;
+}
 
 export default function APideas() {
 	return (
