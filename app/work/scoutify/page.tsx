@@ -1,5 +1,5 @@
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
-import { TagBox } from "@/components/Type";
+import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
