@@ -38,6 +38,12 @@
 	}
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
 .wb-animate {
 	animation: whirlyAnimate 1s linear infinite;
 }
@@ -347,10 +353,6 @@
 		color: var(--foreground);
 		letter-spacing: -0.02em;
 
-		/* @media (max-width: 320px) { */
-		/* 	font-size: 1rem; */
-		/* 	color: red; */
-		/* } */
 		@media (max-width: 500px) {
 			font-size: 2.5rem;
 		}
@@ -360,7 +362,7 @@
 		font-size: 2rem;
 		font-weight: 300;
 		margin-bottom: 3rem;
-		color: var(--accent-11);
+		color: var(--accent-12);
 		letter-spacing: -0.01em;
 
 		@media (max-width: 500px) {

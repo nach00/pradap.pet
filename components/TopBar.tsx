@@ -1,4 +1,6 @@
 "use client";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { ModeToggle } from "@/components/ModeToggle";
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,18 +20,10 @@ export function TopBar() {
 			name: "Home",
 			link: "/",
 		},
-		// {
-		// 	name: "About",
-		// 	link: "/about",
-		// },
 		{
 			name: "Work",
 			link: "/work",
 		},
-		// {
-		// 	name: "Blog",
-		// 	link: "/blog",
-		// },
 	];
 
 	const navItemsWithActive = navItems.map((item) => ({
@@ -40,19 +34,14 @@ export function TopBar() {
 	}));
 
 	return (
-		<div className="relative w-full">
-			<Navbar className="">
-				<NavBody className="bg-[var(--base-a12)]/80 dark:bg-[var(--base-a1)]/800">
-					<NavbarLogo />
-					<div className="absolute flex w-full items-center">
-						<NavItems items={navItemsWithActive} />
-					</div>
-					{/* <Button variant="secondary"> */}
-					{/* 	<Link href="/contact">Contact</Link> */}
-					{/* </Button> */}
-					<AnimatedThemeToggler className="z-50" />
-				</NavBody>
-			</Navbar>
-		</div>
+		<Navbar className="">
+			<NavBody className="bg-[var(--base-a12)]/0 dark:bg-[var(--base-a1)]/80 min-w-full">
+				<NavbarLogo />
+				<div className="absolute flex w-full items-center">
+					<NavItems items={navItemsWithActive} />
+				</div>
+				<ThemeSwitcher className="z-50" />
+			</NavBody>
+		</Navbar>
 	);
 }

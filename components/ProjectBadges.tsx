@@ -72,6 +72,38 @@ export function TagStatus({ children, className }: TypeProps) {
 	);
 }
 
+export function TagIndustry({ children, className }: TypeProps) {
+	return (
+		<span
+			className={cn(
+				"inline-flex items-center px-2.5 py-0.5 text-xs font-medium tracking-wide",
+				"border border-[var(--base-6)] rounded-sm",
+				"text-[var(--base-11)] bg-[var(--base-3)]",
+				"transition-colors duration-200",
+				className,
+			)}
+		>
+			{children}
+		</span>
+	);
+}
+
+export function TagDuty({ children, className }: TypeProps) {
+	return (
+		<span
+			className={cn(
+				"inline-flex items-center px-2.5 py-0.5 text-xs font-medium tracking-wide",
+				"border border-[var(--base-6)] rounded-sm",
+				"text-[var(--base-11)] bg-[var(--base-3)]",
+				"transition-colors duration-200",
+				className,
+			)}
+		>
+			{children}
+		</span>
+	);
+}
+
 export function TagType({ children, className }: TypeProps) {
 	return (
 		<span

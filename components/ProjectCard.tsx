@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ProjectBadges } from "./ProjectBadges";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 interface ProjectCardProps {
 	href: string;
@@ -12,6 +13,7 @@ interface ProjectCardProps {
 	lede: string;
 	description?: string;
 	headerImage?: string;
+	darkHeaderImage?: string;
 }
 
 export function ProjectCard({
@@ -23,16 +25,31 @@ export function ProjectCard({
 	title,
 	lede,
 	headerImage,
+	darkHeaderImage,
 }: ProjectCardProps) {
+	const { theme, resolvedTheme } = useTheme();
+
+	// Determine which image to use based on theme
+	const getCurrentHeaderImage = () => {
+		const currentTheme = resolvedTheme || theme;
+
+		if (currentTheme === "dark" && darkHeaderImage) {
+			return darkHeaderImage;
+		}
+		return headerImage;
+	};
+
+	const currentHeaderImage = getCurrentHeaderImage();
+
 	return (
 		<Link href={href} className="group block">
 			<article className="relative h-full bg-[var(--base-2)] border border-border rounded-sm overflow-hidden transition-all duration-300 hover:border-foreground/20 hover:shadow-lg">
 				{/* Image/Preview Area */}
 				<div className="relative aspect-[4/3] bg-gradient-to-br from-muted to-muted/50 border-b border-border overflow-hidden">
-					{headerImage ? (
+					{currentHeaderImage ? (
 						<>
 							<Image
-								src={headerImage}
+								src={currentHeaderImage}
 								alt={title}
 								fill
 								className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -6,7 +6,8 @@ import { OrbitControls, SoftShadows, ContactShadows } from "@react-three/drei";
 import { Toy } from "./Toy";
 import { Ground } from "./Ground";
 import { SpotlightTracker } from "./SpotlightTracker";
-import { useTheme } from "./ThemeContext"; // Import the useTheme hook
+import { useTheme } from "next-themes";
+import { Wall } from "./Wall";
 import * as THREE from "three";
 
 export function Scene() {
@@ -46,6 +47,7 @@ export function Scene() {
 			{/* 	far={10} */}
 			{/* /> */}
 			<Physics gravity={[0, -9.81, 0]}>
+				<Wall />
 				<Ground />
 				<Toy
 					ref={toyRigidBodyRef}

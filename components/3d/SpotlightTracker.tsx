@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RigidBodyApi } from "@react-three/rapier";
 import * as THREE from "three";
@@ -11,6 +11,9 @@ export function SpotlightTracker({ targetRef }: SpotlightTrackerProps) {
 	const spotlightRef = useRef<THREE.SpotLight>(null!);
 	const spotlightTargetRef = useRef<THREE.Object3D>(null!);
 
+	// NEW: State to control whether the spotlight is tracking the object.
+	const [isTracking, setIsTracking] = useState(true);
+
 	useEffect(() => {
 		if (spotlightRef.current && spotlightTargetRef.current) {
 			spotlightRef.current.target = spotlightTargetRef.current;
@@ -18,10 +21,19 @@ export function SpotlightTracker({ targetRef }: SpotlightTrackerProps) {
 	}, []);
 
 	useFrame(() => {
-		if (targetRef.current) {
-			const targetPosition = targetRef.current.translation();
+		// The tracking logic now only runs if isTracking is true.
+		if (isTracking && targetRef.current) {
+			const rigidBody = targetRef.current;
+			const targetPosition = rigidBody.translation();
 			const { x, y, z } = targetPosition;
 
+			// NEW: Condition to stop tracking once the object comes to rest.
+			// We check if the body is "sleeping" and near the ground plane.
+			if (rigidBody.isSleeping() && y < 0.5) {
+				setIsTracking(false); // Stop tracking.
+			}
+
+			// These calculations will no longer run after isTracking is set to false.
 			const spotlightHeight = 8;
 			const offsetX = 3;
 			const offsetZ = 3;

@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
 	motion,
 	AnimatePresence,
@@ -85,7 +84,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 				minWidth: "800px",
 			}}
 			className={cn(
-				"relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex",
+				"relative z-50 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex bg-[var(--base-9)]",
 				visible && "rounded-sm",
 				className,
 			)}
@@ -102,16 +101,16 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 		<motion.div
 			onMouseLeave={() => setHovered(null)}
 			className={cn(
-				"hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+				"hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-[var(--base-6)] transition duration-200 hover:text-[var(--base-8)] lg:flex lg:space-x-2",
 				className,
 			)}
 		>
 			{items.map((item, idx) => (
-				<a
+				<Link
 					onMouseEnter={() => setHovered(idx)}
 					onClick={onItemClick}
 					className={cn(
-						"relative px-4 py-2 text-white transition-colors dark:text-neutral-300",
+						"relative px-4 py-2 text-[var(--accent-12)] transition-colors",
 						item.isActive && "text-black font-semibold dark:text-white",
 					)}
 					key={`link-${idx}`}
@@ -122,9 +121,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 							layoutId="hovered"
 							className={cn(
 								"absolute inset-0 h-full w-full rounded-sm",
-								item.isActive
-									? "bg-gray-200 dark:bg-neutral-700"
-									: "bg-gray-100 dark:bg-neutral-800",
+								item.isActive ? "bg-[var(--base-4)]" : "bg-[var(--base-3)]",
 							)}
 							initial={false}
 							animate={{
@@ -133,7 +130,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 						/>
 					)}
 					<span className="relative z-20">{item.name}</span>
-				</a>
+				</Link>
 			))}
 		</motion.div>
 	);
@@ -146,7 +143,7 @@ export const NavbarLogo = () => {
 			className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
 		>
 			<img
-				src="/images/icons/n-logo-white.svg"
+				src="/images/icons/n-logo-black.svg"
 				alt="logo"
 				width={30}
 				height={30}
@@ -159,7 +156,7 @@ export const NavbarLogo = () => {
 				height={30}
 				className="hidden dark:block"
 			/>
-			<span className="font-medium text-[var(--base-1)] dark:text-[var(--accent-9)]">
+			<span className="font-medium text-[var(--base-12)] dark:text-[var(--accent-9)]">
 				Natcha Pradappet
 			</span>
 		</Link>

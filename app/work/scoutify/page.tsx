@@ -7,10 +7,10 @@ import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
 const projectDetails = {
-	tagId: "03",
-	tagYear: "2021",
-	tagStatus: "In Progress",
-	tagCategory: "Social Media",
+	id: "03",
+	year: "2021",
+	status: "In Progress",
+	category: "Social Media",
 	title: "Scoutify",
 	lede: "A social media platform, similar to LinkedIn, but specifically for baseball athletes",
 	description:
@@ -24,6 +24,11 @@ const projectDetails = {
 	liveUrl: "",
 	sourceUrl: "",
 	headerImage: "/images/project-scoutify.png",
+
+	darkHeaderImage: "/images/project-scoutify-dark.png",
+	agency: "None",
+	duty: "Product Designer",
+	industry: "Sports Networking",
 };
 
 export function getProjectDetails() {
@@ -32,7 +37,7 @@ export function getProjectDetails() {
 
 export default function Scoutify() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -44,7 +49,7 @@ export default function Scoutify() {
 			<WireframingSection />
 			<PrototypingSection />
 			<LandingPageSection />
-		</>
+		</div>
 	);
 }
 

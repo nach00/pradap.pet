@@ -1,59 +1,81 @@
 import { TagId, TagStatus, TagType, TagYear } from "@/components/ProjectBadges";
 import Link from "next/link";
-
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface ArchivedItemProps {
-	href: string;
-	tagId: string;
-	tagYear: string;
-	tagStatus: string;
-	tagCategory: string;
+	href?: string;
+	id: string;
+	year: string;
+	status: string;
+	category: string;
 	title: string;
-	lede: string;
+	lede?: string;
 	description?: string;
 	className?: string;
+	duty?: string;
+	industry?: string;
 }
+
 export function ArchivedItem({
 	href,
-	tagId,
-	tagYear,
-	tagStatus,
-	tagCategory,
+	id,
+	year,
+	status,
+	category,
 	title,
 	lede,
 	className,
+	duty,
+	industry,
 }: ArchivedItemProps) {
-	return (
-		<Link
-			className={cn(
-				"flex",
-				"flex-row",
-				"border-b",
-				"items-baseline",
-				"gap-4",
-				"p-4",
-				"cursor-pointer",
-				"hover:shadow-md",
+	const baseClasses = cn(
+		"flex",
+		"flex-row",
+		"border-b",
+		"items-baseline",
+		"gap-4",
+		"p-4",
+		"transition-all",
+		"duration-200",
+		href ? "cursor-pointer hover:shadow-md" : "opacity-60",
+		className,
+	);
 
-				className,
-			)}
-			href={href}
-		>
+	const content = (
+		<>
 			<div className="w-10">
-				<TagId>{tagId}</TagId>
+				<TagId>{id}</TagId>
 			</div>
 			<div className="w-20">
-				<TagYear>{tagYear}</TagYear>
-			</div>
-			<div className="w-30">
-				<TagStatus>{tagStatus}</TagStatus>
+				<TagYear>{year}</TagYear>
 			</div>
 			<div className="w-50">
-				<TagType>{tagCategory}</TagType>
+				<TagStatus>{status}</TagStatus>
 			</div>
-			<span className="text-[var(--base-11)]">{title}</span>
-		</Link>
+			<div className="w-50">
+				<TagType>{category}</TagType>
+			</div>
+			<span
+				className={cn(
+					"font-medium",
+					href
+						? "text-[var(--accent-11)] hover:text-[var(--accent-11)] hover:underline"
+						: "text-[var(--base-9)]",
+				)}
+			>
+				{title}
+			</span>
+		</>
 	);
+
+	if (href) {
+		return (
+			<Link className={baseClasses} href={href}>
+				{content}
+			</Link>
+		);
+	}
+
+	return <span className={baseClasses}>{content}</span>;
 }

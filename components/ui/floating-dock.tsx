@@ -64,9 +64,9 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 				</Link>
 			))}
 
-			<div className="border-l pl-2">
-				<AnimatedThemeToggler />
-			</div>
+			{/* <div className="border-l pl-2"> */}
+			{/* 	<AnimatedThemeToggler /> */}
+			{/* </div> */}
 		</motion.div>
 	);
 }

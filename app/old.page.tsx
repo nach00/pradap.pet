@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
 
-import { Scene } from "@/components/3d/Scene";
 const pageTitle: string = "Design Engineer";
 const pageDescription: string =
 	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
@@ -39,47 +38,14 @@ export default function Home() {
 	);
 }
 
-// function HeroSection() {
-// 	return (
-// 		<>
-// 			<div className="relative w-screen h-screen">
-// 				<Scene />
-// 				<div className="absolute top-1/2 border w-min">
-// 					<h1 className="max-w-[10ch] leading-[110%]">{pageTitle}</h1>
-//
-// 					<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
-// 						{pageDescription}
-// 					</span>
-//
-// 					<div className="flex gap-12 mt-12">
-// 						<DataPair label="Location">Dallas, TX</DataPair>
-// 						<DataPair label="Status">Available</DataPair>
-// 					</div>
-//
-// 					<div className="flex gap-4 mt-12 pointer-events-auto">
-// 						<Button>
-// 							<Link href="/work">View work →</Link>
-// 						</Button>
-// 						<Button variant="outline">
-// 							<Link href="/about">View resume →</Link>
-// 						</Button>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</>
-// 	);
-// }
-
 function HeroSection() {
 	return (
 		<>
-			{/* The top-level Section now has pointer-events-none. This makes the entire
-        overlay click-through by default.
-      */}
-			<Section className="h-screen w-screen relative pointer-events-none">
+			<Section className="h-screen w-screen relative">
 				<HeroBackground className="w-full h-full absolute top-0 left-0 z-0" />
 
 				{/* Mobile Hero */}
+
 				<Container className="relative flex flex-col z-10 w-full h-full justify-end md:hidden">
 					<h1 className="max-w-[10ch] text-3xl mb-4">{pageTitle}</h1>
 
@@ -87,10 +53,7 @@ function HeroSection() {
 						{pageDescription}
 					</span>
 
-					{/* This div and the ThemeSwitcher need pointer-events-auto to become
-            clickable again.
-          */}
-					<div className="flex gap-4 mt-4 mb-6 pointer-events-auto">
+					<div className="flex gap-4 mt-4 mb-6">
 						<Button size="sm">
 							<Link href="/work">View work →</Link>
 						</Button>
@@ -99,14 +62,13 @@ function HeroSection() {
 						</Button>
 					</div>
 
-					<ThemeSwitcher className="pointer-events-auto" />
+					<ThemeSwitcher className="" />
 				</Container>
 
 				{/* Desktop Hero */}
+
 				<Container className="hidden md:flex relative flex-col z-10 w-full h-full justify-center">
-					<h1 className="max-w-[10ch] leading-[110%] text-[var(--accent-9)]">
-						{pageTitle}
-					</h1>
+					<h1 className="max-w-[10ch] leading-[110%]">{pageTitle}</h1>
 
 					<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
 						{pageDescription}
@@ -117,10 +79,7 @@ function HeroSection() {
 						<DataPair label="Status">Available</DataPair>
 					</div>
 
-					{/* This div contains the buttons, so we make the whole group
-            interactive again with pointer-events-auto.
-          */}
-					<div className="flex gap-4 mt-12 pointer-events-auto">
+					<div className="flex gap-4 mt-12">
 						<Button>
 							<Link href="/work">View work →</Link>
 						</Button>

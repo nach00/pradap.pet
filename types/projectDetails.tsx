@@ -1,8 +1,8 @@
 export type ProjectDetails = {
-	tagId: string;
-	tagYear: string;
-	tagStatus: string;
-	tagCategory: string;
+	id: string;
+	year: string;
+	status: string;
+	category: string;
 	title: string;
 	lede: string;
 	description: string;
@@ -15,4 +15,8 @@ export type ProjectDetails = {
 	liveUrl: string;
 	sourceUrl: string;
 	headerImage: string;
+	darkHeaderImage: string;
+	agency: string;
+	duty: string;
+	industry: string;
 };

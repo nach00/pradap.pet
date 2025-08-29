@@ -6,11 +6,11 @@ import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
-export const projectDetails = {
-	tagId: "04",
-	tagYear: "2024",
-	tagStatus: "Complete",
-	tagCategory: "Design System",
+const projectDetails = {
+	id: "04",
+	year: "2024",
+	status: "Complete",
+	category: "Design System",
 	title: "Tamagui",
 	lede: "A modular design system for React - web and native, bringing advanced styling capabilities to cross-platform development",
 	description:
@@ -25,9 +25,13 @@ export const projectDetails = {
 	liveUrl: "https://www.figma.com/community/file/1326593766534421119",
 };
 
+export function getProjectDetails() {
+	return projectDetails;
+}
+
 export default function Tamagui() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -35,7 +39,7 @@ export default function Tamagui() {
 			<ComponentsSection />
 			<ThemingSection />
 			<CommunitySection />
-		</>
+		</div>
 	);
 }
 

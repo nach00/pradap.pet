@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { ProjectBadges } from "@/app/work/ProjectBadges";
 
 interface ProjectHeaderProps {
-	tagId: string;
-	tagYear: string;
-	tagStatus: string;
-	tagCategory: string;
+	id: string;
+	year: string;
+	status: string;
+	category: string;
 	title: string;
 	client: string;
 	duration: string;
@@ -24,10 +24,10 @@ interface ProjectHeaderProps {
 }
 
 export default function ProjectHeroContent({
-	tagId,
-	tagYear,
-	tagStatus,
-	tagCategory,
+	id,
+	year,
+	status,
+	category,
 	title,
 	client,
 	duration,
@@ -46,10 +46,10 @@ export default function ProjectHeroContent({
 		<div className="flex w-full flex-col">
 			<div className="flex flex-col">
 				<ProjectBadges
-					id={tagId}
-					year={tagYear}
-					status={tagStatus}
-					type={tagCategory}
+					id={id}
+					year={year}
+					status={status}
+					type={category}
 					className="pb-6"
 				/>
 

@@ -7,14 +7,14 @@ import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
 const projectDetails = {
-	tagId: "02",
-	tagYear: "2019",
-	tagStatus: "Complete",
-	tagCategory: "Cybersecurity",
+	id: "02",
+	year: "2019",
+	status: "Complete",
+	category: "Cybersecurity",
 	title: "zConsole",
 	lede: "Administrative dashboard used by mobile app developers and cybersecurity teams of large enterprises",
-	// description:
-	// 	"During my time at Zimperium, I managed feature designs for 2 versions of this console, called V4 and V5. Below is a brief comparison between the two.",
+	description:
+		"During my time at Zimperium, I managed feature designs for 2 versions of this console, called V4 and V5. Below is a brief comparison between the two.",
 	client: "Zimperium",
 	duration: "2 years",
 	role: "UI/UX Designer",
@@ -23,6 +23,10 @@ const projectDetails = {
 	technologies: ["Adobe XD", "Figma"],
 	companyUrl: "https://zimperium.com",
 	headerImage: "/images/project-zconsole.png",
+	darkHeaderImage: "/images/project-zconsole-dark.png",
+	agency: "None",
+	duty: "UI/UX Design",
+	industry: "Cybersecurity",
 };
 
 export function getProjectDetails() {
@@ -30,7 +34,7 @@ export function getProjectDetails() {
 }
 export default function ZConsole() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -46,7 +50,7 @@ export default function ZConsole() {
 			{/* <LessonsLearnedSection /> */}
 			{/* <NextStepsSection /> */}
 			{/* <PreviewSection /> */}
-		</>
+		</div>
 	);
 }
 

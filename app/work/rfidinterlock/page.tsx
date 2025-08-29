@@ -6,11 +6,11 @@ import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
-export const projectDetails = {
-	tagId: "05",
-	tagYear: "2018-19",
-	tagStatus: "Complete",
-	tagCategory: "B2B Security",
+const projectDetails = {
+	id: "05",
+	year: "2018-19",
+	status: "Complete",
+	category: "B2B Security",
 	title: "RFID Interlock",
 	lede: "Provides a solution to companies using heavy machinery and equipment by preventing unauthorized users, tracking usage, and managing user access via its web console",
 	description:
@@ -25,9 +25,12 @@ export const projectDetails = {
 	sourceUrl: "",
 };
 
+export function getProjectDetails() {
+	return projectDetails;
+}
 export default function RFIDInterlock() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<TestimonialSection />
@@ -35,7 +38,7 @@ export default function RFIDInterlock() {
 			<ProblemDefinitionSection />
 			<SolutionSection />
 			<ResultsSection />
-		</>
+		</div>
 	);
 }
 

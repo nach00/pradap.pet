@@ -22,6 +22,7 @@ export const BackButton = ({
 	if (pathname === "/") {
 		return null;
 	}
+
 	const handleClick = () => {
 		if (onClick) {
 			onClick();
@@ -33,7 +34,7 @@ export const BackButton = ({
 	};
 
 	return (
-		<Section className="p-0 border-none">
+		<Section className="p-0 border-none mt-50">
 			<Container className="px-0">
 				<Button onClick={handleClick} variant="ghost" className="p-0">
 					{showIcon && <ChevronLeft className="w-4 h-4" />}

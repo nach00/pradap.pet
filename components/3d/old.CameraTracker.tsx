@@ -10,18 +10,18 @@ interface CameraTrackerProps {
 export function CameraTracker({ targetRef }: CameraTrackerProps) {
 	const { camera } = useThree();
 
-	// == NEW: STATE FOR TRACKING ==
-	// This state will control whether the camera should continue to follow the object.
-	const [isTracking, setIsTracking] = useState(true);
-
 	// == CAMERA POSITION OFFSETS ==
+	// These vectors determine where the camera is positioned relative to the target.
 	const mobileOffset = useMemo(() => new THREE.Vector3(0, 6, 6), []);
 	const desktopOffset = useMemo(() => new THREE.Vector3(-6, 3, 6), []);
 
 	// == CAMERA TARGET OFFSETS ==
+	// These vectors adjust the point the camera looks at, relative to the target's center.
+	// A negative Y value makes the camera look slightly down, pushing the object up in the frame.
 	const mobileLookAtOffset = useMemo(() => new THREE.Vector3(0, -3, 0), []);
-	const desktopLookAtOffset = useMemo(() => new THREE.Vector3(-1, 0, -3), []);
+	const desktopLookAtOffset = useMemo(() => new THREE.Vector3(-1, 0, -3), []); // No offset for desktop
 
+	// State to hold the current camera position and look-at offsets based on screen width.
 	const [cameraOffset, setCameraOffset] = useState(() =>
 		window.innerWidth <= 500 ? mobileOffset : desktopOffset,
 	);
@@ -29,9 +29,11 @@ export function CameraTracker({ targetRef }: CameraTrackerProps) {
 		window.innerWidth <= 500 ? mobileLookAtOffset : desktopLookAtOffset,
 	);
 
+	// This effect runs once to set up a resize event listener.
 	useEffect(() => {
 		const handleResize = () => {
 			const isMobile = window.innerWidth <= 500;
+			// Update both the camera position offset and the look-at target offset
 			setCameraOffset(isMobile ? mobileOffset : desktopOffset);
 			setLookAtOffset(isMobile ? mobileLookAtOffset : desktopLookAtOffset);
 		};
@@ -40,39 +42,30 @@ export function CameraTracker({ targetRef }: CameraTrackerProps) {
 		return () => window.removeEventListener("resize", handleResize);
 	}, [mobileOffset, desktopOffset, mobileLookAtOffset, desktopLookAtOffset]);
 
+	// Reusable THREE.Vector3 objects for performance.
 	const objectCenter = useRef(new THREE.Vector3()).current;
 	const newCameraPosition = useRef(new THREE.Vector3()).current;
 	const finalLookAtTarget = useRef(new THREE.Vector3()).current;
 
 	useFrame(() => {
-		// The entire tracking logic will now only run if isTracking is true.
-		if (isTracking && targetRef.current) {
-			const rigidBody = targetRef.current;
-
-			// Get the target's current world position.
-			const { x, y, z } = rigidBody.translation();
+		if (targetRef.current) {
+			// 1. Get the target's current world position (the object's center).
+			const { x, y, z } = targetRef.current.translation();
 			objectCenter.set(x, y, z);
 
-			// == NEW: CONDITION TO STOP TRACKING ==
-			// The `isSleeping()` method is a reliable way to check if an object has
-			// come to rest. We add a check for the y-position to ensure it's near the ground.
-			if (rigidBody.isSleeping() && y < 0.5) {
-				setIsTracking(false); // Turn off tracking permanently.
-			}
-
-			// Calculate the final point for the camera to look at.
+			// 2. Calculate the final point for the camera to look at by applying the offset.
 			finalLookAtTarget.addVectors(objectCenter, lookAtOffset);
 
-			// Calculate the desired new camera position.
+			// 3. Calculate the desired new camera position by applying its offset.
 			newCameraPosition.addVectors(objectCenter, cameraOffset);
 
-			// Smoothly interpolate the camera's position.
+			// 4. Smoothly interpolate the camera's position for a fluid motion.
 			camera.position.lerp(newCameraPosition, 0.1);
 
-			// Point the camera at the final, adjusted target.
+			// 5. Point the camera at the final, adjusted target.
 			camera.lookAt(finalLookAtTarget);
 		}
 	});
 
-	return null;
+	return null; // This component does not render any visible elements
 }

@@ -6,11 +6,11 @@ import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
-export const projectDetails = {
-	tagId: "06",
-	tagYear: "2022-23",
-	tagStatus: "Complete",
-	tagCategory: "Email Development",
+const projectDetails = {
+	id: "06",
+	year: "2022-23",
+	status: "Complete",
+	category: "Email Development",
 	title: "Fossil",
 	lede: "Email marketing campaign development for a global fashion and watch brand",
 	description:
@@ -30,9 +30,13 @@ export const projectDetails = {
 	headerImage: "",
 };
 
+export function getProjectDetails() {
+	return projectDetails;
+}
+
 export default function Fossil() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -40,7 +44,7 @@ export default function Fossil() {
 			<ProcessSection />
 			<BrandsSection />
 			<EmailExamplesSection />
-		</>
+		</div>
 	);
 }
 

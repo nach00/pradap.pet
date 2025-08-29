@@ -10,10 +10,10 @@ import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { ProjectDetails } from "@/types/projectDetails";
 
 const projectDetails: ProjectDetails = {
-	tagId: "01",
-	tagYear: "2025",
-	tagStatus: "Live",
-	tagCategory: "Capstone Project",
+	id: "01",
+	year: "2025",
+	status: "Live",
+	category: "Capstone Project",
 	title: "APIdeas",
 	lede: "Generate creative app ideas by combining APIs in a Pokemon-style card game.",
 	description:
@@ -35,6 +35,10 @@ const projectDetails: ProjectDetails = {
 	liveUrl: "https://apideas.fun",
 	sourceUrl: "https://github.com/nach00",
 	headerImage: "/images/project-apideas.png",
+	darkHeaderImage: "/images/project-apideas-dark.png",
+	agency: "",
+	duty: "",
+	industry: "",
 } as const;
 
 export function getProjectDetails() {
@@ -43,7 +47,7 @@ export function getProjectDetails() {
 
 export default function APideas() {
 	return (
-		<>
+		<div className="">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -54,7 +58,7 @@ export default function APideas() {
 			<LessonsLearnedSection />
 			<NextStepsSection />
 			<PreviewSection />
-		</>
+		</div>
 	);
 }
 

@@ -41,7 +41,6 @@ export default function RootLayout({
 				<head />
 				<body
 					className={cn(
-						// "pt-50",
 						rubik.variable,
 						jetbrainsMono.variable,
 						rubik.className,
@@ -49,7 +48,7 @@ export default function RootLayout({
 				>
 					<ThemeProvider
 						attribute="class"
-						defaultTheme="dark"
+						defaultTheme="system"
 						enableSystem
 						disableTransitionOnChange
 					>
