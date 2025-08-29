@@ -5,6 +5,7 @@ import HeroBackground from "@/components/3d/HeroBackground";
 import Section from "@/components/layout/Section";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+// import { Metadata } from "next";
 
 import { projectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
 import { projectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
@@ -15,10 +16,18 @@ import { Button } from "@/components/ui/button";
 import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
 
+const pageTitle: string = "Design Engineer";
+const pageDescription: string =
+	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
+
+// export const metadata: Metadata = {
+// 	title: pageTitle,
+// 	description: pageDescription,
+// };
+
 export default function Home() {
 	return (
 		<>
-			{/* <Scene /> */}
 			<BannerSection />
 			<HeroSection />
 			<SelectedWorkSection />
@@ -30,46 +39,30 @@ export default function Home() {
 function HeroSection() {
 	return (
 		<>
-			{/* 1. Added 'relative' to make this the positioning parent for its children.
-              2. Added 'overflow-hidden' as a good practice to prevent the background from bleeding out.
-            */}
 			<Section className="h-screen w-screen relative">
-				{/* 3. Changed positioning to fill the parent ('Section') instead of the viewport.
-                  4. Ensured it's positioned at the top-left corner.
-                */}
 				<HeroBackground className="w-full h-full absolute top-0 left-0 z-0" />
-
-				{/* 5. Added 'relative' to ensure z-index is applied correctly.
-                     The z-50 places this container and its content on top of the background (z-0).
-                */}
 				<Container className="relative flex flex-col z-10 w-full h-full justify-end md:hidden">
-					<h1 className="max-w-[10ch] text-4xl">Design Engineer</h1>
+					<h1 className="max-w-[10ch] text-3xl mb-4">{pageTitle}</h1>
 
-					<span className="lede max-w-[30ch]">
-						Crafting digital experiences where precision meets elegance.
-						Currently exploring AI-enhanced design systems.
+					<span className="text-sm max-w-[30ch] text-[var(--base-11)] font-normal">
+						{pageDescription}
 					</span>
 
-					<div className="flex gap-12 mt-12">
-						<DataPair label="Location">Dallas, TX</DataPair>
-						<DataPair label="Status">Available</DataPair>
-					</div>
-
-					<div className="flex gap-4 mt-12">
-						<Button>
+					<div className="flex gap-4 mt-4 mb-6">
+						<Button size="sm">
 							<Link href="/work">View work →</Link>
 						</Button>
-						<Button variant="outline">
+						<Button size="sm" variant="outline">
 							<Link href="/about">View resume →</Link>
 						</Button>
 					</div>
 				</Container>
-				<Container className="hidden relative flex-col z-10 w-full h-full justify-end">
-					<h1 className="max-w-[10ch] text-4xl">Design Engineer</h1>
 
-					<span className="lede max-w-[30ch]">
-						Crafting digital experiences where precision meets elegance.
-						Currently exploring AI-enhanced design systems.
+				<Container className="hidden md:flex relative flex-col z-10 w-full h-full justify-end">
+					<h1 className="max-w-[10ch] leading-[110%]">{pageTitle}</h1>
+
+					<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
+						{pageDescription}
 					</span>
 
 					<div className="flex gap-12 mt-12">
@@ -139,11 +132,15 @@ function ProfileSection() {
 								studying culinary arts, business, and even interning at Disney
 								World’s Epcot in the Norwegian Pavilion. After nearly a decade
 								in the restaurant industry, I realized my true passion lay in
-								tech. I spent nights and weekends teaching myself web
-								development and design, taking on freelance projects where I
-								first used Adobe XD to bring client ideas to life. Over time, I
-								built a portfolio strong enough to land my first professional
-								role as a UX Designer at Zimperium.
+								tech.
+							</p>
+
+							<p>
+								I spent nights and weekends teaching myself web development and
+								design, taking on freelance projects where I first used Adobe XD
+								to bring client ideas to life. Over time, I built a portfolio
+								strong enough to land my first professional role as a UX
+								Designer at Zimperium.
 							</p>
 
 							<p className="max-w-[60ch]">
@@ -158,9 +155,9 @@ function ProfileSection() {
 							<Image
 								src="/images/ai_profile.jpg"
 								width={500}
-								height={500}
-								alt="Picture of the author"
-								className="rounded-xl"
+								height={50}
+								alt="Picture of Natcha Pradappet"
+								className="rounded-sm"
 							/>
 						</div>
 					</div>
@@ -192,7 +189,7 @@ function BannerSection() {
 							)`,
 						}}
 					/>
-					<span className="z-10 font-light tracking-wide text-sm uppercase p-2 bg-[var(--accent-9)]">
+					<span className="z-10 font-light tracking-wide text-xs uppercase py-1 px-2 bg-[var(--accent-9)] rounded-sm border border-[var(--base-12)]">
 						Always under construction
 					</span>
 				</StickyBanner>

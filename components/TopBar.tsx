@@ -42,13 +42,15 @@ export function TopBar() {
 	return (
 		<div className="relative w-full">
 			<Navbar className="">
-				<NavBody className="bg-[var(--base-a12)]">
+				<NavBody className="bg-[var(--base-a12)]/80 dark:bg-[var(--base-a1)]/800">
 					<NavbarLogo />
-					<NavItems items={navItemsWithActive} />
+					<div className="absolute flex w-full items-center">
+						<NavItems items={navItemsWithActive} />
+					</div>
 					{/* <Button variant="secondary"> */}
 					{/* 	<Link href="/contact">Contact</Link> */}
 					{/* </Button> */}
-					<AnimatedThemeToggler />
+					<AnimatedThemeToggler className="z-50" />
 				</NavBody>
 			</Navbar>
 		</div>

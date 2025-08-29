@@ -51,7 +51,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 	return (
 		<motion.div
 			ref={ref}
-			className={cn("fixed inset-x-0 top-14 z-40 w-full", className)}
+			className={cn("fixed inset-x-0 top-8 z-40 w-full", className)}
 		>
 			{React.Children.map(children, (child) =>
 				React.isValidElement(child)
@@ -85,8 +85,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 				minWidth: "800px",
 			}}
 			className={cn(
-				"relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-				visible && "rounded-full",
+				"relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex",
+				visible && "rounded-sm",
 				className,
 			)}
 		>
@@ -121,7 +121,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 						<motion.div
 							layoutId="hovered"
 							className={cn(
-								"absolute inset-0 h-full w-full rounded-full",
+								"absolute inset-0 h-full w-full rounded-sm",
 								item.isActive
 									? "bg-gray-200 dark:bg-neutral-700"
 									: "bg-gray-100 dark:bg-neutral-800",
@@ -163,47 +163,5 @@ export const NavbarLogo = () => {
 				Natcha Pradappet
 			</span>
 		</Link>
-	);
-};
-
-export const NavbarButton = ({
-	href,
-	as: Tag = "a",
-	children,
-	className,
-	variant = "primary",
-	...props
-}: {
-	href?: string;
-	as?: React.ElementType;
-	children: React.ReactNode;
-	className?: string;
-	variant?: "primary" | "secondary" | "dark" | "gradient" | "ghost";
-} & (
-	| React.ComponentPropsWithoutRef<"a">
-	| React.ComponentPropsWithoutRef<"button">
-)) => {
-	const baseStyles =
-		"inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-xs text-sm font-medium tracking-wide transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
-
-	const variantStyles = {
-		primary:
-			"shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-		secondary: "bg-transparent shadow-none dark:text-white",
-		dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-		gradient:
-			"bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
-		ghost:
-			"hover:bg-var(--base-8) hover:text-var(--base-9) active:bg-var(--base-8)",
-	};
-
-	return (
-		<Tag
-			href={href || undefined}
-			className={cn(baseStyles, variantStyles[variant], className)}
-			{...props}
-		>
-			{children}
-		</Tag>
 	);
 };

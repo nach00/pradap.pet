@@ -23,7 +23,7 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 		<motion.div
 			onMouseLeave={() => setHovered(null)}
 			className={cn(
-				"flex items-center gap-1 rounded-xl bg-[var(--base-2)]/50 backdrop-blur-sm p-2 shadow-lg",
+				"flex items-center gap-1 rounded-md bg-[var(--base-2)]/50 backdrop-blur-sm p-2 shadow-lg",
 				className,
 			)}
 		>
@@ -33,7 +33,7 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 					href={item.link}
 					onMouseEnter={() => setHovered(idx)}
 					className={cn(
-						"relative rounded-lg p-2 w-14 h-14 flex items-center justify-center transition-all duration-200",
+						"relative rounded-sm p-2 w-14 h-14 flex items-center justify-center transition-all duration-200",
 						item.isActive ? "text-[var(--base-12)]" : "text-[var(--base-9)]",
 					)}
 				>
@@ -42,7 +42,7 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 						<motion.div
 							layoutId="hovered-dock"
 							className={cn(
-								"absolute inset-0 h-full w-full rounded-lg",
+								"absolute inset-0 h-full w-full rounded-sm",
 								item.isActive ? "bg-[var(--base-4)]" : "bg-[var(--base-3)]",
 							)}
 							initial={false}
@@ -63,7 +63,10 @@ export function FloatingDock({ items, className }: FloatingDockProps) {
 					</span>
 				</Link>
 			))}
-			<AnimatedThemeToggler />
+
+			<div className="border-l pl-2">
+				<AnimatedThemeToggler />
+			</div>
 		</motion.div>
 	);
 }

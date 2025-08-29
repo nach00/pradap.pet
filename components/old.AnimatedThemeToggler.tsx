@@ -51,38 +51,41 @@ export const AnimatedThemeToggler = ({ className }: props) => {
 		);
 	};
 	return (
-		<button
-			ref={buttonRef}
-			onClick={changeTheme}
-			className={cn(
-				// "rounded-full",
-				"rounded-sm",
-				"cursor-pointer",
-				"p-1",
-				"aspect-square",
-				"flex items-center justify-center",
-				"z-50",
-				"active:scale-95 active:rotate-0",
-				"group",
-				"transition-all duration-300 ease-in-out",
-				"hover:scale-110",
+		<div className="">
+			<button
+				ref={buttonRef}
+				onClick={changeTheme}
+				className={cn(
+					"rounded-full",
+					"cursor-pointer",
+					"p-1",
+					"aspect-square",
+					"h-10",
+					"w-10",
+					"flex items-center justify-center",
 
-				// light
-				"text-[var(--accent-9)]",
-				"bg-[var(--accent-a10)]",
-				"hover:text-[var(--accent-9)]",
-				"hover:bg-[var(--accent-a9)]",
+					"active:scale-95 active:rotate-0",
+					"group",
+					"transition-all duration-300 ease-in-out",
+					"hover:scale-110",
 
-				// dark
-				"dark:text-[var(--base-11)] ",
-				"dark:bg-[var(--base-a4)]",
-				"dark:hover:text-[var(--base-12)] ",
-				"dark:hover:bg-[var(--base-a5)]",
+					// light
+					"text-[var(--accent-9)]",
+					"bg-[var(--accent-a10)]",
+					"hover:text-[var(--accent-9)]",
+					"hover:bg-[var(--accent-a9)]",
 
-				className,
-			)}
-		>
-			{isDarkMode ? <Moon /> : <Sun />}
-		</button>
+					// dark
+					"dark:text-[var(--base-11)] ",
+					"dark:bg-[var(--base-a4)]",
+					"dark:hover:text-[var(--base-12)] ",
+					"dark:hover:bg-[var(--base-a5)]",
+
+					className,
+				)}
+			>
+				{isDarkMode ? <Moon /> : <Sun />}
+			</button>
+		</div>
 	);
 };

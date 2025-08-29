@@ -56,7 +56,9 @@ export function BottomBar() {
 				className="fixed bottom-4 z-50"
 				items={navItemsWithActive}
 			/>
-			<AnimatedThemeToggler />
+			{/* <div className="w-0.5 bg-[var(--base-3)] h-screen" /> */}
+			{/* <div className="w-4 bg- min-h-full flex" /> */}
+			{/* <AnimatedThemeToggler /> */}
 		</div>
 	);
 }
