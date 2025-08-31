@@ -1,14 +1,24 @@
 import { cn } from "@/lib/utils";
+import NavBar from "@/components/NavBar";
+
 import { BottomBar } from "@/components/BottomBar";
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
+import localFont from "next/font/local";
 import { BackButton } from "@/components/BackButton";
 import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/layout/Footer";
 
 import { Rubik, JetBrains_Mono } from "next/font/google";
+
+const whirlyBirdie = localFont({
+	src: "../public/fonts/WhirlyBirdieVariable.ttf",
+	variable: "--font-birdie",
+	// display: "swap",
+	// preload: true,
+	// adjustFontFallback: false,
+});
 
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ["latin"],
@@ -42,18 +52,20 @@ export default function RootLayout({
 				<body
 					className={cn(
 						rubik.variable,
-						jetbrainsMono.variable,
 						rubik.className,
+						jetbrainsMono.variable,
+						jetbrainsMono.className,
+						whirlyBirdie.variable,
+						whirlyBirdie.className,
 					)}
 				>
 					<ThemeProvider
 						attribute="class"
-						defaultTheme="system"
+						defaultTheme="light"
 						enableSystem
 						disableTransitionOnChange
 					>
-						<TopBar />
-						<BottomBar />
+						<NavBar />
 						<BackButton />
 						{children}
 						<Footer />

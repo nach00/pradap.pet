@@ -40,7 +40,7 @@ export function TopBar() {
 				<div className="absolute flex w-full items-center">
 					<NavItems items={navItemsWithActive} />
 				</div>
-				<ThemeSwitcher className="z-50" />
+				{/* <ThemeSwitcher className="z-50" /> */}
 			</NavBody>
 		</Navbar>
 	);

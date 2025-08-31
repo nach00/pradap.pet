@@ -36,9 +36,9 @@ const projectDetails: ProjectDetails = {
 	sourceUrl: "https://github.com/nach00",
 	headerImage: "/images/project-apideas.png",
 	darkHeaderImage: "/images/project-apideas-dark.png",
-	agency: "",
-	duty: "",
-	industry: "",
+	agency: "None",
+	duty: "Product Developer",
+	industry: "Startup: Gaming",
 } as const;
 
 export function getProjectDetails() {

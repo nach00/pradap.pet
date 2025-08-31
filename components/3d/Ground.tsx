@@ -7,7 +7,20 @@ export function Ground() {
 	const { theme } = useTheme(); // Get the current theme
 
 	// Determine ground color based on theme
-	const groundColor = theme === "light" ? "white" : "black";
+	const getGroundColor = (currentTheme: string | undefined) => {
+		switch (currentTheme) {
+			case "light":
+				return "white";
+			case "dark":
+				return "black";
+			case "cheese":
+				return "#330033";
+			default:
+				return "white";
+		}
+	};
+
+	const groundColor = getGroundColor(theme);
 
 	return (
 		<RigidBody type="fixed" colliders="cuboid">

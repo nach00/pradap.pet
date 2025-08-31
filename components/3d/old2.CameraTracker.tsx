@@ -13,46 +13,40 @@ export function CameraTracker({ targetRef }: CameraTrackerProps) {
 	// == NEW: STATE FOR TRACKING ==
 	// This state will control whether the camera should continue to follow the object.
 	const [isTracking, setIsTracking] = useState(true);
+	const [lerpSpeed, setLerpSpeed] = useState(0.05);
 
-	// == CAMERA POSITION OFFSETS - BASED ON ORIENTATION ==
-	const portraitOffset = useMemo(() => new THREE.Vector3(0, 6, 6), []);
-	const landscapeOffset = useMemo(() => new THREE.Vector3(-6, 3, 6), []);
+	const lastPosition = useRef(new THREE.Vector3());
+	const velocity = useRef(new THREE.Vector3());
 
-	// == CAMERA TARGET OFFSETS - BASED ON ORIENTATION ==
-	const portraitLookAtOffset = useMemo(() => new THREE.Vector3(0, -3, 0), []);
-	const landscapeLookAtOffset = useMemo(() => new THREE.Vector3(-1, 0, -3), []);
+	// == CAMERA POSITION OFFSETS ==
+	const mobileOffset = useMemo(() => new THREE.Vector3(0, 6, 6), []);
+	const desktopOffset = useMemo(() => new THREE.Vector3(-6, 3, 6), []);
 
-	// Helper function to determine orientation
-	const isPortrait = () => window.innerHeight > window.innerWidth;
+	// == CAMERA TARGET OFFSETS ==
+	const mobileLookAtOffset = useMemo(() => new THREE.Vector3(0, -3, 0), []);
+	const desktopLookAtOffset = useMemo(() => new THREE.Vector3(-1, 0, -3), []);
 
 	const [cameraOffset, setCameraOffset] = useState(() =>
-		isPortrait() ? portraitOffset : landscapeOffset,
+		window.innerWidth <= 500 ? mobileOffset : desktopOffset,
 	);
 	const [lookAtOffset, setLookAtOffset] = useState(() =>
-		isPortrait() ? portraitLookAtOffset : landscapeLookAtOffset,
+		window.innerWidth <= 500 ? mobileLookAtOffset : desktopLookAtOffset,
 	);
+
+	const easeOutQuart = (t: number): number => {
+		return 1 - Math.pow(1 - t, 4);
+	};
 
 	useEffect(() => {
 		const handleResize = () => {
-			const portrait = isPortrait();
-			setCameraOffset(portrait ? portraitOffset : landscapeOffset);
-			setLookAtOffset(portrait ? portraitLookAtOffset : landscapeLookAtOffset);
+			const isMobile = window.innerWidth <= 500;
+			setCameraOffset(isMobile ? mobileOffset : desktopOffset);
+			setLookAtOffset(isMobile ? mobileLookAtOffset : desktopLookAtOffset);
 		};
 
 		window.addEventListener("resize", handleResize);
-		// Also listen for orientation change events for better mobile support
-		window.addEventListener("orientationchange", handleResize);
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-			window.removeEventListener("orientationchange", handleResize);
-		};
-	}, [
-		portraitOffset,
-		landscapeOffset,
-		portraitLookAtOffset,
-		landscapeLookAtOffset,
-	]);
+		return () => window.removeEventListener("resize", handleResize);
+	}, [mobileOffset, desktopOffset, mobileLookAtOffset, desktopLookAtOffset]);
 
 	const objectCenter = useRef(new THREE.Vector3()).current;
 	const newCameraPosition = useRef(new THREE.Vector3()).current;
@@ -81,10 +75,29 @@ export function CameraTracker({ targetRef }: CameraTrackerProps) {
 			newCameraPosition.addVectors(objectCenter, cameraOffset);
 
 			// Smoothly interpolate the camera's position.
-			camera.position.lerp(newCameraPosition, 0.1);
+			// camera.position.lerp(newCameraPosition, 0.1);
+			const currentPos = new THREE.Vector3(x, y, z);
+			velocity.current.subVectors(currentPos, lastPosition.current);
+			const speed = velocity.current.length();
+
+			let baseLerpSpeed = 0.05;
+			if (speed < 0.1 && y < 2) baseLerpSpeed = 0.12;
+			if (rigidBody.isSleeping()) baseLerpSpeed = 0.08;
+
+			const easedLerp = easeOutQuart(baseLerpSpeed);
+
+			camera.position.lerp(newCameraPosition, easedLerp);
+
+			lastPosition.current.copy(currentPos);
+
+			const predictedPosition = new THREE.Vector3()
+				.copy(objectCenter)
+				.add(velocity.current.multiplyScalar(2));
+
+			finalLookAtTarget.addVectors(predictedPosition, lookAtOffset);
 
 			// Point the camera at the final, adjusted target.
-			camera.lookAt(finalLookAtTarget);
+			// camera.lookAt(finalLookAtTarget);
 		}
 	});
 

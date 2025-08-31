@@ -1,4 +1,5 @@
 "use client";
+import { AuroraText } from "@/components/AuroraText";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -31,7 +32,7 @@ const pageDescription: string =
 export default function Home() {
 	return (
 		<>
-			<BannerSection />
+			{/* <BannerSection /> */}
 			<HeroSection />
 			<SelectedWorkSection />
 			<ProfileSection />
@@ -72,65 +73,59 @@ export default function Home() {
 
 function HeroSection() {
 	return (
-		<>
-			{/* The top-level Section now has pointer-events-none. This makes the entire
-        overlay click-through by default.
-      */}
-			<Section className="h-screen w-screen relative pointer-events-none">
-				<HeroBackground className="w-full h-full absolute top-0 left-0 z-0" />
+		<Section className="h-screen w-screen relative pointer-events-none">
+			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
 
-				{/* Mobile Hero */}
-				<Container className="relative flex flex-col z-10 w-full h-full justify-end md:hidden">
-					<h1 className="max-w-[10ch] text-3xl mb-4">{pageTitle}</h1>
+			{/* Portrait Hero */}
+			<Container className="portrait:flex landscape:hidden relative flex-col z-10 w-full h-full justify-end">
+				<h1
+					className={cn(
+						"max-w-[10ch] text-3xl mb-4 text-[var(--accent-12)]",
 
-					<span className="text-sm max-w-[30ch] text-[var(--base-11)] font-normal">
-						{pageDescription}
-					</span>
+						"cheese:font-custom cheese:font-stretch-extra-condensed cheese:text-[var(--accent-9)]",
+					)}
+				>
+					{pageTitle}
+				</h1>
+				<span className="text-sm max-w-[30ch] text-[var(--base-11)] font-normal">
+					{pageDescription}
+				</span>
+				<ActionButtons className="mt-4 mb-6" />
+			</Container>
 
-					{/* This div and the ThemeSwitcher need pointer-events-auto to become
-            clickable again.
-          */}
-					<div className="flex gap-4 mt-4 mb-6 pointer-events-auto">
-						<Button size="sm">
-							<Link href="/work">View work →</Link>
-						</Button>
-						<Button size="sm" variant="outline">
-							<Link href="/about">View resume →</Link>
-						</Button>
-					</div>
+			{/* Landscape Hero */}
+			<Container className="portrait:hidden landscape:flex relative flex-col z-10 w-full h-full justify-center">
+				<h1
+					className={cn(
+						"text-6xl font-light max-w-[10ch] leading-[110%] text-[var(--accent-9)]",
+						"cheese:font-custom cheese:font-stretch-extra-condensed",
+					)}
+				>
+					{pageTitle}
+				</h1>
+				<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
+					{pageDescription}
+				</span>
+				<div className="flex gap-12 mt-12">
+					<DataPair label="Location">Dallas, TX</DataPair>
+					<DataPair label="Status">Available</DataPair>
+				</div>
+				<ActionButtons className="mt-12" />
+			</Container>
+		</Section>
+	);
+}
 
-					<ThemeSwitcher className="pointer-events-auto" />
-				</Container>
-
-				{/* Desktop Hero */}
-				<Container className="hidden md:flex relative flex-col z-10 w-full h-full justify-center">
-					<h1 className="max-w-[10ch] leading-[110%] text-[var(--accent-9)]">
-						{pageTitle}
-					</h1>
-
-					<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
-						{pageDescription}
-					</span>
-
-					<div className="flex gap-12 mt-12">
-						<DataPair label="Location">Dallas, TX</DataPair>
-						<DataPair label="Status">Available</DataPair>
-					</div>
-
-					{/* This div contains the buttons, so we make the whole group
-            interactive again with pointer-events-auto.
-          */}
-					<div className="flex gap-4 mt-12 pointer-events-auto">
-						<Button>
-							<Link href="/work">View work →</Link>
-						</Button>
-						<Button variant="outline">
-							<Link href="/about">View resume →</Link>
-						</Button>
-					</div>
-				</Container>
-			</Section>
-		</>
+function ActionButtons({ className }: { className?: string }) {
+	return (
+		<div className={`flex gap-4 pointer-events-auto ${className || ""}`}>
+			<Button size="sm">
+				<Link href="/work">View work →</Link>
+			</Button>
+			<Button size="sm" variant="outline">
+				<Link href="mailto:natcha@pradap.pet">Contact →</Link>
+			</Button>
+		</div>
 	);
 }
 
@@ -225,7 +220,7 @@ function ProfileSection() {
 function BannerSection() {
 	return (
 		<>
-			<div className="absolute top-0 w-full overflow-y-auto">
+			<div className="w-full overflow-y-auto">
 				<StickyBanner
 					className={cn(
 						"bg-[var(--accent-9)] text-[var(--base-12)] overflow-hidden",
