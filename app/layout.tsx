@@ -5,19 +5,19 @@ import { BottomBar } from "@/components/BottomBar";
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import localFont from "next/font/local";
 import { BackButton } from "@/components/BackButton";
 import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/layout/Footer";
-
+// import { whirlyBirdie, rubik, jetbrainsMono } from "@/lib/fonts";
+import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",
 	variable: "--font-birdie",
-	// display: "swap",
-	// preload: true,
-	// adjustFontFallback: false,
+	display: "swap",
+	preload: true,
+	adjustFontFallback: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({

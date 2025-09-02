@@ -20,6 +20,9 @@ import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
 
 import { Scene } from "@/components/3d/Scene";
+import { DisplayName } from "@/components/Typography";
+import { H1 } from "@/components/typography/H1";
+import { P } from "@/components/typography/P";
 const pageTitle: string = "Design Engineer";
 const pageDescription: string =
 	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
@@ -32,8 +35,8 @@ const pageDescription: string =
 export default function Home() {
 	return (
 		<>
-			{/* <BannerSection /> */}
 			<HeroSection />
+			<BannerSection />
 			<SelectedWorkSection />
 			<ProfileSection />
 		</>
@@ -76,37 +79,15 @@ function HeroSection() {
 		<Section className="h-screen w-screen relative pointer-events-none">
 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
 
-			{/* Portrait Hero */}
-			<Container className="portrait:flex landscape:hidden relative flex-col z-10 w-full h-full justify-end">
-				<h1
-					className={cn(
-						"max-w-[10ch] text-3xl mb-4 text-[var(--accent-12)]",
+			<Container className="flex relative flex-col z-10 w-full h-full justify-center">
+				<H1 className="max-w-[10ch]">{pageTitle}</H1>
+				{/* <span className="lede max-w-[30ch] text-[var(--base-12)] font-normal"> */}
+				{/* 	{pageDescription} */}
+				{/* </span> */}
 
-						"cheese:font-custom cheese:font-stretch-extra-condensed cheese:text-[var(--accent-9)]",
-					)}
-				>
-					{pageTitle}
-				</h1>
-				<span className="text-sm max-w-[30ch] text-[var(--base-11)] font-normal">
-					{pageDescription}
-				</span>
-				<ActionButtons className="mt-4 mb-6" />
-			</Container>
+				<P className="max-w-[30ch]">{pageDescription}</P>
 
-			{/* Landscape Hero */}
-			<Container className="portrait:hidden landscape:flex relative flex-col z-10 w-full h-full justify-center">
-				<h1
-					className={cn(
-						"text-6xl font-light max-w-[10ch] leading-[110%] text-[var(--accent-9)]",
-						"cheese:font-custom cheese:font-stretch-extra-condensed",
-					)}
-				>
-					{pageTitle}
-				</h1>
-				<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
-					{pageDescription}
-				</span>
-				<div className="flex gap-12 mt-12">
+				<div className="gap-12 mt-12 hidden xxs:flex">
 					<DataPair label="Location">Dallas, TX</DataPair>
 					<DataPair label="Status">Available</DataPair>
 				</div>
@@ -116,6 +97,53 @@ function HeroSection() {
 	);
 }
 
+// function HeroSection() {
+// 	return (
+// 		<Section className="h-screen w-screen relative pointer-events-none">
+// 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
+//
+// 			{/* Portrait Hero */}
+// 			<Container className="portrait:flex landscape:hidden relative flex-col z-10 w-full h-full justify-end">
+// 				<h1
+// 					className={cn(
+// 						"max-w-[10ch] text-3xl mb-4 text-[var(--accent-12)]",
+//
+// 						"cheese:font-custom cheese:font-stretch-extra-condensed cheese:text-[var(--accent-9)]",
+// 					)}
+// 				>
+// 					{pageTitle}
+// 				</h1>
+// 				<span className="text-sm max-w-[30ch] text-[var(--base-11)] font-normal">
+// 					{pageDescription}
+// 				</span>
+//
+// 				<ActionButtons className="mt-4 mb-6" />
+// 			</Container>
+//
+// 			{/* Landscape Hero */}
+// 			<Container className="portrait:hidden landscape:flex relative flex-col z-10 w-full h-full justify-center">
+// 				<h1
+// 					className={cn(
+// 						"text-6xl font-light max-w-[10ch] leading-[110%] text-[var(--accent-9)]",
+// 						"cheese:font-custom cheese:font-stretch-extra-condensed",
+// 					)}
+// 				>
+// 					{pageTitle}
+// 				</h1>
+// 				<H1>{pageTitle}</H1>
+// 				<span className="lede max-w-[30ch] text-[var(--base-12)] font-normal">
+// 					{pageDescription}
+// 				</span>
+// 				<div className="flex gap-12 mt-12">
+// 					<DataPair label="Location">Dallas, TX</DataPair>
+// 					<DataPair label="Status">Available</DataPair>
+// 				</div>
+// 				<ActionButtons className="mt-12" />
+// 			</Container>
+// 		</Section>
+// 	);
+// }
+//
 function ActionButtons({ className }: { className?: string }) {
 	return (
 		<div className={`flex gap-4 pointer-events-auto ${className || ""}`}>

@@ -246,7 +246,7 @@ function Logo() {
 				<span
 					className={cn(
 						"hidden cheese:block cheese:text-[var(--accent-9)]",
-						"cheese:font-custom cheese:font-stretch-semi-expanded cheese:text-xl",
+						"cheese:font-custom cheese:font-stretch-extra-expanded cheese:text-xl",
 					)}
 				>
 					Nacho

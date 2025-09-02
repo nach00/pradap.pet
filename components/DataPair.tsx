@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Eyebrow } from "@/components/ProjectBadges";
+// import { Eyebrow } from "@/components/ProjectBadges";
+import { Eyebrow } from "@/components/typography/Eyebrow";
 
 interface DataPairProps {
 	label: string;
