@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Typography } from "./Typography";
 import { type TypographyProps } from "./Typography";
 
-export default function P({
+export default function H3({
 	children,
 	className,
 	darkClassName,
@@ -12,20 +12,10 @@ export default function P({
 }: Omit<TypographyProps, "as">) {
 	return (
 		<Typography
-			as="p"
-			className={cn(
-				"font-light",
-				"tracking-tight",
-				"text-[var(--base-11)]",
-				"mb-6 last:mb-0",
-				"leading-[1.6em]",
-				"xxxs:text-md",
-				"xxs:text-lg",
-				"xs:text-xl",
-				className,
-			)}
+			as="h3"
+			className={cn("text-xl font-medium mb-4 tracking-tight", className)}
 			darkClassName=""
-			cheeseClassName=""
+			cheeseClassName="font-custom"
 			portraitClassName=""
 			landscapeClassName=""
 			hoverClassName=""

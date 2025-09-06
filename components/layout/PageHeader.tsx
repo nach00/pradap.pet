@@ -1,8 +1,8 @@
+// import P from "@/components/typography/P";
+// import H1 from "@/components/typography/H1";
 import React from "react";
-import Section from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/button";
-import { ProjectBadges } from "../ProjectBadges";
+import { P, Lede } from "@/components/typography/TextElements";
+import { H1 } from "@/components/typography/Headings";
 import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
@@ -17,9 +17,9 @@ export default function PageHeader({
 	className,
 }: PageHeaderProps) {
 	return (
-		<div className="max-w-[60ch]">
-			<h1>{title}</h1>
-			<span className="lede">{description}</span>
+		<div className={cn("max-w-[40ch] mt-50 flex flex-col")}>
+			<H1>{title}</H1>
+			<Lede>{description}</Lede>
 		</div>
 	);
 }

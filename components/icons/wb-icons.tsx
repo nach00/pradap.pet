@@ -13,3 +13,6 @@ export function SunIcon({ className }: IconProps) {
 export function MoonIcon({ className }: IconProps) {
 	return <span className={cn("wb-icon wb-animate", className)}>3</span>;
 }
+export function MenuIcon({ className }: IconProps) {
+	return <span className={cn("wb-icon", className)}>Α</span>;
+}

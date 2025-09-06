@@ -5,7 +5,7 @@ import { BottomBar } from "@/components/BottomBar";
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { BackButton } from "@/components/BackButton";
+import BackButton from "@/components/BackButton";
 import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/layout/Footer";
 // import { whirlyBirdie, rubik, jetbrainsMono } from "@/lib/fonts";
@@ -51,6 +51,7 @@ export default function RootLayout({
 				<head />
 				<body
 					className={cn(
+						"overflow-x-hidden",
 						rubik.variable,
 						rubik.className,
 						jetbrainsMono.variable,
@@ -66,7 +67,7 @@ export default function RootLayout({
 						disableTransitionOnChange
 					>
 						<NavBar />
-						<BackButton />
+						{/* <BackButton /> */}
 						{children}
 						<Footer />
 					</ThemeProvider>

@@ -21,8 +21,11 @@ import { ProjectCard } from "@/components/ProjectCard";
 
 import { Scene } from "@/components/3d/Scene";
 import { DisplayName } from "@/components/Typography";
-import { H1 } from "@/components/typography/H1";
-import { P } from "@/components/typography/P";
+import H1 from "@/components/typography/H1";
+import H2 from "@/components/typography/H2";
+import H3 from "@/components/typography/H3";
+import P from "@/components/typography/P";
+import JellyButton from "@/components/JellyButton";
 const pageTitle: string = "Design Engineer";
 const pageDescription: string =
 	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
@@ -36,9 +39,11 @@ export default function Home() {
 	return (
 		<>
 			<HeroSection />
-			<BannerSection />
+			{/* <BannerSection /> */}
+			{/* <IntroSection /> */}
 			<SelectedWorkSection />
 			<ProfileSection />
+			{/* <Section>test</Section> */}
 		</>
 	);
 }
@@ -76,14 +81,12 @@ export default function Home() {
 
 function HeroSection() {
 	return (
-		<Section className="h-screen w-screen relative pointer-events-none">
+		<Section className="h-screen w-screen relative">
+			{/* <Section className="h-screen w-screen relative"> */}
 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
 
-			<Container className="flex relative flex-col z-10 w-full h-full justify-center">
-				<H1 className="max-w-[10ch]">{pageTitle}</H1>
-				{/* <span className="lede max-w-[30ch] text-[var(--base-12)] font-normal"> */}
-				{/* 	{pageDescription} */}
-				{/* </span> */}
+			<Container className="flex relative flex-col z-10 w-full h-full justify-center portrait:justify-end">
+				<H1 className="max-w-[10ch] mb-2 xxs:mb-12 ">{pageTitle}</H1>
 
 				<P className="max-w-[30ch]">{pageDescription}</P>
 
@@ -91,7 +94,7 @@ function HeroSection() {
 					<DataPair label="Location">Dallas, TX</DataPair>
 					<DataPair label="Status">Available</DataPair>
 				</div>
-				<ActionButtons className="mt-12" />
+				<ActionButtons className="xxxs:mt-4 xxs:mt-12" />
 			</Container>
 		</Section>
 	);
@@ -157,6 +160,23 @@ function ActionButtons({ className }: { className?: string }) {
 	);
 }
 
+function IntroSection() {
+	return (
+		<>
+			<Section>
+				<Container>
+					<H2>Yo!</H2>
+					<P>
+						I'm Natcha, a design engineer with strong roots in user experience
+						and interfaces.
+						{/* a senior ui/ux & brand Designer ✐ living it up in Berlin ㋡, where I spend my time turning ideas into stunning, impactful experiences. Basically, I make things look GREAT and work even better ☜. */}
+					</P>
+				</Container>
+			</Section>
+		</>
+	);
+}
+
 export function SelectedWorkSection() {
 	const pathname = usePathname();
 	const isHomePage = pathname === "/";
@@ -171,18 +191,19 @@ export function SelectedWorkSection() {
 			<Section>
 				<Container>
 					<div className="flex flex-row justify-between">
-						<h2 className="">Selected Work</h2>
-						{isHomePage && (
-							<Button variant="secondary">
-								<Link href="/work">View all work →</Link>
-							</Button>
-						)}
+						<H2 className="">Selected Work</H2>
+						{/* {isHomePage && ( */}
+						{/* 	<Button variant="secondary"> */}
+						{/* 		<Link href="/work">View all work →</Link> */}
+						{/* 	</Button> */}
+						{/* )} */}
 					</div>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-						{featuredProjects.map((project) => (
-							<ProjectCard key={project.href} {...project} />
-						))}
-					</div>
+					{/* <div className="flex flex-col gap-6"> */}
+					{/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+					{/* {featuredProjects.map((project) => ( */}
+					{/* <ProjectCard key={project.href} {...project} /> */}
+					{/* ))} */}
+					{/* </div> */}
 				</Container>
 			</Section>
 		</>
@@ -195,7 +216,7 @@ function ProfileSection() {
 			<Section>
 				<Container>
 					<div className="flex flex-row justify-between">
-						<h2>Journey</h2>
+						<H2>Journey</H2>
 
 						<Button variant="secondary">
 							<Link href="https://drive.google.com/file/d/103Ur2NEFO2I-4TKUDVG_hBs8w-TJ3n7w/view?usp=drive_link">
@@ -205,29 +226,29 @@ function ProfileSection() {
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 						<div className="lg:col-span-2">
-							<p className="max-w-[60ch]">
+							<P className="max-w-[60ch]">
 								I began my career chasing the dream of becoming a restaurateur,
 								studying culinary arts, business, and even interning at Disney
 								World’s Epcot in the Norwegian Pavilion. After nearly a decade
 								in the restaurant industry, I realized my true passion lay in
 								tech.
-							</p>
+							</P>
 
-							<p>
+							<P>
 								I spent nights and weekends teaching myself web development and
 								design, taking on freelance projects where I first used Adobe XD
 								to bring client ideas to life. Over time, I built a portfolio
 								strong enough to land my first professional role as a UX
 								Designer at Zimperium.
-							</p>
+							</P>
 
-							<p className="max-w-[60ch]">
+							<P className="max-w-[60ch]">
 								From there, I expanded my experience in both in-house and agency
 								settings—at Photon as a UX/UI Designer and at Insite as a UX
 								Specialist, focusing on UX strategy. Most recently, I completed
 								a full-stack coding bootcamp at Altcademy, continuing my journey
 								toward becoming a developer.
-							</p>
+							</P>
 						</div>
 						<div>
 							<Image

@@ -1,16 +1,25 @@
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import {
+	P,
+	UL,
+	LI,
+	Small,
+	Eyebrow,
+} from "@/components/typography/TextElements";
+
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/Marquee";
 import PageHeader from "@/components/layout/PageHeader";
 import StatStack from "./StatStack";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
-import { Metadata } from "next";
 import { SelectedWorkSection } from "@/app/page";
 import { ArchivedItem } from "@/app/work/ArchivedItem";
 
 import { getProjectDetails as tamaguiProjectDetails } from "@/app/work/tamagui/page";
 import { getProjectDetails as rfidinterlockProjectDetails } from "@/app/work/rfidinterlock/page";
 import { getProjectDetails as fossilProjectDetails } from "@/app/work/fossil/page";
+import { Metadata } from "next";
 
 const pageTitle: string = "Work";
 const pageDescription: string =

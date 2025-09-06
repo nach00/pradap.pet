@@ -9,15 +9,15 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"bg-[var(--base-12)] text-[var(--base-1)] shadow-sm hover:bg-[var(--accent-9)] hover:text-[var(--base-12)] dark:hover:text-[var(--base-1)] active:scale-[0.98] shadow-sm",
+					"bg-[var(--base-12)] text-[var(--base-1)] shadow-sm hover:bg-[var(--accent-9)] hover:text-[var(--base-12)] dark:hover:text-[var(--base-1)] active:scale-[0.98] shadow-sm cheese:bg-[var(--accent-9)] cheese:font-custom",
 				destructive:
 					"bg-destructive text-white shadow-sm hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
 				outline:
-					"border border-[var(--accent-9)] bg-transparent shadow-sm hover:bg-[var(--accent-a2)] hover:border-[var(--accent-8)] active:scale-[0.98]",
+					"border border-[var(--accent-9)] bg-transparent shadow-sm hover:bg-[var(--accent-a2)] hover:border-[var(--accent-8)] active:scale-[0.98] cheese:font-custom cheese:text-[var(--accent-9)]",
 				secondary:
-					"text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 decoration-1",
+					"text-muted-foreground hover:text-foreground hover:underline hover:underline-offset-4 decoration-1 cheese:font-custom",
 				ghost:
-					"hover:bg-var(--base-8) hover:text-var(--base-9) active:bg-var(--base-8)",
+					"hover:bg-var(--base-8) hover:text-var(--base-9) active:bg-var(--base-8) cheese:font-custom",
 				link: "text-primary underline-offset-4 hover:underline decoration-1 p-0 h-auto",
 			},
 			size: {

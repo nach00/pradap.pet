@@ -1,209 +1,339 @@
-import React from "react";
+"use client";
+import React, { useMemo, useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 
-interface JellySquareProps {
+interface JellyBarProps {
 	className?: string;
-	size?: "sm" | "md" | "lg" | "xl";
-	color?: "pink" | "blue" | "green" | "purple" | "amber";
+	color?: string;
+	shadowColor?: string;
+	highlightColor?: string;
+	children?: React.ReactNode;
 }
 
-export default function JellySquare({
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const JellyElement = styled.div<{
+	$color: string;
+	$shadowColor: string;
+	$highlightColor: string;
+	$jellyVariables: ReturnType<typeof css>;
+}>`
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  box-shadow:
+    0 80px 200px ${(props) => props.$shadowColor}4D,
+    0 40px 120px ${(props) => props.$shadowColor}40,
+    0 20px 60px ${(props) => props.$shadowColor}33,
+    0 10px 30px ${(props) => props.$shadowColor}26,
+    0 4px 12px ${(props) => props.$shadowColor}1A,
+    0 1px 3px ${(props) => props.$shadowColor}14,
+    inset 0 2px 0 ${(props) => props.$highlightColor}26,
+    inset 0 1px 0 ${(props) => props.$highlightColor}1A,
+    inset 0 -2px 0 ${(props) => props.$shadowColor}14,
+    inset 0 -1px 0 ${(props) => props.$shadowColor}0A;
+  transform: scale(1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid ${(props) => props.$highlightColor}14;
+  background-color: ${(props) => props.$color};
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, ${(props) => props.$color} 92%, white) 0%,
+    color-mix(in srgb, ${(props) => props.$color} 98%, white) 25%,
+    ${(props) => props.$color} 50%,
+    color-mix(in srgb, ${(props) => props.$color} 95%, black) 75%,
+    color-mix(in srgb, ${(props) => props.$color} 85%, black) 100%
+  );
+  opacity: 0.96;
+  filter: drop-shadow(0 50px 100px ${(props) => props.$shadowColor}4D)
+    drop-shadow(0 25px 60px ${(props) => props.$shadowColor}33)
+    drop-shadow(0 12px 30px ${(props) => props.$shadowColor}26);
+  ${(props) => props.$jellyVariables}
+
+  animation: subtleBreathing 5s ease-in-out infinite;
+
+  @keyframes subtleBreathing {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(var(--breathing-scale));
+    }
+  }
+
+  @keyframes gentleHover {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(var(--hover-scale, 0.985));
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes elegantRetract {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(var(--retract-scale, 0.97));
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes refinedPress {
+    0% {
+      transform: scale(1) scaleY(1);
+    }
+    40% {
+      transform: scale(0.96) scaleY(var(--press-scale, 0.85));
+    }
+    70% {
+      transform: scale(1.02) scaleY(var(--bounce-scale, 1.08));
+    }
+    100% {
+      transform: scale(1) scaleY(1);
+    }
+  }
+
+  &:hover {
+    transform: scale(0.99);
+    box-shadow:
+      0 120px 280px ${(props) => props.$shadowColor}66,
+      0 60px 180px ${(props) => props.$shadowColor}4D,
+      0 30px 90px ${(props) => props.$shadowColor}40,
+      0 15px 45px ${(props) => props.$shadowColor}33,
+      0 6px 18px ${(props) => props.$shadowColor}26,
+      0 2px 6px ${(props) => props.$shadowColor}1A,
+      inset 0 3px 0 ${(props) => props.$highlightColor}33,
+      inset 0 2px 0 ${(props) => props.$highlightColor}26,
+      inset 0 -3px 0 ${(props) => props.$shadowColor}1A,
+      inset 0 -2px 0 ${(props) => props.$shadowColor}14;
+    filter: drop-shadow(0 80px 160px ${(props) => props.$shadowColor}66)
+      drop-shadow(0 40px 100px ${(props) => props.$shadowColor}4D)
+      drop-shadow(0 20px 50px ${(props) => props.$shadowColor}33);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+`;
+
+const PrimaryHighlight = styled.div<{ $highlightColor: string }>`
+  position: absolute;
+  top: 3%;
+  left: 6%;
+  right: 6%;
+  height: 30%;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    ${(props) => props.$highlightColor}33 0%,
+    ${(props) => props.$highlightColor}1A 40%,
+    ${(props) => props.$highlightColor}0D 70%,
+    transparent 100%
+  );
+`;
+
+const GlossySheen = styled.div<{ $highlightColor: string }>`
+  position: absolute;
+  top: 6%;
+  left: 10%;
+  right: 30%;
+  height: 20%;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(1.5px);
+  background: linear-gradient(
+    90deg,
+    ${(props) => props.$highlightColor}26 0%,
+    ${(props) => props.$highlightColor}1A 50%,
+    ${(props) => props.$highlightColor}0D 80%,
+    transparent 100%
+  );
+`;
+
+const MicroReflection = styled.div<{ $highlightColor: string }>`
+  position: absolute;
+  top: 8%;
+  left: 15%;
+  right: 60%;
+  height: 8%;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    ${(props) => props.$highlightColor}40 0%,
+    ${(props) => props.$highlightColor}26 40%,
+    transparent 100%
+  );
+`;
+
+const SpecularHighlight = styled.div<{ $highlightColor: string }>`
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 8%;
+  height: 6%;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+  background: radial-gradient(
+    circle,
+    ${(props) => props.$highlightColor}4D 0%,
+    ${(props) => props.$highlightColor}26 60%,
+    transparent 100%
+  );
+`;
+
+const EdgeDefinition = styled.div<{
+	$shadowColor: string;
+	$highlightColor: string;
+}>`
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    ${(props) => props.$highlightColor}1A 0%,
+    transparent 20%,
+    transparent 80%,
+    ${(props) => props.$shadowColor}14 100%
+  );
+`;
+
+const ContentWrapper = styled.div`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  pointer-events: none;
+
+  /* Ensure text is readable over the jelly background */
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+`;
+
+const DepthShadow = styled.div<{ $shadowColor: string }>`
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 60%,
+    ${(props) => props.$shadowColor}0A 85%,
+    ${(props) => props.$shadowColor}14 100%
+  );
+`;
+
+export default function JellyBar({
 	className = "",
-	size = "md",
-	color = "pink",
-}: JellySquareProps) {
-	const sizeClasses = {
-		sm: "w-16 h-16",
-		md: "w-24 h-24",
-		lg: "w-32 h-32",
-		xl: "w-48 h-48",
+	color = "var(--accent-9)",
+	shadowColor = "rgba(0, 0, 0, 1)",
+	highlightColor = "rgba(255, 255, 255, 1)",
+	children,
+}: JellyBarProps) {
+	// Generate subtle, elegant random values for this instance (client-side only)
+	const [jellyVariables, setJellyVariables] = useState(css`
+    --breathing-scale: 1;
+  `);
+
+	useEffect(() => {
+		const breathingScale = 1 + (Math.random() * 0.003 - 0.0015); // Even more subtle: ±0.15%
+
+		setJellyVariables(css`
+      --breathing-scale: ${breathingScale};
+    `);
+	}, []);
+
+	const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+		const randomSeed = Math.random();
+		const scaleVariation = 0.988 + randomSeed * 0.008; // More subtle: 0.988-0.996
+		const duration = 0.6 + randomSeed * 0.2;
+
+		const target = e.currentTarget;
+		target.style.setProperty("--hover-scale", scaleVariation.toString());
+
+		target.style.animation = `gentleHover ${duration}s ease-out`;
+		setTimeout(() => {
+			target.style.animation = "subtleBreathing 5s ease-in-out infinite";
+		}, duration * 1000);
 	};
 
-	const colorClasses = {
-		pink: "bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400 shadow-pink-200/50",
-		blue: "bg-gradient-to-br from-blue-200 via-blue-300 to-blue-400 shadow-blue-200/50",
-		green:
-			"bg-gradient-to-br from-emerald-200 via-emerald-300 to-emerald-400 shadow-emerald-200/50",
-		purple:
-			"bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400 shadow-purple-200/50",
-		amber:
-			"bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 shadow-amber-200/50",
+	const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+		const randomSeed = Math.random();
+		const scaleVariation = 0.975 + randomSeed * 0.015; // More subtle: 0.975-0.99
+		const duration = 0.7 + randomSeed * 0.2;
+
+		const target = e.currentTarget;
+		target.style.setProperty("--retract-scale", scaleVariation.toString());
+
+		target.style.animation = `elegantRetract ${duration}s cubic-bezier(0.4, 0, 0.2, 1)`;
+		setTimeout(() => {
+			target.style.animation = "subtleBreathing 5s ease-in-out infinite";
+		}, duration * 1000);
+	};
+
+	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+		const randomSeed = Math.random();
+		const pressIntensity = 0.88 + randomSeed * 0.08; // Less dramatic: 0.88-0.96
+		const bounceHeight = 1.03 + randomSeed * 0.04; // Gentler bounce: 1.03-1.07
+		const duration = 0.45 + randomSeed * 0.1;
+
+		const target = e.currentTarget;
+		target.style.setProperty("--press-scale", pressIntensity.toString());
+		target.style.setProperty("--bounce-scale", bounceHeight.toString());
+
+		target.style.animation = `refinedPress ${duration}s cubic-bezier(0.4, 0, 0.2, 1)`;
+		setTimeout(() => {
+			target.style.animation = "subtleBreathing 5s ease-in-out infinite";
+		}, duration * 1000);
 	};
 
 	return (
-		<div
-			className={`
-        ${sizeClasses[size]}
-        ${colorClasses[color]}
-        rounded-3xl
-        shadow-2xl
-        transform
-        transition-none
-        hover:scale-95
-        active:scale-90
-        backdrop-blur-sm
-        border
-        border-white/30
-        cursor-pointer
-        relative
-        overflow-hidden
-        ${className}
-      `}
-			style={{
-				animation: "jelly 3s ease-in-out infinite",
-				filter:
-					"drop-shadow(0 8px 32px rgba(0,0,0,0.15)) drop-shadow(0 2px 8px rgba(255,255,255,0.1))",
-				transition: "all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-			}}
-			onMouseEnter={(e) => {
-				e.currentTarget.style.animation = "jiggleHover 0.6s ease-out";
-				setTimeout(() => {
-					e.currentTarget.style.animation = "jelly 3s ease-in-out infinite";
-				}, 600);
-			}}
-			onMouseLeave={(e) => {
-				e.currentTarget.style.animation =
-					"retract 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-				setTimeout(() => {
-					e.currentTarget.style.animation = "jelly 3s ease-in-out infinite";
-				}, 800);
-			}}
-			onMouseDown={(e) => {
-				e.currentTarget.style.animation =
-					"bigSquish 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-				setTimeout(() => {
-					e.currentTarget.style.animation = "jelly 3s ease-in-out infinite";
-				}, 400);
-			}}
-		>
-			{/* Primary inner highlight for glass/jelly effect */}
-			<div className="absolute inset-2 rounded-2xl bg-gradient-to-br from-white/40 to-transparent" />
-
-			{/* Strong glossy highlight on top-left */}
-			<div className="absolute top-2 left-2 w-1/3 h-1/3 rounded-full bg-gradient-radial from-white/60 via-white/30 to-transparent blur-sm" />
-
-			{/* Secondary highlight streak */}
-			<div className="absolute top-1 left-1 right-1 h-1/4 rounded-t-2xl bg-gradient-to-b from-white/50 to-transparent" />
-
-			{/* Subtle inner glow */}
-			<div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-transparent via-white/15 to-white/30" />
-
-			{/* Edge rim highlight */}
-			<div
-				className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 via-transparent to-transparent"
-				style={{
-					background: `linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 25%, transparent 75%, rgba(255,255,255,0.15) 100%)`,
-				}}
-			/>
-
-			{/* Glossy reflection stripe */}
-			<div className="absolute top-3 left-3 right-8 h-1 bg-white/70 rounded-full blur-[1px] transform -rotate-12" />
-
-			<style jsx>{`
-        @keyframes jelly {
-          0%,
-          100% {
-            transform: scale(1) rotate(0deg);
-            border-radius: 1.5rem;
-          }
-          25% {
-            transform: scale(1.02) rotate(0.5deg);
-            border-radius: 1.5rem 1.8rem 1.5rem 1.8rem;
-          }
-          50% {
-            transform: scale(0.98) rotate(0deg);
-            border-radius: 1.8rem 1.5rem 1.8rem 1.5rem;
-          }
-          75% {
-            transform: scale(1.01) rotate(-0.5deg);
-            border-radius: 1.5rem 1.8rem 1.5rem 1.8rem;
-          }
-        }
-
-        @keyframes jiggleHover {
-          0% {
-            transform: scale(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-          15% {
-            transform: scale(0.98) rotate(-1deg) skew(1deg);
-            border-radius: 1.8rem 1.2rem 1.6rem 1.4rem;
-          }
-          30% {
-            transform: scale(1.03) rotate(1.5deg) skew(-0.5deg);
-            border-radius: 1.2rem 1.9rem 1.3rem 1.7rem;
-          }
-          45% {
-            transform: scale(0.96) rotate(-0.8deg) skew(1.2deg);
-            border-radius: 1.7rem 1.3rem 1.8rem 1.1rem;
-          }
-          60% {
-            transform: scale(1.04) rotate(1.2deg) skew(-0.8deg);
-            border-radius: 1.1rem 1.8rem 1.2rem 1.9rem;
-          }
-          75% {
-            transform: scale(0.97) rotate(-1.3deg) skew(0.6deg);
-            border-radius: 1.6rem 1.4rem 1.7rem 1.2rem;
-          }
-          90% {
-            transform: scale(1.02) rotate(0.7deg) skew(-0.3deg);
-            border-radius: 1.3rem 1.7rem 1.4rem 1.6rem;
-          }
-          100% {
-            transform: scale(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-        }
-
-        @keyframes retract {
-          0% {
-            transform: scale(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-          20% {
-            transform: scale(0.92) rotate(-2deg) skew(2deg);
-            border-radius: 2rem 1rem 1.8rem 1.2rem;
-          }
-          40% {
-            transform: scale(1.08) rotate(1deg) skew(-1deg);
-            border-radius: 1rem 2rem 1.2rem 1.8rem;
-          }
-          60% {
-            transform: scale(0.96) rotate(-0.5deg) skew(0.5deg);
-            border-radius: 1.7rem 1.3rem 1.9rem 1.1rem;
-          }
-          80% {
-            transform: scale(1.03) rotate(0.2deg) skew(-0.2deg);
-            border-radius: 1.3rem 1.7rem 1.1rem 1.9rem;
-          }
-          100% {
-            transform: scale(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-        }
-
-        @keyframes bigSquish {
-          0% {
-            transform: scale(1) scaleY(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-          30% {
-            transform: scale(0.8) scaleY(0.6) rotate(-1deg) skew(2deg);
-            border-radius: 2.5rem 2.5rem 0.5rem 0.5rem;
-          }
-          60% {
-            transform: scale(1.15) scaleY(1.25) rotate(1deg) skew(-1deg);
-            border-radius: 0.8rem 0.8rem 2.2rem 2.2rem;
-          }
-          80% {
-            transform: scale(0.95) scaleY(0.9) rotate(-0.5deg) skew(0.5deg);
-            border-radius: 1.8rem 1.8rem 1.2rem 1.2rem;
-          }
-          100% {
-            transform: scale(1) scaleY(1) rotate(0deg) skew(0deg);
-            border-radius: 1.5rem;
-          }
-        }
-      `}</style>
-		</div>
+		<Container className={className}>
+			<JellyElement
+				$color={color}
+				$shadowColor={shadowColor}
+				$highlightColor={highlightColor}
+				$jellyVariables={jellyVariables}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
+				onMouseDown={handleMouseDown}
+			>
+				<PrimaryHighlight $highlightColor={highlightColor} />
+				<GlossySheen $highlightColor={highlightColor} />
+				<MicroReflection $highlightColor={highlightColor} />
+				<SpecularHighlight $highlightColor={highlightColor} />
+				<EdgeDefinition
+					$shadowColor={shadowColor}
+					$highlightColor={highlightColor}
+				/>
+				<DepthShadow $shadowColor={shadowColor} />
+				{children && <ContentWrapper>{children}</ContentWrapper>}
+			</JellyElement>
+		</Container>
 	);
 }

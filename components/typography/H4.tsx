@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Typography } from "./Typography";
 import { type TypographyProps } from "./Typography";
 
-export default function P({
+export default function H4({
 	children,
 	className,
 	darkClassName,
@@ -12,9 +12,9 @@ export default function P({
 }: Omit<TypographyProps, "as">) {
 	return (
 		<Typography
-			as="p"
+			as="h4"
 			className={cn(
-				"font-light",
+				"font-bold",
 				"tracking-tight",
 				"text-[var(--base-11)]",
 				"mb-6 last:mb-0",
