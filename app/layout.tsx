@@ -51,7 +51,7 @@ export default function RootLayout({
 				<head />
 				<body
 					className={cn(
-						"overflow-x-hidden",
+						// "overflow-x-hidden",
 						rubik.variable,
 						rubik.className,
 						jetbrainsMono.variable,
@@ -69,7 +69,7 @@ export default function RootLayout({
 						<NavBar />
 						{/* <BackButton /> */}
 						{children}
-						<Footer />
+						{/* <Footer /> */}
 					</ThemeProvider>
 				</body>
 			</html>

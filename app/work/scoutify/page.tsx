@@ -29,6 +29,9 @@ const projectDetails = {
 	agency: "None",
 	duty: "Product Designer",
 	industry: "Sports Networking",
+
+	logo: "/images/logos/scoutify-black.svg",
+	logoDark: "/images/logos/scoutify-white.svg",
 };
 
 export function getProjectDetails() {

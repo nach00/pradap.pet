@@ -27,6 +27,8 @@ const projectDetails = {
 	agency: "None",
 	duty: "UI/UX Design",
 	industry: "Cybersecurity",
+	logo: "/images/logos/zimperium-white.svg",
+	logoDark: "/images/logos/zimperium-white.svg",
 };
 
 export function getProjectDetails() {

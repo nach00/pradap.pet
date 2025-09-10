@@ -1,4 +1,7 @@
 "use client";
+
+import { useTheme } from "next-themes";
+import { P, Lede } from "@/components/typography/TextElements";
 import { AuroraText } from "@/components/AuroraText";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { usePathname } from "next/navigation";
@@ -21,11 +24,15 @@ import { ProjectCard } from "@/components/ProjectCard";
 
 import { Scene } from "@/components/3d/Scene";
 import { DisplayName } from "@/components/Typography";
-import H1 from "@/components/typography/H1";
-import H2 from "@/components/typography/H2";
-import H3 from "@/components/typography/H3";
-import P from "@/components/typography/P";
+// import H1 from "@/components/typography/H1";
+// import H2 from "@/components/typography/H2";
+// import H3 from "@/components/typography/H3";
+// import P from "@/components/typography/P";
+import { H1, H2 } from "@/components/typography/Headings";
 import JellyButton from "@/components/JellyButton";
+import GridComponent from "@/components/Demo";
+import Grid2x2 from "@/components/Demo";
+import Demo from "@/components/Demo";
 const pageTitle: string = "Design Engineer";
 const pageDescription: string =
 	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
@@ -42,7 +49,7 @@ export default function Home() {
 			{/* <BannerSection /> */}
 			{/* <IntroSection /> */}
 			<SelectedWorkSection />
-			<ProfileSection />
+			{/* <ProfileSection /> */}
 			{/* <Section>test</Section> */}
 		</>
 	);
@@ -81,7 +88,7 @@ export default function Home() {
 
 function HeroSection() {
 	return (
-		<Section className="h-screen w-screen relative">
+		<Section className="h-screen relative">
 			{/* <Section className="h-screen w-screen relative"> */}
 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
 
@@ -177,6 +184,46 @@ function IntroSection() {
 	);
 }
 
+// export function SelectedWorkSection() {
+// 	const pathname = usePathname();
+// 	const isHomePage = pathname === "/";
+//
+// 	const featuredProjects = [
+// 		{ href: "/work/apideas", ...apideasProjectDetails() },
+// 		{ href: "/work/zconsole", ...zconsoleProjectDetails() },
+// 		{ href: "/work/scoutify", ...scoutifyProjectDetails() },
+// 	];
+//
+// 	return (
+// 		<>
+// 			<Section>
+// 				<Container>
+// 					<div className="flex flex-row justify-between">
+// 						<H2 className="">Selected Work</H2>
+// 					</div>
+// 					{featuredProjects.map((project) => (
+// 						<div className="w-full h-full flex bg-[var(--base-4)] text-[var(--accent-12)]">
+// 							<div className="w-20 h-20 border flex items-center justify-center">
+// 								<div
+// 									className="flex h-fulll w-full bg-[var(--base-11)] cheese:bg-[var(--accent-9)]"
+// 									style={{
+// 										// Use the 'currentLogo' variable to set the mask image dynamically
+// 										maskImage: `url(${featuredProjects.logoDark})`,
+// 										WebkitMaskImage: `url(${featuredProjects.logoDark})`, // For Safari/WebKit compatibility
+// 										maskSize: "contain",
+// 										maskRepeat: "no-repeat",
+// 										maskPosition: "center",
+// 									}}
+// 								/>
+// 							</div>
+// 							<div className="flex w-full p-3">Card</div>
+// 						</div>
+// 					))}
+// 				</Container>
+// 			</Section>
+// 		</>
+// 	);
+// }
 export function SelectedWorkSection() {
 	const pathname = usePathname();
 	const isHomePage = pathname === "/";
@@ -188,7 +235,7 @@ export function SelectedWorkSection() {
 	];
 	return (
 		<>
-			<Section>
+			<Section className="border">
 				<Container>
 					<div className="flex flex-row justify-between">
 						<H2 className="">Selected Work</H2>
@@ -198,12 +245,14 @@ export function SelectedWorkSection() {
 						{/* 	</Button> */}
 						{/* )} */}
 					</div>
-					{/* <div className="flex flex-col gap-6"> */}
-					{/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
-					{/* {featuredProjects.map((project) => ( */}
-					{/* <ProjectCard key={project.href} {...project} /> */}
-					{/* ))} */}
-					{/* </div> */}
+					<div className="flex flex-col gap-10">
+						{featuredProjects.map((project) => (
+							<ProjectCard key={project.href} {...project} />
+						))}
+					</div>
+					{/* <GridComponent /> */}
+					{/* <Grid2x2 /> */}
+					{/* <Demo /> */}
 				</Container>
 			</Section>
 		</>

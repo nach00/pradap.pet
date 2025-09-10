@@ -19,4 +19,7 @@ export type ProjectDetails = {
 	agency: string;
 	duty: string;
 	industry: string;
+	icon: string;
+	logo: string;
+	logoDark: string;
 };

@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/Marquee";
 import PageHeader from "@/components/layout/PageHeader";
-import StatStack from "./StatStack";
+import StatStack from "@/components/StatStack";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 import { SelectedWorkSection } from "@/app/page";
@@ -35,7 +35,7 @@ export default function WorkPage() {
 		<div className="">
 			<HeroSection />
 			{/* <StatsSection /> */}
-			<SelectedWorkSection />
+			{/* <SelectedWorkSection /> */}
 			<ArchivedWorkSection />
 			<ClientsSection />
 		</div>
@@ -72,7 +72,7 @@ function ClientsSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Past Clients</h2>
+					<H2>Past Clients</H2>
 					<ClientMarquee />
 				</Container>
 			</Section>

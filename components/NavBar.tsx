@@ -1,6 +1,5 @@
 "use client";
-import H2 from "@/components/typography/H2";
-import Section from "@/components/layout/Section";
+import { H2 } from "@/components/typography/Headings";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -40,16 +39,18 @@ const links = [
 export default function NavBar({ className }: props) {
 	return (
 		<>
+			{/* Desktop NavBar */}
 			<section
 				className={cn(
-					"z-50 fixed min-w-screen pt-20 backdrop-blur-lg hidden",
-					"landscape:flex landscape:flex-col landscape:",
+					"z-50 fixed min-w-screen pt-10 pb-20 hidden h-1/8 border-b",
+					"landscape:flex landscape:flex-col",
+
 					className,
 				)}
 			>
 				<Container
 					className={cn(
-						"flex flex-row justify-between w-full",
+						"flex flex-row justify-between w-full z-50",
 						// "bg-[var(--base-a9)] text-[var(--accent-9)]",
 					)}
 				>
@@ -60,6 +61,8 @@ export default function NavBar({ className }: props) {
 				<Container className="py-0 flex w-full">
 					<BackButton />
 				</Container>
+
+				<div className="absolute inset-y-0 w-full bg-gradient-to-b from-background backdrop-blur-lg"></div>
 			</section>
 			<MobileNavMenu />
 		</>
@@ -96,6 +99,7 @@ function DesktopNavLinks() {
 					<span
 						className={cn(
 							"relative block",
+							"cheese:font-custom",
 							pathname === link.link
 								? "text-[var(--base-9)] dark:text-[var(--accent-9)]"
 								: "text-[var(--base-11)] dark:text-[var(--base-12)] hover:text-[var(--base-12)]",
@@ -140,7 +144,7 @@ function MobileNavMenu() {
 				className={`fixed left-1/2 top-1/2 -translate-x-1/2 w-min bg-[var(--base-3)] rounded-2xl shadow-2xl p-8 transition-all duration-500 ease-out ${
 					isOverlayVisible
 						? "opacity-100 -translate-y-1/2 scale-100"
-						: "opacity-0 -translate-y-[200%] scale-95"
+						: "opacity-0 translate-y-[200%] scale-95"
 				}`}
 				style={{ zIndex: 50 }}
 				onClick={(e) => e.stopPropagation()}
@@ -190,12 +194,19 @@ function MobileNavMenu() {
 
 			{/* Navigation Menu */}
 			<div
-				className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10 opacity-50 hover:opacity-100 hover:drop-shadow-[0_0_10px_var(--accent-9)] hover:animate-pulse"
+				className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10"
 				style={{ zIndex: 60 }}
 				onClick={toggleOverlay}
 			>
 				<MobileButton />
 			</div>
+			{/* <div */}
+			{/* 	className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10 opacity-50 hover:opacity-100 hover:drop-shadow-[0_0_10px_var(--accent-9)] hover:animate-pulse" */}
+			{/* 	style={{ zIndex: 60 }} */}
+			{/* 	onClick={toggleOverlay} */}
+			{/* > */}
+			{/* 	<MobileButton /> */}
+			{/* </div> */}
 		</>
 	);
 }
@@ -251,3 +262,57 @@ function MobileButton() {
 		</>
 	);
 }
+
+// function MobileButton() {
+// 	return (
+// 		<>
+// 			<div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon">
+// 				<MenuIcon className="text-5xl text-[var(--accent-8)]" />
+// 			</div>
+// 		</>
+// 	);
+// }
+//
+interface BlurGradientContainerProps {
+	children: React.ReactNode;
+	className?: string;
+}
+
+const BlurGradientContainer = ({
+	children,
+	className = "",
+}: BlurGradientContainerProps) => {
+	return (
+		<div className={`relative overflow-hidden ${className}`}>
+			{/* Background content */}
+			<div className="absolute inset-0">{children}</div>
+
+			{/* Blur overlay with gradient fade */}
+			<div className="absolute inset-0 pointer-events-none">
+				{/* Top 50% - Full blur */}
+				<div
+					className="absolute top-0 left-0 w-full h-1/2 backdrop-blur-xl"
+					style={{
+						maskImage: "linear-gradient(to bottom, black 0%, black 100%)",
+						WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 100%)",
+					}}
+				/>
+
+				{/* Bottom 50% - Gradient blur fade */}
+				<div
+					className="absolute top-1/2 left-0 w-full h-1/2 backdrop-blur-xl"
+					style={{
+						maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+						WebkitMaskImage:
+							"linear-gradient(to bottom, black 0%, transparent 100%)",
+					}}
+				/>
+			</div>
+
+			{/* Content overlay (if you want content on top of the blur) */}
+			<div className="relative z-10 pointer-events-auto">
+				{/* Add any overlay content here */}
+			</div>
+		</div>
+	);
+};

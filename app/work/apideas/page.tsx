@@ -1,7 +1,7 @@
 import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
 import Container from "@/components/layout/Container";
-import StatStack from "../StatStack";
+import StatStack from "@/components/StatStack";
 import ApideasMarquee from "./ApideasMarquee";
 import Browser from "./Browser";
 import Section from "@/components/layout/Section";
@@ -13,7 +13,7 @@ const projectDetails: ProjectDetails = {
 	id: "01",
 	year: "2025",
 	status: "Live",
-	category: "Capstone Project",
+	category: "Capstone",
 	title: "APIdeas",
 	lede: "Generate creative app ideas by combining APIs in a Pokemon-style card game.",
 	description:
@@ -38,7 +38,11 @@ const projectDetails: ProjectDetails = {
 	darkHeaderImage: "/images/project-apideas-dark.png",
 	agency: "None",
 	duty: "Product Developer",
+
 	industry: "Startup: Gaming",
+	icon: "/images/logos/apideas-white.svg",
+	logo: "/images/logos/apideas-white.svg",
+	logoDark: "/images/logos/apideas-black.svg",
 } as const;
 
 export function getProjectDetails() {
