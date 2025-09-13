@@ -19,19 +19,19 @@ type ThemeTab = {
 const themeConfig: ThemeTab[] = [
 	{
 		id: "light",
-		icon: <Sun className="size-5" />,
+		icon: <Sun className="size-4" />,
 		bgColor: "bg-[var(--base-2)]",
 		iconColor: "text-[var(--accent-9)]",
 	},
 	{
 		id: "dark",
-		icon: <Moon className="size-5" />,
+		icon: <Moon className="size-4" />,
 		bgColor: "bg-[var(--base-2)]",
 		iconColor: "text-[var(--base-11)]",
 	},
 	{
 		id: "cheese",
-		icon: <Cheese className="size-5" />,
+		icon: <Cheese className="size-4" />,
 		bgColor: "bg-[var(--accent-2)]",
 		iconColor: "text-[var(--accent-9)]",
 	},
@@ -45,110 +45,76 @@ export default function ThreeModeThemeSwitcher({ className }: Props) {
 	const { theme, setTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
 
-	// Fix: Use useEffect instead of useState for mounting
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
-	// Fix: Return a skeleton/placeholder during SSR to prevent layout shift
 	if (!mounted) {
 		return (
 			<div className={cn("flex items-center", className)}>
-				<div className="relative inline-flex items-center rounded-full p-2 w-[200px] bg-[var(--base-2)] dark:bg-[var(--base-8)]">
-					<div className="flex w-full h-full relative">
-						{[1, 2, 3].map((i) => (
-							<div key={i} className="flex-1 flex items-center justify-center">
-								<div className="size-4 opacity-40" />
-							</div>
-						))}
-					</div>
-					<div className="absolute w-14 top-1 p-1 bg-white dark:bg-gray-700 rounded-full shadow-lg flex items-center justify-center z-20 translate-x-1">
-						<div className="size-4" />
-					</div>
-				</div>
+				<div className="relative inline-flex items-center rounded-full p-1.5 w-[180px] h-10 bg-[var(--base-3)] dark:bg-[var(--base-8)] opacity-70" />
 			</div>
 		);
 	}
 
 	const currentTheme = (theme as ThemeMode) || "light";
-	const activeThemeConfig =
-		themeConfig.find((t) => t.id === currentTheme) || themeConfig[0];
+	const activeIndex = themeConfig.findIndex((t) => t.id === currentTheme);
+	const activeThemeConfig = themeConfig[activeIndex] || themeConfig[0];
 
 	const handleThemeChange = (newTheme: ThemeMode) => {
 		setTheme(newTheme);
-	};
-
-	// Fix: Calculate position more reliably
-	const getIndicatorPosition = () => {
-		switch (currentTheme) {
-			case "light":
-				return 4;
-			case "dark":
-				return 64;
-			case "cheese":
-				return 124;
-			default:
-				return 4;
-		}
 	};
 
 	return (
 		<div className={cn("flex items-center", className)}>
 			<div
 				className={cn(
-					"relative inline-flex items-center rounded-full p-2",
-					"w-[200px] transition-colors duration-300 ease-out",
-					activeThemeConfig.bgColor,
+					"relative inline-flex items-center rounded-full p-1.5 h-10 w-[180px]",
+					"transition-colors duration-300 ease-out",
+					"bg-[var(--base-2)] dark:bg-[var(--base-8)] cheese:bg-[var(--base-9)]",
 				)}
 			>
-				{/* Background track with icons */}
+				{/* Background track */}
 				<div className="flex w-full h-full relative">
-					{themeConfig.map((themeTab) => (
+					{themeConfig.map((t) => (
 						<button
-							key={themeTab.id}
-							onClick={() => handleThemeChange(themeTab.id)}
+							key={t.id}
+							onClick={() => handleThemeChange(t.id)}
 							className={cn(
 								"flex-1 flex items-center justify-center relative z-10",
-								"transition-all duration-300 ease-out",
-								"hover:scale-110",
+								"transition-transform duration-300 ease-out",
+								"hover:scale-105",
+								currentTheme === t.id ? t.iconColor : "opacity-50",
 							)}
-							aria-label={`Switch to ${themeTab.id} theme`}
+							aria-label={`Switch to ${t.id} theme`}
+							aria-pressed={currentTheme === t.id}
 						>
-							<div
-								className={cn(
-									"transition-all duration-300 ease-out",
-									// Fix: Invert the opacity logic to match what's expected
-									currentTheme === themeTab.id
-										? "opacity-40 scale-100"
-										: "opacity-20 scale-90",
-									"text-[var(--base-9)]",
-								)}
-							>
-								{themeTab.icon}
-							</div>
+							{t.icon}
 						</button>
 					))}
 				</div>
 
-				{/* Animated sliding indicator */}
+				{/* Sliding indicator */}
 				<motion.div
-					className="absolute w-14 top-1 p-1 bg-[var(--accent-11)] dark:bg-[var(--base-6)] cheese:bg-[var(--base-9)] rounded-full shadow-lg flex items-center justify-center z-20"
+					className={cn(
+						"absolute top-1 bottom-1 rounded-full shadow-md",
+						"bg-[var(--accent-11)] dark:bg-[var(--base-6)] cheese:bg-[var(--base-7)]",
+						"w-[calc(33.33%-6px)] mx-[3px] flex items-center justify-center",
+					)}
 					animate={{
-						x: getIndicatorPosition(),
+						x: `${activeIndex * 100}%`,
 					}}
 					transition={{
 						type: "spring",
-						bounce: 0.2,
-						duration: 0.6,
+						stiffness: 300,
+						damping: 25,
 					}}
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
 				>
 					<motion.div
 						key={currentTheme}
-						initial={{ scale: 0.8, opacity: 0 }}
+						initial={{ scale: 0.85, opacity: 0 }}
 						animate={{ scale: 1, opacity: 1 }}
-						exit={{ scale: 0.8, opacity: 0 }}
+						exit={{ scale: 0.85, opacity: 0 }}
 						transition={{ duration: 0.2 }}
 						className={activeThemeConfig.iconColor}
 					>

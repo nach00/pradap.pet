@@ -1,14 +1,9 @@
 import { cn } from "@/lib/utils";
 import NavBar from "@/components/NavBar";
-
-import { BottomBar } from "@/components/BottomBar";
+import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import BackButton from "@/components/BackButton";
-import { TopBar } from "@/components/TopBar";
-import { Footer } from "@/components/layout/Footer";
-// import { whirlyBirdie, rubik, jetbrainsMono } from "@/lib/fonts";
 import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 
@@ -58,6 +53,7 @@ export default function RootLayout({
 						jetbrainsMono.className,
 						whirlyBirdie.variable,
 						whirlyBirdie.className,
+						"bg-background",
 					)}
 				>
 					<ThemeProvider
@@ -69,7 +65,7 @@ export default function RootLayout({
 						<NavBar />
 						{/* <BackButton /> */}
 						{children}
-						{/* <Footer /> */}
+						<Footer />
 					</ThemeProvider>
 				</body>
 			</html>

@@ -1,10 +1,25 @@
+import Link from "next/link";
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
 import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
-import Section from "@/components/layout/Section";
-import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+	Strong,
+} from "@/components/typography/TextElements";
+
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
 
 const projectDetails = {
 	id: "02",
@@ -36,7 +51,7 @@ export function getProjectDetails() {
 }
 export default function ZConsole() {
 	return (
-		<div className="">
+		<div className="pt-50">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -46,6 +61,7 @@ export default function ZConsole() {
 			<WizardSection />
 			<ReportsSection />
 			<ReferencesSection />
+			<NextProjectSection />
 			{/* <DeckSection /> */}
 			{/* <LoomSection /> */}
 			{/* <ResultsAndImpactSection /> */}
@@ -60,56 +76,65 @@ function HeroSection() {
 	return (
 		<>
 			<Section>
-				<Container>
+				<Container className={cn("")} variant="narrow">
 					<ProjectHeroContent {...projectDetails} />
 				</Container>
 			</Section>
 		</>
 	);
 }
+
 function DetailsSection() {
 	return (
 		<>
 			<Section>
 				<Container className="flex flex-col">
-					<h2>Details</h2>
+					<H2>Details</H2>
 
-					<div className="grid grid-cols-2">
-						<div className="grid grid-cols-2">
-							<DataPair label="Client">{projectDetails.client}</DataPair>
+					<div className="flex flex-col gap-[2em]">
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair label="Organization">{projectDetails.client}</DataPair>
 							<DataPair label="Duration">{projectDetails.duration}</DataPair>
 							<DataPair label="Role">{projectDetails.role}</DataPair>
 							<DataPair label="Team">{projectDetails.team}</DataPair>
 						</div>
 
-						<div className="grid grid-rows-2">
-							<div className="flex flex-col">
-								<DataPair label="Skills">
-									{projectDetails.services &&
-										projectDetails.services.length > 0 && (
-											<div className="flex flex-wrap gap-2">
-												{projectDetails.services.map((service, index) => (
-													<TagBox key={index}>{service}</TagBox>
-												))}
-											</div>
-										)}
-								</DataPair>
-							</div>
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair
+								label="Skills"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.services?.length > 0 && (
+									<div className="flex flex-wrap w-full gap-2 ">
+										{projectDetails.services.map((service, index) => (
+											<TagBox key={index}>{service}</TagBox>
+										))}
+									</div>
+								)}
+							</DataPair>
 
-							<div className="flex flex-col">
-								<DataPair label="Technologies">
-									{projectDetails.technologies &&
-										projectDetails.technologies.length > 0 && (
-											<div className="flex flex-wrap gap-2">
-												{projectDetails.technologies.map(
-													(technology, index) => (
-														<TagBox key={index}>{technology}</TagBox>
-													),
-												)}
-											</div>
-										)}
-								</DataPair>
-							</div>
+							<DataPair
+								label="Technologies"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.technologies?.length > 0 && (
+									<div className="flex flex-wrap gap-2">
+										{projectDetails.technologies.map((tech, i) => (
+											<TagBox key={i}>{tech}</TagBox>
+										))}
+									</div>
+								)}
+							</DataPair>
 						</div>
 					</div>
 				</Container>
@@ -117,21 +142,72 @@ function DetailsSection() {
 		</>
 	);
 }
+
+// function DetailsSection() {
+// 	return (
+// 		<>
+// 			<Section>
+// 				<Container className="flex flex-col">
+// 					<h2>Details</h2>
+//
+// 					<div className="grid grid-cols-2">
+// 						<div className="grid grid-cols-2">
+// 							<DataPair label="Client">{projectDetails.client}</DataPair>
+// 							<DataPair label="Duration">{projectDetails.duration}</DataPair>
+// 							<DataPair label="Role">{projectDetails.role}</DataPair>
+// 							<DataPair label="Team">{projectDetails.team}</DataPair>
+// 						</div>
+//
+// 						<div className="grid grid-rows-2">
+// 							<div className="flex flex-col">
+// 								<DataPair label="Skills">
+// 									{projectDetails.services &&
+// 										projectDetails.services.length > 0 && (
+// 											<div className="flex flex-wrap gap-2">
+// 												{projectDetails.services.map((service, index) => (
+// 													<TagBox key={index}>{service}</TagBox>
+// 												))}
+// 											</div>
+// 										)}
+// 								</DataPair>
+// 							</div>
+//
+// 							<div className="flex flex-col">
+// 								<DataPair label="Technologies">
+// 									{projectDetails.technologies &&
+// 										projectDetails.technologies.length > 0 && (
+// 											<div className="flex flex-wrap gap-2">
+// 												{projectDetails.technologies.map(
+// 													(technology, index) => (
+// 														<TagBox key={index}>{technology}</TagBox>
+// 													),
+// 												)}
+// 											</div>
+// 										)}
+// 								</DataPair>
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</Container>
+// 			</Section>
+// 		</>
+// 	);
+// }
 function OverviewSection() {
 	return (
 		<>
 			<Section>
-				<Container className="flex-row gap-12 flex">
+				<Container className="flex-row gap-12 flex" variant="narrow">
 					<div className="flex flex-col">
-						<h2>Overview</h2>
+						<H2>Overview</H2>
 						<div className="flex flex-col w-full items-center justify-center">
-							<p>
+							<P className={cn("max-w-[60ch]")}>
 								zConsole is an administrative dashboard used by mobile app
 								developers and cybersecurity teams of large enterprises. During
 								my time at Zimperium, I managed feature designs for 2 versions
 								of this console, called V4 and V5. Below is a brief comparison
 								between the two.
-							</p>
+							</P>
 							{/* <p> */}
 							{/* 	The product and engineering team was divided into two teams, */}
 							{/* 	one for each version. The reasoning behind this team and */}
@@ -184,15 +260,15 @@ function ProductComparisonSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Product Comparison</h2>
+					<H2>Product Comparison</H2>
 
-					<div className="flex flex-row gap-8">
+					<div className="flex flex-col lg:flex-row gap-8">
 						<div className="p-4 bg-[var(--base-3)] rounded-md flex items-center flex-col justify-center">
-							<h3>V4</h3>
+							<H3>V4</H3>
 							<div className="flex flex-col pb-8">
-								<small>Built with Angular.js</small>
-								<small>More features</small>
-								<small>Older and slower</small>
+								<Small>Built with Angular.js</Small>
+								<Small>More features</Small>
+								<Small>Older and slower</Small>
 							</div>
 
 							<ScreenshotPreview
@@ -205,12 +281,12 @@ function ProductComparisonSection() {
 							/>
 						</div>
 						<div className="p-4 bg-[var(--base-3)] rounded-md flex items-center flex-col justify-center">
-							<h3>V5</h3>
+							<H3>V5</H3>
 
 							<div className="flex flex-col pb-8">
-								<small>Built with React.js</small>
-								<small>More scalability</small>
-								<small>Newer and faster</small>
+								<Small>Built with React.js</Small>
+								<Small>More scalability</Small>
+								<Small>Newer and faster</Small>
 							</div>
 							<ScreenshotPreview
 								imageSrc="/images/zconsole/console-02.png"
@@ -223,46 +299,48 @@ function ProductComparisonSection() {
 						</div>
 					</div>
 
-					<div className="flex flex-col w-full items-center">
-						<p className="mt-20">
-							The product and engineering team was divided into two teams, one
-							for each version. The reasoning behind this team and project
-							structure is because:
-						</p>
-						<ul>
-							<li>
-								<strong>Existing software:</strong> Most of the customers used
-								V4 because it had been around longer and they were used to it.
-							</li>
+					<Container variant="narrow">
+						<div className="flex flex-col w-full items-center max-w-[60ch]">
+							<P className="mt-20">
+								The product and engineering team was divided into two teams, one
+								for each version. The reasoning behind this team and project
+								structure is because:
+							</P>
+							<UL>
+								<LI>
+									<Strong>Existing software:</Strong> Most of the customers used
+									V4 because it had been around longer and they were used to it.
+								</LI>
 
-							<li>
-								<strong>Parallel development process:</strong> The new V5
-								version was still newly being developed; there were not as many
-								functions as V4.
-							</li>
+								<LI>
+									<Strong>Parallel development process:</Strong> The new V5
+									version was still newly being developed; there were not as
+									many functions as V4.
+								</LI>
 
-							<li>
-								<strong>Scalability vs Features:</strong> The problem with V4 is
-								that it could not scale as much as V5. Having more data in V4
-								would reduce performance, which is the reason for the
-								development of the newer version.
-							</li>
-						</ul>
+								<LI>
+									<Strong>Scalability vs Features:</Strong> The problem with V4
+									is that it could not scale as much as V5. Having more data in
+									V4 would reduce performance, which is the reason for the
+									development of the newer version.
+								</LI>
+							</UL>
 
-						<p>
-							Our team tried as much as possible to reduce the amount of rework
-							that may be needed when building a new feature for both consoles,
-							but sometimes it couldn’t be avoided. Therefore, some tasks
-							required me to design vastly different user interfaces.
-						</p>
+							<P className={cn("mt-12")}>
+								Our team tried as much as possible to reduce the amount of
+								rework that may be needed when building a new feature for both
+								consoles, but sometimes it couldn’t be avoided. Therefore, some
+								tasks required me to design vastly different user interfaces.
+							</P>
 
-						<p>
-							Since V4 had planned to eventually be deprecated, minimal work was
-							required for those associated tasks, meaning I was told to just
-							have the “get it done” mentality. With V5, I had more design
-							freedom to design things the right way.
-						</p>
-					</div>
+							<P>
+								Since V4 had planned to eventually be deprecated, minimal work
+								was required for those associated tasks, meaning I was told to
+								just have the “get it done” mentality. With V5, I had more
+								design freedom to design things the right way.
+							</P>
+						</div>
+					</Container>
 				</Container>
 			</Section>
 		</>
@@ -273,16 +351,16 @@ function FeatureDesignTasksSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Feature Design Tasks</h2>
-					<p>
+					<H2>Feature Design Tasks</H2>
+					<Lede>
 						As customers demanded more features and project managed the team's
 						approach, I was assigned to provide designs for new features that
 						would be implented. Below are a few mocks for some of the features I
 						designed.
-					</p>
+					</Lede>
 
-					<div className="p-4 bg-[var(--base-3)] rounded-lg">
-						<h3>V4 Features</h3>
+					<div className="p-4 bg-[var(--base-3)] rounded-lg mt-12">
+						<H3>V4 Features</H3>
 
 						<div className="grid grid-cols-2 gap-6">
 							<ScreenshotPreview
@@ -312,7 +390,7 @@ function FeatureDesignTasksSection() {
 						</div>
 					</div>
 					<div className="p-4 bg-[var(--base-3)] rounded-lg mt-6">
-						<h3>V5 Features</h3>
+						<H3>V5 Features</H3>
 						<div className="grid grid-cols-2 gap-6">
 							<ScreenshotPreview
 								imageSrc="/images/zconsole/zimperium-18.png"
@@ -382,17 +460,19 @@ function ProcessSection() {
 	return (
 		<>
 			<Section>
-				<Container>
-					<h2>Process</h2>
-					<p>
+				<Container variant="narrow">
+					<H2>Process</H2>
+					<P className={cn("max-w-[60ch]")}>
 						Once I had established my general understanding of the company, its
 						services, and the stakeholders involved, I ultimately decided that
 						creating a design system would be vital to remaining consistent in
 						all my designs. I designed Hyperion, which I describe as a big data
 						design system. You can see more about my design process creating
 						this system below.
-					</p>
-					<Button variant="outline">View Design Process (coming soon)</Button>
+					</P>
+					<Button variant="disabled" className={cn("mt-12")}>
+						View Design Process (coming soon)
+					</Button>
 				</Container>
 			</Section>
 		</>
@@ -403,36 +483,42 @@ function WizardSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Step-by-step wizard for easy setup</h2>
-
-					<div className="flex flex-col w-full items-center">
+					<Container variant="narrow">
+						<H2>Step-by-step setup wizard</H2>
+						<Lede>
+							Feature mockup design for V5 dashboard, guiding the user on how to
+							set up their organization's mobile data plan to the zConsole
+							system.
+						</Lede>
+					</Container>
+					<div className="flex flex-col w-full items-center mt-12 gap-4">
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-1.png"
-							description=""
+							description="Step 1: Provide initial plan configuration"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-2.png"
-							description=""
+							description="Step 2 (Part 1/3): Setup groups"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-3.png"
-							description=""
+							description="Step 2 (Part 2/3): Add group details"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-4.png"
-							description=""
+							description="Step 2 (Part 3/3): Example screen of completed group configuration"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-5.png"
-							description=""
+							description="Step 3: Connect integrations with other third-party services"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-6.png"
-							description=""
+							description="Step 4: Summary of connected integrations"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/wizard-7.png"
-							description=""
+							description="Step 5: Setup complete confirmation screen"
 						/>
 					</div>
 				</Container>
@@ -445,25 +531,27 @@ function ReportsSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Security Analytics Reports</h2>
-					<p>
-						One section that fully utilized the Hyperion Design System was the
-						security analytics reports that were generated when a user uploaded
-						their mobile app to the zConsole. Below are a few examples of the
-						reports that were generated.
-					</p>
-					<div className="flex flex-col w-full items-center">
+					<Container variant="narrow">
+						<H2>Security Analytics Reports</H2>
+						<Lede>
+							One section that fully utilized the Hyperion Design System was the
+							security analytics reports that were generated when a user
+							uploaded their mobile app to the zConsole. Below are a few
+							examples of the reports that were generated.
+						</Lede>
+					</Container>
+					<div className="flex flex-col w-full items-center mt-12">
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/zscan-01.png"
-							description=""
+							description="Example screen of app assessment results of findings"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/zscan-02.png"
-							description=""
+							description="This screen shows how the user can manage each finding by configuring its severity rating"
 						/>
 						<ScreenshotPreview
 							imageSrc="/images/zconsole/zscan-03.png"
-							description=""
+							description="Consolidated view of app assessment results in panel format"
 						/>
 					</div>
 				</Container>
@@ -527,8 +615,66 @@ function ReferencesSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>References</h2>
-					<blockquote>Hi</blockquote>
+					<H2>References</H2>
+					<div className={cn("flex flex-col gap-12 lg:flex-row")}>
+						<Blockquote className={cn("w-full")}>
+							"Natcha was a talented colleague I have had the pleasure to work
+							with for a couple of years. We worked together on building
+							enterprise products at Zimperium . He was very integral on
+							designing UX mockups (for both web apps and mobile apps) for use
+							by the software developers. He is a very quick when it comes to
+							timelines and has a talent for really pleasing designs. Even after
+							we are both no longer at the company we met at, we have kept in
+							touch as friends over the years and I really look forward to
+							working with him in the future and would highly recommend Natcha."
+							<Lede className={cn("not-italic mt-4")}>
+								-Tom Vongphakdy, Software Engineer
+							</Lede>
+						</Blockquote>
+						<Blockquote className={cn("w-full")}>
+							"I highly recommend Natcha for any UX / UI role. In his time at
+							Zimperium, Natcha aided greatly with both Mobile App Design and
+							Web Design.
+							<br />
+							[...]
+							<br />
+							Natcha has an extraordinary ability to comprehend and transform
+							complex verbal requirements into UX designs. He has both fresh,
+							innovative ideas and a collaborative spirit."
+							<Lede className={cn("not-italic mt-4")}>
+								-Andrew Fausak, Principal Software Developer
+							</Lede>
+						</Blockquote>
+					</div>
+				</Container>
+			</Section>
+		</>
+	);
+}
+
+function NextProjectSection() {
+	return (
+		<>
+			<Section>
+				<Container
+					className={cn(
+						"flex flex-col md:flex-row items-center justify-center gap-20 text-center",
+					)}
+					variant="narrow"
+				>
+					<div className={cn("flex flex-col")}>
+						<H2>See another project</H2>
+						<div
+							className={cn("flex flex-col gap-20 lg:flex-row justify-center")}
+						>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/apideas">APIdeas</Link>
+							</Button>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/scoutify">Scoutify</Link>
+							</Button>
+						</div>
+					</div>
 				</Container>
 			</Section>
 		</>

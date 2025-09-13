@@ -1,4 +1,5 @@
 import { NumberTicker } from "@/components/NumberTicker";
+import { Small } from "@/components/typography/TextElements";
 
 import { cn } from "@/lib/utils";
 
@@ -19,9 +20,7 @@ export default function StatStack({
 				value={number}
 				className="whitespace-pre-wrap text-7xl font-light tracking-tighter mb-2 text-[var(--foreground)]"
 			/>
-			<small className="text-xs font-medium tracking-widest text-[var(--muted-foreground)] uppercase">
-				{label}
-			</small>
+			<Small className="uppercase font-medium">{label}</Small>
 		</div>
 	);
 }

@@ -1,5 +1,18 @@
 "use client";
-import { H2 } from "@/components/typography/Headings";
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+} from "@/components/typography/TextElements";
+
+import Section from "@/components/layout/Section";
+
 import { motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -58,7 +71,7 @@ export default function NavBar({ className }: props) {
 					<DesktopNavLinks />
 					<ThreeModeThemeSwitcher className="portrait:hidden" />
 				</Container>
-				<Container className="py-0 flex w-full">
+				<Container className="py-0 flex w-full mt-12">
 					<BackButton />
 				</Container>
 
@@ -71,7 +84,7 @@ export default function NavBar({ className }: props) {
 function DesktopNavLinks() {
 	const pathname = usePathname();
 	return (
-		<div className="flex flex-row items-center gap-1 portrait:hidden bg-[var(--base-2)] p-2 rounded-full">
+		<div className="flex flex-row items-center gap-1 portrait:hidden">
 			{links.map((link) => (
 				<Link
 					key={link.name}
@@ -141,20 +154,22 @@ function MobileNavMenu() {
 
 			{/* Sliding Panel */}
 			<div
-				className={`fixed left-1/2 top-1/2 -translate-x-1/2 w-min bg-[var(--base-3)] rounded-2xl shadow-2xl p-8 transition-all duration-500 ease-out ${
+				className={`py-4 backdrop-blur-md flex items-center justify-center fixed left-10 right-10 bottom-20 bg-[var(--base-3)]/80 rounded-2xl shadow-2xl transition-all duration-500 ease-out ${
 					isOverlayVisible
-						? "opacity-100 -translate-y-1/2 scale-100"
+						? "opacity-100 scale-100"
 						: "opacity-0 translate-y-[200%] scale-95"
 				}`}
 				style={{ zIndex: 50 }}
 				onClick={(e) => e.stopPropagation()}
+				// onClick={closeOverlay}
 			>
 				<div className="flex flex-col items-center space-y-6">
 					<H2
-						className={cn(
-							"text-xl font-light text-[var(--base-11)]",
-							"cheese:font-custom cheese:font-stretch-extra-expanded cheese:text-[var(--accent-9)] cheese:text-4xl",
-						)}
+						className={
+							cn("font-stretch-extra-expanded", "mb-4")
+							// "text-xl font-light text-[var(--base-11)]",
+							// "cheese:font-custom cheese:font-stretch-extra-expanded cheese:text-[var(--accent-9)] cheese:text-4xl",
+						}
 					>
 						Menu
 					</H2>
@@ -166,11 +181,11 @@ function MobileNavMenu() {
 								onClick={closeOverlay}
 								className={cn(
 									// --- Base styles for all states ---
-									"transition-all py-2 text-center",
+									"transition-all text-center",
 									// Default text color for the inactive state
 									"text-[var(--base-9)]",
-
-									"hover:text-[var(--accent-9)]",
+									// "hover:text-[var(--base-7)]",
+									// "hover:text-[var(--accent-9)]",
 
 									// --- 'cheese' variant styles ---
 									"cheese:font-custom cheese:font-stretch-extra-condensed cheese:text-3xl",
@@ -178,12 +193,18 @@ function MobileNavMenu() {
 									// --- Conditional styles ---
 									pathname === link.link
 										? // Active state: Underlined, scaled, and uses accent color
-											"underline underline-offset-8 underline-[var(--accent-8)]"
+											"bg-[var(--base-5)] p-2 rounded-full border border-[var(--base-7)] shadow-md"
 										: // Inactive state: Scales and changes color on hover
-											"",
+											"opacity-75",
 								)}
 							>
-								{link.name}
+								<H4
+									className={cn(
+										"cheese:font-stretch-extra-expanded hover:text-[var(--base-11)]",
+									)}
+								>
+									{link.name}
+								</H4>
 							</Link>
 						))}
 					</nav>

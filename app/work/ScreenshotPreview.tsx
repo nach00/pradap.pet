@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 
+import { Caption, Small } from "@/components/typography/TextElements";
+
 import ImagePreview from "@/components/ImagePreview";
 interface ScreenshotPreviewProps {
 	imageSrc?: string;
@@ -18,11 +20,9 @@ export default function ScreenshotPreview({
 	imageHeight = 600,
 }: ScreenshotPreviewProps) {
 	return (
-		<div className="relative flex flex-col gap-1 items-center">
+		<div className="relative flex flex-col gap-1 items-center mt-12">
 			<ImagePreview src={imageSrc} width={imageWidth} height={imageHeight} />
-			<small className="grid place-content-center pt-2 pb-8">
-				{description}
-			</small>
+			<Caption>{description}</Caption>
 		</div>
 	);
 }

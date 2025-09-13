@@ -25,10 +25,8 @@ export function Scene() {
 	useEffect(() => {
 		const randomX = (Math.random() - 0.5) * 5;
 		const randomZ = (Math.random() - 0.5) * 5;
-		setToyPosition([1, 2, 3]);
-		setToyRotation([1, 2 + Math.random() * 1.5, -3]);
-		// setToyPosition([randomX, 5 + Math.random() * 2, randomZ]);
-		// setToyRotation([randomX, 5 + Math.random() * 2, randomZ]);
+		setToyPosition([randomX, 5 + Math.random() * 2, randomZ]);
+		setToyRotation([randomX, 5 + Math.random() * 2, randomZ]);
 	}, []);
 
 	// Determine background color based on theme

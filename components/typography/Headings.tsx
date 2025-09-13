@@ -8,7 +8,7 @@ export function H1({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h1"
 			className={cn(
-				"font-extralight tracking-[0.025em] leading-[1.25em] mb-[4em]",
+				"font-extralight tracking-[0.025em] leading-[1.25em] mb-[.5em] last:mb-0",
 				"text-[var(--base-12)]",
 				"xxxs:text-3xl",
 				"xxs:text-4xl",
@@ -30,8 +30,8 @@ export function H2({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h2"
 			className={cn(
-				"font-extralight tracking-[0.02em] leading-[0.9] mb-12",
-				"text-[var(--accent-12)] pb-4",
+				"font-extralight tracking-[0.02em] leading-[1.5em] mb-[1.5em]",
+				"text-[var(--accent-12)]",
 				"xxxs:text-2xl",
 				"xxs:text-3xl",
 				"xs:text-4xl",
@@ -52,7 +52,7 @@ export function H3({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h3"
 			className={cn(
-				"font-light tracking-[0.015em] leading-[1.1] mb-2 last:mb-0",
+				"font-light tracking-[0.015em] leading-[1.1] mb-[0.5em] last:mb-0",
 				"text-[var(--accent-12)]",
 				"xxxs:text-xl",
 				"xxs:text-2xl",
@@ -74,8 +74,8 @@ export function H4({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h4"
 			className={cn(
-				"font-medium tracking-[0.005em] leading-tight mb-1",
-				"text-[var(--accent-11)]",
+				"font-medium tracking-[0.005em] leading-[1.25em] mb-[0.5em] last:mb-0",
+				"text-[var(--base-9)]",
 				"xxxs:text-lg",
 				"xxs:text-xl",
 				"xs:text-2xl",
@@ -95,14 +95,14 @@ export function H5({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h5"
 			className={cn(
-				"font-normal tracking-wide leading-relaxed mb-6",
-				"text-[var(--base-11)] uppercase text-xs",
-				"border-l-2 border-[var(--accent-6)] pl-3 ml-0",
+				"font-normal tracking-[0.025] leading-[1.625em] mb-[1em] last:mb-0",
+				"text-[var(--base-11)] uppercase",
+				// "border-l-2 border-[var(--accent-6)] pl-[0.75em] ml-0",
 				"xxxs:text-md",
 				"xxs:text-lg",
 				"xs:text-xl",
 				"selection:bg-[var(--base-3)]",
-				"transition-all duration-300 ease-out",
+				// "transition-all duration-300 ease-out",
 				className,
 			)}
 		>
@@ -117,8 +117,8 @@ export function H6({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="h6"
 			className={cn(
-				"font-medium tracking-wide leading-relaxed mb-3",
-				"text-[var(--base-11)] uppercase text-xs",
+				"font-medium tracking-[0.025em] leading-relaxed mb-[0.5em] last:mb-0",
+				"text-[var(--base-11)] uppercase",
 				"xxxs:text-sm",
 				"xxs:text-md",
 				"xs:text-lg",

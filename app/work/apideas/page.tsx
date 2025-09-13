@@ -1,13 +1,32 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+import ScreenshotPreview from "@/app/work/ScreenshotPreview";
 import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
-import Container from "@/components/layout/Container";
 import StatStack from "@/components/StatStack";
 import ApideasMarquee from "./ApideasMarquee";
 import Browser from "./Browser";
-import Section from "@/components/layout/Section";
 import Deck from "./Deck";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { ProjectDetails } from "@/types/projectDetails";
+
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+	Strong,
+} from "@/components/typography/TextElements";
+
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
 
 const projectDetails: ProjectDetails = {
 	id: "01",
@@ -18,7 +37,7 @@ const projectDetails: ProjectDetails = {
 	lede: "Generate creative app ideas by combining APIs in a Pokemon-style card game.",
 	description:
 		"An API combination card game. Users spend coins to generate 'cards' that represent creative app ideas combining exactly 2 APIs, presented in a Pokemon-style trading card format.",
-	client: "Altcademy Bootcamp",
+	client: "Altcademy",
 	duration: "2 weeks",
 	role: "Full Stack Developer",
 	team: "Solo",
@@ -51,7 +70,7 @@ export function getProjectDetails() {
 
 export default function APideas() {
 	return (
-		<div className="">
+		<div className="pt-50">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -62,6 +81,8 @@ export default function APideas() {
 			<LessonsLearnedSection />
 			<NextStepsSection />
 			<PreviewSection />
+			<EndSection />
+			<NextProjectSection />
 		</div>
 	);
 }
@@ -85,44 +106,52 @@ function DetailsSection() {
 		<>
 			<Section>
 				<Container className="flex flex-col">
-					<h2>Details</h2>
+					<H2>Details</H2>
 
-					<div className="grid grid-cols-2">
-						<div className="grid grid-cols-2">
-							<DataPair label="Client">{projectDetails.client}</DataPair>
+					<div className="flex flex-col gap-[2em]">
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair label="Organization">{projectDetails.client}</DataPair>
 							<DataPair label="Duration">{projectDetails.duration}</DataPair>
 							<DataPair label="Role">{projectDetails.role}</DataPair>
 							<DataPair label="Team">{projectDetails.team}</DataPair>
 						</div>
 
-						<div className="grid grid-rows-2">
-							<div className="flex flex-col">
-								<DataPair label="Skills">
-									{projectDetails.services &&
-										projectDetails.services.length > 0 && (
-											<div className="flex flex-wrap gap-2">
-												{projectDetails.services.map((service, index) => (
-													<TagBox key={index}>{service}</TagBox>
-												))}
-											</div>
-										)}
-								</DataPair>
-							</div>
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair
+								label="Skills"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.services?.length > 0 && (
+									<div className="flex flex-wrap w-full gap-2 ">
+										{projectDetails.services.map((service, index) => (
+											<TagBox key={index}>{service}</TagBox>
+										))}
+									</div>
+								)}
+							</DataPair>
 
-							<div className="flex flex-col">
-								<DataPair label="Technologies">
-									{projectDetails.technologies &&
-										projectDetails.technologies.length > 0 && (
-											<div className="flex flex-wrap gap-2">
-												{projectDetails.technologies.map(
-													(technology, index) => (
-														<TagBox key={index}>{technology}</TagBox>
-													),
-												)}
-											</div>
-										)}
-								</DataPair>
-							</div>
+							<DataPair
+								label="Technologies"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.technologies?.length > 0 && (
+									<div className="flex flex-wrap gap-2">
+										{projectDetails.technologies.map((tech, i) => (
+											<TagBox key={i}>{tech}</TagBox>
+										))}
+									</div>
+								)}
+							</DataPair>
 						</div>
 					</div>
 				</Container>
@@ -130,6 +159,56 @@ function DetailsSection() {
 		</>
 	);
 }
+// function DetailsSection() {
+// 	return (
+// 		<>
+// 			<Section>
+// 				<Container className="flex flex-col">
+// 					<h2>Details</h2>
+//
+// 					<div className="grid grid-cols-2">
+// 						<div className="grid grid-cols-2">
+// 							<DataPair label="Client">{projectDetails.client}</DataPair>
+// 							<DataPair label="Duration">{projectDetails.duration}</DataPair>
+// 							<DataPair label="Role">{projectDetails.role}</DataPair>
+// 							<DataPair label="Team">{projectDetails.team}</DataPair>
+// 						</div>
+//
+// 						<div className="grid grid-rows-2">
+// 							<div className="flex flex-col">
+// 								<DataPair label="Skills">
+// 									{projectDetails.services &&
+// 										projectDetails.services.length > 0 && (
+// 											<div className="flex flex-wrap gap-2">
+// 												{projectDetails.services.map((service, index) => (
+// 													<TagBox key={index}>{service}</TagBox>
+// 												))}
+// 											</div>
+// 										)}
+// 								</DataPair>
+// 							</div>
+//
+// 							<div className="flex flex-col">
+// 								<DataPair label="Technologies">
+// 									{projectDetails.technologies &&
+// 										projectDetails.technologies.length > 0 && (
+// 											<div className="flex flex-wrap gap-2">
+// 												{projectDetails.technologies.map(
+// 													(technology, index) => (
+// 														<TagBox key={index}>{technology}</TagBox>
+// 													),
+// 												)}
+// 											</div>
+// 										)}
+// 								</DataPair>
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</Container>
+// 			</Section>
+// 		</>
+// 	);
+// }
 
 function OverviewSection() {
 	return (
@@ -137,25 +216,25 @@ function OverviewSection() {
 			<Section>
 				<Container>
 					{/* <div className="mt-50 p-20 bg-secondary w-screen"> */}
-					<h2>Overview</h2>
-					<div className="flex flex-row gap-12">
+					<H2>Overview</H2>
+					<div className="flex flex-col gap-20 md:flex-row">
 						<div className="flex flex-col w-full">
-							<h3>Challenge</h3>
-							<p>
+							<H4 className={cn("text-[var(--base-9)]")}>Challenge</H4>
+							<P>
 								For my capstone project at Altcademy (Coding Bootcamp, Full
 								Stack Web Development), I was having trouble coming up with a
 								project idea. I had the idea to pair together some free APIs in
 								a unique way, but did not want to do this manually.
-							</p>
+							</P>
 						</div>
 						<div className="flex flex-col w-full">
-							<h3>Solution</h3>
-							<p>
+							<H4 className={cn("text-[var(--base-9)]")}>Solution</H4>
+							<P>
 								The results from my prototype were very interesting! After
 								seeing a few generated app ideas, I thought that a completed
 								version of this prototype would be a better idea for my capstone
 								project.
-							</p>
+							</P>
 						</div>
 						{/* <div className="flex flex-col w-full"> */}
 						{/* 	<h3>Outcome</h3> */}
@@ -179,7 +258,7 @@ function LoomSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Video Preview</h2>
+					<H2>Video Preview</H2>
 					<div
 						style={{
 							position: "relative",
@@ -267,9 +346,9 @@ function ProcessSection() {
 	return (
 		<>
 			<Section>
-				<Container className="flex flex-row gap-12">
+				<Container className="flex flex-row gap-12" variant="narrow">
 					<div className="flex w-full flex-col">
-						<h2>Process</h2>
+						<H2>Process</H2>
 
 						<div className="flex w-full">
 							<div className="relative ml-6">
@@ -277,13 +356,13 @@ function ProcessSection() {
 
 								{steps.map(({ title, description }, index) => (
 									<div key={index} className="relative pl-10 pb-10 last:pb-0">
-										<div className="absolute left-px -translate-x-1/2 bg-[var(--accent-4)] text-[var(--accent-11)] grid place-content-center h-9 w-9 border border-[var(--accent-8)] rounded-full font-bold">
+										<div className="absolute left-px -translate-x-1/2 bg-[var(--accent-3)] text-[var(--accent-11)] grid place-content-center h-9 w-9 border border-[var(--accent-6)] rounded-full font-bold">
 											{index + 1}
 										</div>
 
 										<div className="pt-1 space-y-2">
-											<h3 className="">{title}</h3>
-											<p className="text-[var(--base-9)]">{description}</p>
+											<H4 className="text-[var(--base-9)]">{title}</H4>
+											<P className="max-w-[60ch]">{description}</P>
 										</div>
 									</div>
 								))}
@@ -304,35 +383,36 @@ function PreviewSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Screenshots</h2>
-					<div className="flex flex-col gap-6">
-						<Browser
+					<H2>Screenshots</H2>
+
+					<div className="grid grid-cols-2 gap-6">
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas1.jpg"
 							description="Landing page"
 						/>
-						<Browser
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas2.jpg"
 							description="User dashboard"
 						/>
-						<Browser
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas3.jpg"
 							description="Success: Card generated"
 						/>
-						<Browser
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas4.jpg"
 							description="My collection section"
 						/>
-						<Browser
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas5.jpg"
 							description="Settings page"
 						/>
-						<Browser
-							imageSrc="/images/apideas/apideas6.jpg"
-							description="Coin purchase screen"
-						/>
-						<Browser
+						<ScreenshotPreview
 							imageSrc="/images/apideas/apideas7.jpg"
 							description="Purchase history"
+						/>
+						<ScreenshotPreview
+							imageSrc="/images/apideas/apideas6.jpg"
+							description="Coin purchase screen"
 						/>
 					</div>
 				</Container>
@@ -346,9 +426,9 @@ function ResultsAndImpactSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Results & Impact</h2>
+					<H2>Results & Impact</H2>
 
-					<div className="flex flex-row gap-30">
+					<div className="flex flex-col gap-20 md:flex-row">
 						<StatStack number={190} label="card combinations" />
 						<StatStack number={20} label="selectable APIs" />
 						<StatStack number={4} label="version attempts" />
@@ -364,19 +444,19 @@ function LessonsLearnedSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Lessons Learned</h2>
-					<div className="flex flex-row gap-30">
+					<H2>Lessons Learned</H2>
+					<div className="flex flex-col gap-30 lg:flex-row">
 						<div className="flex flex-col w-full">
-							<h3>What Worked Well</h3>
-							<ul>
-								<li>
-									<strong>Rapid Prototyping: </strong> The initial prototype was
+							<H4 className="">What Worked Well</H4>
+							<UL>
+								<LI>
+									<Strong>Rapid Prototyping: </Strong> The initial prototype was
 									essential for validating the concept and inspiring the final
 									project direction.
-								</li>
+								</LI>
 
 								{/* <li> */}
-								{/* 	<strong>Rapid Prototyping:</strong> Using Claude Code AI to */}
+								{/* 	<Strong>Rapid Prototyping:</Strong> Using Claude Code AI to */}
 								{/* 	build this app definitely helped, although I'm not sure if it */}
 								{/* 	made the process any faster, based on the final result. I had */}
 								{/* 	to restart the project a few times because for various */}
@@ -386,52 +466,52 @@ function LessonsLearnedSection() {
 								{/* 	project direction. */}
 								{/* </li> */}
 								{/* <li> */}
-								{/* 	<strong>Pivoting Effectively:</strong> Shifting focus from */}
+								{/* 	<Strong>Pivoting Effectively:</Strong> Shifting focus from */}
 								{/* 	using the generator to building the generator itself resulted */}
 								{/* 	in a stronger, more focused project. */}
 								{/* </li> */}
-								<li>
-									<strong>AI-Powered Content: </strong> Using AI to generate
+								<LI>
+									<Strong>AI-Powered Content: </Strong> Using AI to generate
 									ideas automated a core feature, allowing focus to shift to
 									development and design.
-								</li>
-								<li>
-									<strong>"Gacha" Game Mechanics: </strong> Applying game
+								</LI>
+								<LI>
+									<Strong>"Gacha" Game Mechanics: </Strong> Applying game
 									concepts from casinos, slot machines, and gachapon style games
 									added to the fun of generating new cards each time.
-								</li>
-								<li>
-									<strong>Easy Login: </strong> Users commented that enabling
+								</LI>
+								<LI>
+									<Strong>Easy Login: </Strong> Users commented that enabling
 									demo account access was a nice touch, so that users who wanted
 									to try did not need to make a new accound
-								</li>
-							</ul>
+								</LI>
+							</UL>
 						</div>
 						<div className="flex flex-col w-full">
-							<h3>Areas for Improvement</h3>
-							<ul>
-								<li>
-									<strong>Larger API List: </strong>
+							<H4 className="">Areas for Improvement</H4>
+							<UL>
+								<LI>
+									<Strong>Larger API List: </Strong>
 									The static API list could be replaced with a dynamic database
 									or user submissions to increase idea variety.
-								</li>
-								<li>
-									<strong>Dynamically Generated Content: </strong> The card
+								</LI>
+								<LI>
+									<Strong>Dynamically Generated Content: </Strong> The card
 									content and details are pre-generated in a json file.
 									Connecting the app to an LLM to generate card data on the fly
 									would give each card generation a more unique result.
-								</li>
+								</LI>
 
-								<li>
-									<strong>Finalize Planning Stage: </strong> Using Claude Code
+								<LI>
+									<Strong>Finalize Planning Stage: </Strong> Using Claude Code
 									to help build this project, I had to start over a few times
 									because I was too excited to get started with the coding
 									process and see immediate results. When starting a new
 									project, I learned that it's more important to spend the
 									maximum amount of time planning to address any edge cases or
 									issues that need to be considered.
-								</li>
-							</ul>
+								</LI>
+							</UL>
 						</div>
 					</div>
 				</Container>
@@ -444,31 +524,83 @@ function NextStepsSection() {
 	return (
 		<>
 			<Section>
-				<Container>
-					<h2>Next Steps</h2>
-					<p>
+				<Container variant="narrow">
+					<H2>Next Steps</H2>
+					<P>
 						I've already started working and planning on version 2 of APIdeas.
 						The main upgrades include:
-					</p>
+					</P>
 
-					<ul>
-						<li>
-							<strong>API List Management: </strong>
+					<UL>
+						<LI>
+							<Strong>API List Management: </Strong>
 							New admin dashboard allows for bulk upload of API list, along with
 							deleting and updating individual APIs.
-						</li>
-						<li>
-							<strong>Gemini API Implementation: </strong>
+						</LI>
+						<LI>
+							<Strong>Gemini API Implementation: </Strong>
 							Each newly generated card will be unique to the time of generation
 							and its user. Generating a card will send a request to Gemini API
 							to generate card data automatically.
-						</li>
+						</LI>
 
-						<li>
-							<strong>Up to 8 API Combinations: </strong> Instead of only 2
+						<LI>
+							<Strong>Up to 8 API Combinations: </Strong> Instead of only 2
 							APIs, card combinations can have up to 8 APIs.
-						</li>
-					</ul>
+						</LI>
+					</UL>
+				</Container>
+			</Section>
+		</>
+	);
+}
+
+function EndSection() {
+	return (
+		<>
+			<Section>
+				<Container
+					className={cn(
+						"flex flex-col md:flex-row items-center justify-center gap-20 text-center",
+					)}
+					variant="narrow"
+				>
+					<div className={cn("flex flex-col")}>
+						<H2>Give it a shot!</H2>
+						<Button>View live demo</Button>
+					</div>
+					<div className={cn("flex flex-col")}>
+						<H2>View the code!</H2>
+						<Button>Github Repo</Button>
+					</div>
+				</Container>
+			</Section>
+		</>
+	);
+}
+function NextProjectSection() {
+	return (
+		<>
+			<Section>
+				<Container
+					className={cn(
+						"flex flex-col md:flex-row items-center justify-center gap-20 text-center",
+					)}
+					variant="narrow"
+				>
+					<div className={cn("flex flex-col")}>
+						<H2>See another project</H2>
+						<div
+							className={cn("flex flex-col gap-20 lg:flex-row justify-center")}
+						>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/zconsole">zConsole</Link>
+							</Button>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/scoutify">Scoutify</Link>
+							</Button>
+						</div>
+					</div>
 				</Container>
 			</Section>
 		</>

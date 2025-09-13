@@ -11,9 +11,18 @@ interface DataPairProps {
 
 export const DataPair = ({ label, children, className }: DataPairProps) => {
 	return (
-		<div className={cn("flex flex-col w-[140px] gap-1", className)}>
-			<Eyebrow>{label}</Eyebrow>
-			<Small>{children}</Small>
+		<div
+			className={cn(
+				"flex flex-row gap-[.5em] w-full",
+
+				"border-b border-[var(--base-4)] pb-[2em]",
+				"md:flex-col",
+
+				className,
+			)}
+		>
+			<Eyebrow className={cn("w-full")}>{label}</Eyebrow>
+			<Small className={cn("w-full")}>{children}</Small>
 		</div>
 	);
 };

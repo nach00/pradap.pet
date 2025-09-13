@@ -1,3 +1,19 @@
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+	Strong,
+} from "@/components/typography/TextElements";
+
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
+
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -122,6 +138,19 @@ export function TagType({ children, className }: TypeProps) {
 
 export function TagBox({ children, className }: TypeProps) {
 	return (
+		<Small
+			className={cn(
+				"border text-[var(--base-11)] px-2 py-1 flex-shrink-0 hover:bg-[var(--base-3)] hover:border-[var(--base-8)]",
+				className,
+			)}
+		>
+			{children}
+		</Small>
+	);
+}
+
+export function SoftwareTagBox({ children, className }: TypeProps) {
+	return (
 		<small
 			className={cn(
 				"border text-[var(--base-11)] px-2 py-1 flex-shrink-0 hover:bg-[var(--base-3)] hover:border-[var(--base-8)]",
@@ -133,15 +162,15 @@ export function TagBox({ children, className }: TypeProps) {
 	);
 }
 
-export function Eyebrow({ children, className }: TypeProps) {
-	return (
-		<span
-			className={cn(
-				"text-xs text-[var(--base-12)] uppercase tracking-wider",
-				className,
-			)}
-		>
-			{children}
-		</span>
-	);
-}
+// export function Eyebrow({ children, className }: TypeProps) {
+// 	return (
+// 		<span
+// 			className={cn(
+// 				"text-xs text-[var(--base-12)] uppercase tracking-wider",
+// 				className,
+// 			)}
+// 		>
+// 			{children}
+// 		</span>
+// 	);
+// }

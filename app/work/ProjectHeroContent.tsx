@@ -3,6 +3,21 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ProjectBadges } from "@/app/work/ProjectBadges";
 
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+} from "@/components/typography/TextElements";
+
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
+
 interface ProjectHeaderProps {
 	id: string;
 	year: string;
@@ -53,15 +68,15 @@ export default function ProjectHeroContent({
 					className="pb-6"
 				/>
 
-				<h1 className="">{title}</h1>
+				<H1 className="">{title}</H1>
 
-				<span className="lede">{lede}</span>
+				<H4 className="text-[var(--base-9)]">{lede}</H4>
 
-				<p className="pt-12">{description}</p>
+				<P className="pt-[3em]">{description}</P>
 			</div>
 
 			{/* Action Buttons */}
-			<div className="flex flex-row gap-12">
+			<div className="flex flex-col sm:flex-row  gap-6 pt-12">
 				{liveUrl && (
 					<Button className="sm:min-w-[200px]" size="lg" asChild>
 						<Link href={liveUrl} target="_blank" rel="noopener noreferrer">

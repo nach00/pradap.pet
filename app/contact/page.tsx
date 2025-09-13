@@ -58,26 +58,28 @@ function ContactFormSection() {
 					"landscape:flex-row landscape:justify-between",
 				)}
 			>
-				<div className="flex flex-col w-full">
-					<H6>Send a message</H6>
-					<div className="flex flex-col gap-6">
-						<div className="grid w-full max-w-sm items-center gap-3">
-							{/* <Label htmlFor="name">Name</Label> */}
-							<Input type="name" id="name" placeholder="Name" />
-						</div>
-						<div className="grid w-full max-w-sm items-center gap-3">
-							{/* <Label htmlFor="email">Email</Label> */}
-							<Input type="email" id="email" placeholder="Email" />
-						</div>
-						<div className="grid w-full max-w-sm items-center gap-3">
-							<Textarea placeholder="Type your message here." />
-						</div>
-					</div>
-				</div>
+				{/* <div className="flex flex-col w-full"> */}
+				{/* <H6>Send a message</H6> */}
+				{/* <div className="flex flex-col gap-6"> */}
+				{/* <div className="grid w-full max-w-sm items-center gap-3"> */}
+				{/* <Label htmlFor="name">Name</Label> */}
+				{/* <Input type="name" id="name" placeholder="Name" /> */}
+				{/* </div> */}
+				{/* <div className="grid w-full max-w-sm items-center gap-3"> */}
+				{/* <Label htmlFor="email">Email</Label> */}
+				{/* <Input type="email" id="email" placeholder="Email" /> */}
+				{/* </div> */}
+				{/* <div className="grid w-full max-w-sm items-center gap-3"> */}
+				{/* <Textarea placeholder="Type your message here." /> */}
+				{/* </div> */}
+				{/* </div> */}
+				{/* </div> */}
 				<div className="flex flex-col w-full">
 					<H6>Direct Contact</H6>
 					<div className="flex flex-col gap-6">
-						<div className="grid w-full max-w-sm items-center gap-3">
+						{/* <div className="grid w-full max-w-sm items-center gap-3"> */}
+
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 							{/* <Label htmlFor="name">Name</Label> */}
 							<DirectContactCard
 								type="Email"
@@ -128,8 +130,8 @@ function DirectContactCard({
 		<>
 			{link && (
 				<Link href={link}>
-					<div className="border flex flex-col gap-8 p-4 rounded-md">
-						<H5>{type} →</H5>
+					<div className="border flex flex-col gap-4 p-4 rounded-md border-[var(--base-4)] hover:border-[var(--base-6)] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+						<H4>{type} →</H4>
 						<H6>{id}</H6>
 						<P>{description}</P>
 					</div>

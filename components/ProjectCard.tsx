@@ -52,8 +52,9 @@ export function ProjectCard({
 			<Link
 				href={href}
 				className={cn(
-					"flex flex-row border border-[var(--base-4)] pointer-cursor",
+					"flex flex-row border border-[var(--base-4)] pointer-cursor rounded-md",
 					"transition-all duration-500 hover:border-[var(--base-6)]",
+					"hover:-translate-y-1 hover:shadow-md",
 					className,
 				)}
 			>

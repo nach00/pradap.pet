@@ -2,6 +2,7 @@ import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
 import {
 	P,
 	UL,
+	Lede,
 	LI,
 	Small,
 	Eyebrow,
@@ -35,7 +36,7 @@ export default function WorkPage() {
 		<div className="">
 			<HeroSection />
 			{/* <StatsSection /> */}
-			{/* <SelectedWorkSection /> */}
+			<SelectedWorkSection />
 			<ArchivedWorkSection />
 			<ClientsSection />
 		</div>
@@ -182,8 +183,10 @@ function ArchivedWorkSection() {
 		<>
 			<Section>
 				<Container>
-					<h2>Archived Work</h2>
-					<p>Projects from previous years. Details available upon request.</p>
+					<H2>Archived Work</H2>
+					<Lede className={cn("mb-12")}>
+						Projects from previous years. Details available upon request.
+					</Lede>
 
 					{archivedProjects.map((project) => (
 						<ArchivedItem key={project.id} {...project} />
@@ -257,7 +260,7 @@ const ClientCard = ({ company, logo }: { company: string; logo: string }) => {
 			className={cn(
 				"relative h-full w-64 overflow-hidden rounded-sm border p-4",
 				// light styles
-				"border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+				"border-[var(--base-4)] bg-[var(--base-2)] hover:bg-[var(--base-3)] hover:border-[var(--base-6)]",
 				// dark styles
 				"dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
 			)}
@@ -275,7 +278,7 @@ const ClientCard = ({ company, logo }: { company: string; logo: string }) => {
 					}}
 				/>
 				<div className="flex flex-col">
-					<figcaption className="text-sm font-medium dark:text-white">
+					<figcaption className="text-sm font-medium text-[var(--base-11)]">
 						{company}
 					</figcaption>
 				</div>

@@ -1,11 +1,26 @@
+import Link from "next/link";
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
 import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
-import Section from "@/components/layout/Section";
-import Container from "@/components/layout/Container";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { Button } from "@/components/ui/button";
 
+import { cn } from "@/lib/utils";
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+	Strong,
+} from "@/components/typography/TextElements";
+
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import Container from "@/components/layout/Container";
+import Section from "@/components/layout/Section";
 const projectDetails = {
 	id: "03",
 	year: "2021",
@@ -40,7 +55,7 @@ export function getProjectDetails() {
 
 export default function Scoutify() {
 	return (
-		<div className="">
+		<div className="pt-50">
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
@@ -52,6 +67,7 @@ export default function Scoutify() {
 			<WireframingSection />
 			<PrototypingSection />
 			<LandingPageSection />
+			<NextProjectSection />
 		</div>
 	);
 }
@@ -59,7 +75,7 @@ export default function Scoutify() {
 function HeroSection() {
 	return (
 		<Section>
-			<Container>
+			<Container variant="narrow">
 				<ProjectHeroContent {...projectDetails} />
 			</Container>
 		</Section>
@@ -68,70 +84,128 @@ function HeroSection() {
 
 function DetailsSection() {
 	return (
-		<Section>
-			<Container className="flex flex-col">
-				<h2>Details</h2>
+		<>
+			<Section>
+				<Container className="flex flex-col">
+					<H2>Details</H2>
 
-				<div className="grid grid-cols-2">
-					<div className="grid grid-cols-2">
-						<DataPair label="Client">{projectDetails.client}</DataPair>
-						<DataPair label="Duration">{projectDetails.duration}</DataPair>
-						<DataPair label="Role">{projectDetails.role}</DataPair>
-						<DataPair label="Team">{projectDetails.team}</DataPair>
-					</div>
-
-					<div className="grid grid-rows-2">
-						<div className="flex flex-col">
-							<DataPair label="Skills">
-								{projectDetails.services &&
-									projectDetails.services.length > 0 && (
-										<div className="flex flex-wrap gap-2">
-											{projectDetails.services.map((service, index) => (
-												<TagBox key={index}>{service}</TagBox>
-											))}
-										</div>
-									)}
-							</DataPair>
+					<div className="flex flex-col gap-[2em]">
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair label="Organization">{projectDetails.client}</DataPair>
+							<DataPair label="Duration">{projectDetails.duration}</DataPair>
+							<DataPair label="Role">{projectDetails.role}</DataPair>
+							<DataPair label="Team">{projectDetails.team}</DataPair>
 						</div>
 
-						<div className="flex flex-col">
-							<DataPair label="Technologies">
-								{projectDetails.technologies &&
-									projectDetails.technologies.length > 0 && (
-										<div className="flex flex-wrap gap-2">
-											{projectDetails.technologies.map((technology, index) => (
-												<TagBox key={index}>{technology}</TagBox>
-											))}
-										</div>
-									)}
+						<div
+							className={cn(
+								"flex flex-col gap-[2em]",
+								"lg:grid lg:grid-cols-2",
+							)}
+						>
+							<DataPair
+								label="Skills"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.services?.length > 0 && (
+									<div className="flex flex-wrap w-full gap-2 ">
+										{projectDetails.services.map((service, index) => (
+											<TagBox key={index}>{service}</TagBox>
+										))}
+									</div>
+								)}
+							</DataPair>
+
+							<DataPair
+								label="Technologies"
+								className={cn("flex-col min-w-full  flex w-full gap-[.5em]")}
+							>
+								{projectDetails.technologies?.length > 0 && (
+									<div className="flex flex-wrap gap-2">
+										{projectDetails.technologies.map((tech, i) => (
+											<TagBox key={i}>{tech}</TagBox>
+										))}
+									</div>
+								)}
 							</DataPair>
 						</div>
 					</div>
-				</div>
-			</Container>
-		</Section>
+				</Container>
+			</Section>
+		</>
 	);
 }
+// function DetailsSection() {
+// 	return (
+// 		<Section>
+// 			<Container className="flex flex-col">
+// 				<h2>Details</h2>
+//
+// 				<div className="grid grid-cols-2">
+// 					<div className="grid grid-cols-2">
+// 						<DataPair label="Client">{projectDetails.client}</DataPair>
+// 						<DataPair label="Duration">{projectDetails.duration}</DataPair>
+// 						<DataPair label="Role">{projectDetails.role}</DataPair>
+// 						<DataPair label="Team">{projectDetails.team}</DataPair>
+// 					</div>
+//
+// 					<div className="grid grid-rows-2">
+// 						<div className="flex flex-col">
+// 							<DataPair label="Skills">
+// 								{projectDetails.services &&
+// 									projectDetails.services.length > 0 && (
+// 										<div className="flex flex-wrap gap-2">
+// 											{projectDetails.services.map((service, index) => (
+// 												<TagBox key={index}>{service}</TagBox>
+// 											))}
+// 										</div>
+// 									)}
+// 							</DataPair>
+// 						</div>
+//
+// 						<div className="flex flex-col">
+// 							<DataPair label="Technologies">
+// 								{projectDetails.technologies &&
+// 									projectDetails.technologies.length > 0 && (
+// 										<div className="flex flex-wrap gap-2">
+// 											{projectDetails.technologies.map((technology, index) => (
+// 												<TagBox key={index}>{technology}</TagBox>
+// 											))}
+// 										</div>
+// 									)}
+// 							</DataPair>
+// 						</div>
+// 					</div>
+// 				</div>
+// 			</Container>
+// 		</Section>
+// 	);
+// }
 
 function OverviewSection() {
 	return (
 		<Section>
-			<Container className="flex-row gap-12 flex">
+			<Container className="flex-row gap-12 flex" variant="narrow">
 				<div className="flex flex-col">
-					<h2>Overview</h2>
+					<H2>Overview</H2>
 					<div className="flex flex-col w-full items-center justify-center">
-						<p>
+						<P>
 							Scoutify is a social media platform, similar to LinkedIn, but
 							specifically for baseball athletes. I joined Scoutify at the
 							beginning of its life, filling the design role and working closely
 							with both the owner and a project manager.
-						</p>
-						<p>
+						</P>
+						<P>
 							At this phase of the project, Scoutify plans to only focus on
 							providing solutions for the sport of baseball. The client stated
 							that the main requirement is to be accessible for desktop and
 							tablet only, with mobile design not required.
-						</p>
+						</P>
 					</div>
 				</div>
 			</Container>
@@ -143,28 +217,30 @@ function UserTypesSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>User Types</h2>
-				<p>The main types of users for the platform include:</p>
+				<H2>User Types</H2>
+				<Lede>The main types of users for the platform include:</Lede>
 
-				<div className="grid grid-cols-3 gap-6 mt-8">
+				<div className="flex flex-col gap-12 lg:flex-row">
 					<div className="p-4 bg-[var(--base-3)] rounded-lg">
-						<h3>Baseball Players</h3>
-						<p>Athletes of all ages (under 13 require a parent account)</p>
+						<H3>Baseball Players</H3>
+						<P>Athletes of all ages (under 13 require a parent account)</P>
 					</div>
 					<div className="p-4 bg-[var(--base-3)] rounded-lg">
-						<h3>Talent Scouts</h3>
-						<p>Agents looking for promising baseball talent</p>
+						<H3>Talent Scouts</H3>
+						<P>Agents looking for promising baseball talent</P>
 					</div>
 					<div className="p-4 bg-[var(--base-3)] rounded-lg">
-						<h3>Organizations</h3>
-						<p>Baseball teams and organizations seeking players</p>
+						<H3>Organizations</H3>
+						<P>Baseball teams and organizations seeking players</P>
 					</div>
 				</div>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-tablet-cover-white.png"
-					description="Scoutify tablet interface overview"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-tablet-cover-white.png"
+						description="Scoutify tablet interface overview"
+					/>
+				</div>
 			</Container>
 		</Section>
 	);
@@ -174,30 +250,33 @@ function ResearchSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>Research Process</h2>
-				<p>
-					My work at Scoutify encompassed planning, conducting, and analyzing
-					user research. Due to timeline constraints, I focused on stakeholder
-					interviews and competitive analysis to establish a foundation.
-				</p>
+				<Container variant="narrow">
+					<H2>Research Process</H2>
+					<Lede>
+						My work at Scoutify encompassed planning, conducting, and analyzing
+						user research. Due to timeline constraints, I focused on stakeholder
+						interviews and competitive analysis to establish a foundation.
+					</Lede>
+				</Container>
 
-				<div className="p-4 bg-[var(--base-3)] rounded-lg mt-6">
-					<h3>Stakeholder Interviews</h3>
-					<p>Key questions explored during client discussions:</p>
-					<ul>
-						<li>What are the basics of the business?</li>
-						<li>
-							What's the problem that needs a solution? What are their pain
-							points?
-						</li>
-						<li>What are some big trends in your industry?</li>
-						<li>
-							If time and money were not an object, what would the perfect
-							solution be?
-						</li>
-						<li>What's your timeline?</li>
-					</ul>
-				</div>
+				<Container
+					className="p-4 bg-[var(--base-3)] rounded-lg mt-6"
+					variant="medium"
+				>
+					<H3>Stakeholder Interviews</H3>
+					<P>Key questions explored during client discussions:</P>
+					<Blockquote>What are the basics of the business?</Blockquote>
+					<Blockquote>
+						What's the problem that needs a solution? What are their pain
+						points?
+					</Blockquote>
+					<Blockquote>What are some big trends in your industry?</Blockquote>
+					<Blockquote>
+						If time and money were not an object, what would the perfect
+						solution be?
+					</Blockquote>
+					<Blockquote>What's your timeline?</Blockquote>
+				</Container>
 			</Container>
 		</Section>
 	);
@@ -207,17 +286,21 @@ function CompetitiveAnalysisSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>Competitive Analysis</h2>
-				<p>
-					I researched how other brands display player statistics and organize
-					data. I also drew inspiration from baseball cards and their nostalgic
-					feel when displaying player stats within a small frame.
-				</p>
+				<Container variant="narrow">
+					<H2>Competitive Analysis</H2>
+					<Lede>
+						I researched how other brands display player statistics and organize
+						data. I also drew inspiration from baseball cards and their
+						nostalgic feel when displaying player stats within a small frame.
+					</Lede>
+				</Container>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-competitive-analysis.png"
-					description="Competitive analysis of existing baseball platforms"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-competitive-analysis.png"
+						description="Competitive analysis of existing baseball platforms"
+					/>
+				</div>
 			</Container>
 		</Section>
 	);
@@ -226,25 +309,25 @@ function CompetitiveAnalysisSection() {
 function ProblemDefinitionSection() {
 	return (
 		<Section>
-			<Container>
-				<h2>Problem Definition</h2>
+			<Container variant="narrow">
+				<H2>Problem Definition</H2>
 				<div className="flex flex-col w-full items-center">
-					<p>
+					<P>
 						Currently, scouting for baseball is very basic with limited tools
 						available. There isn't a platform for players to showcase their
 						skills to the outside world, and most data is heavily related to
 						match performances.
-					</p>
-					<p>
+					</P>
+					<P>
 						The sports industry has a very lucrative market, as multi-million
 						dollars can be paid to acquire players for a team. Right now, scouts
 						need to be physically present at games to track performance.
-					</p>
-					<p>
+					</P>
+					<P>
 						In the future, Scoutify plans to implement AI and machine learning
 						to generate scores to help talent scouting agents find the best
 						athletes around the world.
-					</p>
+					</P>
 				</div>
 			</Container>
 		</Section>
@@ -255,38 +338,50 @@ function UserFlowsSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>User Flows & Information Architecture</h2>
-				<p>
-					After gaining insights from client discussions, I created user flows
-					to strategize the steps needed to move forward. This process revealed
-					additional user types not previously discussed.
-				</p>
+				<Container variant="narrow">
+					<H2>User Flows & Information Architecture</H2>
+					<Lede>
+						After gaining insights from client discussions, I created user flows
+						to strategize the steps needed to move forward. This process
+						revealed additional user types not previously discussed.
+					</Lede>
+				</Container>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-user-flow-1.png"
-					description="User flow for website navigation and account creation"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-user-flow-1.png"
+						description="User flow for website navigation and account creation"
+					/>
+				</div>
 
-				<p className="mt-8">
-					This diagram shows how the platform should behave based on the type of
-					user that logs in, including the transition from Youth Athlete to
-					Adult Athlete accounts.
-				</p>
+				<Container variant="narrow">
+					<P className="mt-8">
+						This diagram shows how the platform should behave based on the type
+						of user that logs in, including the transition from Youth Athlete to
+						Adult Athlete accounts.
+					</P>
+				</Container>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-user-flow-2.png"
-					description="User flow for different account types and transitions"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-user-flow-2.png"
+						description="User flow for different account types and transitions"
+					/>
+				</div>
 
-				<p className="mt-8">
-					The signup flow shows navigation for each specific user type and
-					handles age verification for youth athletes.
-				</p>
+				<Container variant="narrow">
+					<P className="mt-8">
+						The signup flow shows navigation for each specific user type and
+						handles age verification for youth athletes.
+					</P>
+				</Container>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-user-flow-3.png"
-					description="New user signup flow with age verification"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-user-flow-3.png"
+						description="New user signup flow with age verification"
+					/>
+				</div>
 			</Container>
 		</Section>
 	);
@@ -296,23 +391,29 @@ function WireframingSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>Wireframes & Prototypes</h2>
-				<p>
-					Once user flows were established and confirmed by the client, I
-					created low fidelity wireframes as initial concepts for iteration.
-				</p>
+				<Container variant="narrow">
+					<H2>Wireframes & Prototypes</H2>
+					<Lede>
+						Once user flows were established and confirmed by the client, I
+						created low fidelity wireframes as initial concepts for iteration.
+					</Lede>
+				</Container>
 
-				<ScreenshotPreview
-					imageSrc="/images/scoutify/scoutify-wireframe-1.png"
-					description="Initial wireframe concept - first draft"
-				/>
+				<div className={cn("mt-12")}>
+					<ScreenshotPreview
+						imageSrc="/images/scoutify/scoutify-wireframe-1.png"
+						description="Initial wireframe concept - first draft"
+					/>
+				</div>
 
 				<div className="mt-8">
-					<h3>Reusable Components</h3>
-					<p>
-						I created master components that could be reused throughout the
-						design to maintain consistency and allow for efficient updates.
-					</p>
+					<Container variant="narrow">
+						<H3>Reusable Components</H3>
+						<P>
+							I created master components that could be reused throughout the
+							design to maintain consistency and allow for efficient updates.
+						</P>
+					</Container>
 
 					<ScreenshotPreview
 						imageSrc="/images/scoutify/scoutify-wireframe-2.png"
@@ -321,11 +422,13 @@ function WireframingSection() {
 				</div>
 
 				<div className="mt-8">
-					<h3>Athlete Profile Design</h3>
-					<p>
-						The main concept features standardized information in the top half,
-						with modular content sections below.
-					</p>
+					<Container variant="narrow">
+						<H3>Athlete Profile Design</H3>
+						<P>
+							The main concept features standardized information in the top
+							half, with modular content sections below.
+						</P>
+					</Container>
 
 					<ScreenshotPreview
 						imageSrc="/images/scoutify/scoutify-wireframe-3.png"
@@ -346,11 +449,13 @@ function PrototypingSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>Interactive Prototyping</h2>
-				<p>
-					I added prototyping functionality to allow for clickthrough
-					demonstrations of the user experience.
-				</p>
+				<Container variant="narrow">
+					<H2>Interactive Prototyping</H2>
+					<Lede>
+						I added prototyping functionality to allow for clickthrough
+						demonstrations of the user experience.
+					</Lede>
+				</Container>
 
 				<ScreenshotPreview
 					imageSrc="/images/scoutify/scoutify-prototype-1.png"
@@ -365,12 +470,14 @@ function LandingPageSection() {
 	return (
 		<Section>
 			<Container>
-				<h2>Landing Page Design</h2>
-				<p>
-					The homepage serves as the entry point for all users to learn about
-					the company or log in. The functional prototype includes quick
-					navigation options for demo purposes.
-				</p>
+				<Container variant="narrow">
+					<H2>Landing Page Design</H2>
+					<Lede>
+						The homepage serves as the entry point for all users to learn about
+						the company or log in. The functional prototype includes quick
+						navigation options for demo purposes.
+					</Lede>
+				</Container>
 
 				<ScreenshotPreview
 					imageSrc="/images/scoutify/scoutify-landing-page.png"
@@ -378,5 +485,34 @@ function LandingPageSection() {
 				/>
 			</Container>
 		</Section>
+	);
+}
+
+function NextProjectSection() {
+	return (
+		<>
+			<Section>
+				<Container
+					className={cn(
+						"flex flex-col md:flex-row items-center justify-center gap-20 text-center",
+					)}
+					variant="narrow"
+				>
+					<div className={cn("flex flex-col")}>
+						<H2>See another project</H2>
+						<div
+							className={cn("flex flex-col gap-20 lg:flex-row justify-center")}
+						>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/zconsole">zConsole</Link>
+							</Button>
+							<Button variant="outline" className={cn("")}>
+								<Link href="/work/apideas">Apideas</Link>
+							</Button>
+						</div>
+					</div>
+				</Container>
+			</Section>
+		</>
 	);
 }

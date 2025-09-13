@@ -46,9 +46,8 @@ export default function BackButton({
 			{/* <Container className=""> */}
 			<Button
 				onClick={handleClick}
-				variant="ghost"
+				variant="outline"
 				className={cn(
-					"px-0",
 					"font-light",
 					"xxxs:text-md",
 					"xxs:text-lg",
@@ -56,6 +55,11 @@ export default function BackButton({
 					"xxxs:my-6",
 					"xxs:my-8",
 					"xs:my-10",
+					"cheese:text-[var(--base-9)]",
+					"cheese:border-[var(--base-9)]",
+					"",
+					"backdrop-blur-md",
+					"text-shadow-br-1",
 				)}
 			>
 				{showIcon && <ChevronLeft className="w-4 h-4" />}

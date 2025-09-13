@@ -9,9 +9,10 @@ export function P({ children, className }: Omit<TypographyProps, "as">) {
 			as="p"
 			className={cn(
 				"font-light tracking-[0.01em] leading-[1.75em]",
+				"mb-[1em] last:mb-0",
 				"text-[var(--base-12)]",
-				"xxxs:text-sm",
-				"xxs:text-md",
+				"xxxs:text-lg",
+				"xxs:text-lg",
 				"xs:text-lg",
 				"selection:bg-[var(--base-3)]",
 				"transition-colors duration-200 ease-out",
@@ -35,9 +36,9 @@ export function Lede({ children, className }: Omit<TypographyProps, "as">) {
 				"xxs:text-lg",
 				"xs:text-xl",
 				"selection:bg-[var(--base-3)]",
-				"border-l-2 border-[var(--accent-6)] pl-6",
-				"xxxs:pl-4 xxs:pl-5 xs:pl-6",
-				"transition-colors duration-200 ease-out",
+				// "border-l-2 border-[var(--accent-6)] pl-6",
+				// "xxxs:pl-4 xxs:pl-5 xs:pl-6",
+				// "transition-colors duration-200 ease-out",
 				className,
 			)}
 		>
@@ -75,7 +76,7 @@ export function Small({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="small"
 			className={cn(
-				"font-normal tracking-wide leading-relaxed",
+				"font-normal tracking-[0.025em] leading[1.625em]",
 				"text-[var(--base-11)]",
 				"xxxs:text-sm",
 				"xxs:text-md",
@@ -98,8 +99,8 @@ export function UL({ children, className }: Omit<TypographyProps, "as">) {
 			className={cn(
 				"space-y-3 list-none",
 				"xxxs:space-y-2 xxs:space-y-2.5 xs:space-y-3",
-				"border-l border-[var(--base-4)] pl-4",
-				"xxxs:pl-3 xxs:pl-3.5 xs:pl-4",
+				// "pl-[1em]",
+				// "border-l border-[var(--accent-4)] pl-[1em]",
 				className,
 			)}
 		>
@@ -114,15 +115,15 @@ export function LI({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="li"
 			className={cn(
-				"font-light tracking-[0.005em] leading-relaxed",
-				"text-[var(--base-9)]",
-				"xxxs:text-sm",
-				"xxs:text-md",
+				"font-light tracking-[0.005em] leading-[1.625em]",
+				"text-[var(--base-12)]",
+				"xxxs:text-lg",
+				"xxs:text-lg",
 				"xs:text-lg",
 				"selection:bg-[var(--base-3)]",
 				"relative before:content-['—'] before:absolute before:-left-4",
 				"before:text-[var(--accent-7)] before:font-light",
-				"xxxs:before:-left-3 xxs:before:-left-3.5 xs:before:-left-4",
+				// "xxxs:before:-left-3 xxs:before:-left-3.5 xs:before:-left-4",
 				"transition-colors duration-200 ease-out",
 				"hover:text-[var(--base-11)]",
 				className,
@@ -147,13 +148,13 @@ export function Blockquote({
 				"xxxs:text-md",
 				"xxs:text-lg",
 				"xs:text-xl",
-				"border-l-4 border-[var(--accent-6)] pl-8 py-4",
+				"border-l-4 border-[var(--base-6)] pl-8 py-4",
 				"xxxs:pl-6 xxxs:py-3 xxs:pl-7 xxs:py-3.5 xs:pl-8 xs:py-4",
-				"bg-gradient-to-r from-[var(--accent-2)] to-transparent",
-				"selection:bg-[var(--accent-3)]",
-				"relative before:content-['\"'] before:text-[var(--accent-8)]",
+				"bg-gradient-to-r from-[var(--base-2)] to-transparent",
+				"selection:bg-[var(--base-3)]",
+				"relative before:content-['\"'] before:text-[var(--base-8)]",
 				"before:text-4xl before:font-serif before:absolute before:-left-2 before:-top-2",
-				"after:content-['\"'] after:text-[var(--accent-8)]",
+				"after:content-['\"'] after:text-[var(--base-8)]",
 				"after:text-4xl after:font-serif",
 				"transition-all duration-300 ease-out",
 				className,
@@ -170,14 +171,35 @@ export function Caption({ children, className }: Omit<TypographyProps, "as">) {
 		<Typography
 			as="figcaption"
 			className={cn(
-				"font-normal italic tracking-wide leading-relaxed",
-				"text-[var(--base-7)]",
-				"xxxs:text-xs",
-				"xxs:text-sm",
-				"xs:text-md",
-				"text-center mt-2",
+				"font-normal italic tracking-[0.025em] leading-[1.625em]",
+				"text-[var(--base-11)]",
+				"xxxs:text-sm",
+				"xxs:text-md",
+				"xs:text-lg",
+				"text-center mt-[0.5em]",
 				"selection:bg-[var(--base-3)]",
-				"border-t border-[var(--base-4)] pt-2 mt-3",
+				"border-t border-[var(--base-4)] pt-[0.5em] mb-[1em]",
+				"transition-colors duration-200 ease-out",
+				className,
+			)}
+		>
+			{children}
+		</Typography>
+	);
+}
+
+// Strong Text - Emphasized inline text
+export function Strong({ children, className }: Omit<TypographyProps, "as">) {
+	return (
+		<Typography
+			as="strong"
+			className={cn(
+				"font-semibold tracking-[0.015em]",
+				"text-[var(--base-11)]",
+				// "xxxs:text-sm",
+				// "xxs:text-md",
+				// "xs:text-lg",
+				"selection:bg-[var(--accent-3)] selection:text-[var(--accent-12)]",
 				"transition-colors duration-200 ease-out",
 				className,
 			)}

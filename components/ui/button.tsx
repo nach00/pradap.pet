@@ -9,7 +9,7 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"bg-[var(--base-12)] text-[var(--base-1)] shadow-sm hover:bg-[var(--accent-9)] hover:text-[var(--base-12)] dark:hover:text-[var(--base-1)] active:scale-[0.98] shadow-sm cheese:bg-[var(--accent-9)] cheese:font-custom",
+					"bg-[var(--base-12)] text-[var(--base-1)] shadow-sm hover:bg-[var(--accent-9)] hover:text-[var(--base-12)] dark:hover:text-[var(--base-1)] active:scale-[0.98] shadow-sm cheese:bg-[var(--accent-9)] cheese:font-custom cheese:hover:text-[var(--accent-9)] cheese:hover:bg-[var(--accent-8)]",
 				destructive:
 					"bg-destructive text-white shadow-sm hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
 				outline:
@@ -19,6 +19,8 @@ const buttonVariants = cva(
 				ghost:
 					"hover:bg-var(--base-8) hover:text-var(--base-9) active:bg-var(--base-8) cheese:font-custom",
 				link: "text-primary underline-offset-4 hover:underline decoration-1 p-0 h-auto",
+				disabled:
+					"bg-[var(--base-6)] text-[var(--base-9)] cursor-not-allowed pointer-events-none opacity-50 shadow-none hover:bg-[var(--base-6)] hover:text-[var(--base-9)] active:scale-100 cheese:font-custom",
 			},
 			size: {
 				default: "h-11 px-6 py-2.5",
