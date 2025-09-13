@@ -39,10 +39,10 @@ const links = [
 		name: "Work",
 		link: "/work",
 	},
-	{
-		name: "Blog",
-		link: "/blog",
-	},
+	// {
+	// 	name: "Blog",
+	// 	link: "/blog",
+	// },
 	{
 		name: "Contact",
 		link: "/contact",
