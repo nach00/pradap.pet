@@ -81,7 +81,7 @@ export default function APideas() {
 			<LessonsLearnedSection />
 			<NextStepsSection />
 			<PreviewSection />
-			<EndSection />
+			{/* <EndSection /> */}
 			<NextProjectSection />
 		</div>
 	);
