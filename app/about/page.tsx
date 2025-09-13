@@ -351,7 +351,7 @@ function ExperienceItem({
 					<H4
 						className={cn(
 							"not-italic font-medium",
-							"text-[var(--accent-10)]",
+							"text-[var(--accent-11)]",
 							"group-hover:text-[var(--accent-11)]",
 							"transition-colors duration-300",
 						)}
