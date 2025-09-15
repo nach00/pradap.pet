@@ -95,6 +95,10 @@ export const skills = {
 			logo: "/images/logos/software/javascript.svg",
 		},
 		{
+			name: "Next.js",
+			logo: "/images/logos/software/next.svg",
+		},
+		{
 			name: "Python",
 			logo: "/images/logos/software/python.svg",
 		},

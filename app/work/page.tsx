@@ -37,7 +37,7 @@ export default function WorkPage() {
 			<HeroSection />
 			{/* <StatsSection /> */}
 			<SelectedWorkSection />
-			<ArchivedWorkSection />
+			{/* <ArchivedWorkSection /> */}
 			<ClientsSection />
 		</div>
 	);

@@ -1,15 +1,5 @@
 "use client";
 import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
-import {
-	P,
-	UL,
-	Lede,
-	LI,
-	Small,
-	Eyebrow,
-	Caption,
-	Blockquote,
-} from "@/components/typography/TextElements";
 
 import Section from "@/components/layout/Section";
 
@@ -35,18 +25,14 @@ const links = [
 		name: "About",
 		link: "/about",
 	},
-	{
-		name: "Work",
-		link: "/work",
-	},
 	// {
-	// 	name: "Blog",
-	// 	link: "/blog",
+	// 	name: "Work",
+	// 	link: "/work",
 	// },
-	{
-		name: "Contact",
-		link: "/contact",
-	},
+	// {
+	// 	name: "Contact",
+	// 	link: "/contact",
+	// },
 ];
 
 export default function NavBar({ className }: props) {
@@ -55,8 +41,9 @@ export default function NavBar({ className }: props) {
 			{/* Desktop NavBar */}
 			<section
 				className={cn(
-					"z-50 fixed min-w-screen pt-10 pb-20 hidden h-1/8 border-b",
-					"landscape:flex landscape:flex-col",
+					"z-50 fixed min-w-screen pt-10 pb-10 hidden border-b",
+					"landscape:flex landscape:flex-col lg:flex lg:flex-col",
+					"backdrop-blur-lg",
 
 					className,
 				)}
@@ -69,14 +56,16 @@ export default function NavBar({ className }: props) {
 				>
 					<Logo />
 					<DesktopNavLinks />
-					<ThreeModeThemeSwitcher className="portrait:hidden" />
-				</Container>
-				<Container className="py-0 flex w-full mt-12">
-					<BackButton />
+					<ThreeModeThemeSwitcher className="" />
 				</Container>
 
-				<div className="absolute inset-y-0 w-full bg-gradient-to-b from-background backdrop-blur-lg"></div>
+				{/* <div className="absolute inset-y-0 w-full bg-gradient-to-b from-background backdrop-blur-lg"></div> */}
+				{/* <Container className=""> */}
+				{/* </Container> */}
 			</section>
+			<Container className={cn("translate-y-30")}>
+				<BackButton />
+			</Container>
 			<MobileNavMenu />
 		</>
 	);
@@ -84,7 +73,7 @@ export default function NavBar({ className }: props) {
 function DesktopNavLinks() {
 	const pathname = usePathname();
 	return (
-		<div className="flex flex-row items-center gap-1 portrait:hidden">
+		<div className="flex flex-row items-center gap-1">
 			{links.map((link) => (
 				<Link
 					key={link.name}

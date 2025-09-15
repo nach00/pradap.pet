@@ -30,7 +30,6 @@ export function ProjectCard({
 	category,
 	title,
 	description,
-	lede,
 	logo,
 	logoDark,
 	className,
@@ -62,14 +61,16 @@ export function ProjectCard({
 					<div
 						className={cn(
 							"bg-[var(--base-1)] aspect-square",
-							"h-[5em]",
+							"h-[8em]",
+							"p-4",
+							"pl-6",
 							"flex items-center justify-center",
 							className,
 						)}
 					>
 						{currentLogo && (
 							<div
-								className="h-4/5 w-4/5 bg-[var(--base-12)] cheese:bg-[var(--accent-9)]"
+								className="h-full w-full bg-[var(--base-12)] cheese:bg-[var(--accent-9)]"
 								style={{
 									maskImage: `url(${currentLogo})`,
 									WebkitMaskImage: `url(${currentLogo})`,
@@ -86,7 +87,7 @@ export function ProjectCard({
 					<div
 						className={cn(
 							"bg-[var(--base-1)]",
-							"h-[5em]  w-full",
+							"h-[8em]  w-full",
 							"flex items-center p-4",
 							className,
 						)}

@@ -287,16 +287,13 @@ export function SelectedWorkSection() {
 							<ProjectCard key={project.href} {...project} />
 						))}
 					</div>
-					{/* <GridComponent /> */}
-					{/* <Grid2x2 /> */}
-					{/* <Demo /> */}
-					{isHomePage && (
-						<div className={cn("flex w-full justify-center mt-10")}>
-							<Button>
-								<Link href="/work">View all work</Link>
-							</Button>
-						</div>
-					)}
+					{/* {isHomePage && ( */}
+					{/* 	<div className={cn("flex w-full justify-center mt-10")}> */}
+					{/* 		<Button> */}
+					{/* 			<Link href="/work">View all work</Link> */}
+					{/* 		</Button> */}
+					{/* 	</div> */}
+					{/* )} */}
 				</Container>
 			</Section>
 		</>

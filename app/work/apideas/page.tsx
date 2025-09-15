@@ -1,30 +1,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
 import ScreenshotPreview from "@/app/work/ScreenshotPreview";
 import { TagBox } from "@/components/ProjectBadges";
 import { DataPair } from "@/components/DataPair";
 import StatStack from "@/components/StatStack";
 import ApideasMarquee from "./ApideasMarquee";
-import Browser from "./Browser";
-import Deck from "./Deck";
 import ProjectHeroContent from "@/app/work/ProjectHeroContent";
 import { ProjectDetails } from "@/types/projectDetails";
-
-import {
-	P,
-	UL,
-	Lede,
-	LI,
-	Small,
-	Eyebrow,
-	Caption,
-	Blockquote,
-	Strong,
-} from "@/components/typography/TextElements";
-
-import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import { P, UL, LI, Strong } from "@/components/typography/TextElements";
+import { H2, H4 } from "@/components/typography/Headings";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 
@@ -74,14 +59,12 @@ export default function APideas() {
 			<HeroSection />
 			<DetailsSection />
 			<OverviewSection />
-			{/* <DeckSection /> */}
 			<ProcessSection />
 			<LoomSection />
 			<ResultsAndImpactSection />
 			<LessonsLearnedSection />
 			<NextStepsSection />
 			<PreviewSection />
-			{/* <EndSection /> */}
 			<NextProjectSection />
 		</div>
 	);
@@ -94,7 +77,6 @@ function HeroSection() {
 				<Container className="flex flex-col-reverse md:flex-row gap-12">
 					<ProjectHeroContent {...projectDetails} />
 					<ApideasMarquee />
-					{/* <Apideas3dMarquee /> */}
 				</Container>
 			</Section>
 		</>
@@ -159,63 +141,12 @@ function DetailsSection() {
 		</>
 	);
 }
-// function DetailsSection() {
-// 	return (
-// 		<>
-// 			<Section>
-// 				<Container className="flex flex-col">
-// 					<h2>Details</h2>
-//
-// 					<div className="grid grid-cols-2">
-// 						<div className="grid grid-cols-2">
-// 							<DataPair label="Client">{projectDetails.client}</DataPair>
-// 							<DataPair label="Duration">{projectDetails.duration}</DataPair>
-// 							<DataPair label="Role">{projectDetails.role}</DataPair>
-// 							<DataPair label="Team">{projectDetails.team}</DataPair>
-// 						</div>
-//
-// 						<div className="grid grid-rows-2">
-// 							<div className="flex flex-col">
-// 								<DataPair label="Skills">
-// 									{projectDetails.services &&
-// 										projectDetails.services.length > 0 && (
-// 											<div className="flex flex-wrap gap-2">
-// 												{projectDetails.services.map((service, index) => (
-// 													<TagBox key={index}>{service}</TagBox>
-// 												))}
-// 											</div>
-// 										)}
-// 								</DataPair>
-// 							</div>
-//
-// 							<div className="flex flex-col">
-// 								<DataPair label="Technologies">
-// 									{projectDetails.technologies &&
-// 										projectDetails.technologies.length > 0 && (
-// 											<div className="flex flex-wrap gap-2">
-// 												{projectDetails.technologies.map(
-// 													(technology, index) => (
-// 														<TagBox key={index}>{technology}</TagBox>
-// 													),
-// 												)}
-// 											</div>
-// 										)}
-// 								</DataPair>
-// 							</div>
-// 						</div>
-// 					</div>
-// 				</Container>
-// 			</Section>
-// 		</>
-// 	);
-// }
 
 function OverviewSection() {
 	return (
 		<>
 			<Section>
 				<Container>
-					{/* <div className="mt-50 p-20 bg-secondary w-screen"> */}
 					<H2>Overview</H2>
 					<div className="flex flex-col gap-20 md:flex-row">
 						<div className="flex flex-col w-full">
@@ -236,17 +167,7 @@ function OverviewSection() {
 								project.
 							</P>
 						</div>
-						{/* <div className="flex flex-col w-full"> */}
-						{/* 	<h3>Outcome</h3> */}
-						{/* 	<p> */}
-						{/* 		Exercitation esse minim quis ut in minim excepteur laboris */}
-						{/* 		consequat ea veniam dolor aliquip excepteur. Nulla labore */}
-						{/* 		deserunt voluptate labore qui adipisicing nulla dolor qui dolore */}
-						{/* 		incididunt anim. */}
-						{/* 	</p> */}
-						{/* </div> */}
 					</div>
-					{/* </div> */}
 				</Container>
 			</Section>
 		</>
@@ -278,19 +199,6 @@ function LoomSection() {
 							}}
 						/>
 					</div>
-				</Container>
-			</Section>
-		</>
-	);
-}
-
-function DeckSection() {
-	return (
-		<>
-			<Section>
-				<Container>
-					<h2>Deck</h2>
-					<Deck />
 				</Container>
 			</Section>
 		</>
@@ -366,9 +274,6 @@ function ProcessSection() {
 							</div>
 						</div>
 					</div>
-					{/* <div className="bg-[var(--base-3)] grid place-content-center min-h-full w-full"> */}
-					{/* 	x */}
-					{/* </div> */}
 				</Container>
 			</Section>
 		</>
@@ -451,22 +356,6 @@ function LessonsLearnedSection() {
 									essential for validating the concept and inspiring the final
 									project direction.
 								</LI>
-
-								{/* <li> */}
-								{/* 	<Strong>Rapid Prototyping:</Strong> Using Claude Code AI to */}
-								{/* 	build this app definitely helped, although I'm not sure if it */}
-								{/* 	made the process any faster, based on the final result. I had */}
-								{/* 	to restart the project a few times because for various */}
-								{/* 	reasons, including Claude breaking some things, or it would go */}
-								{/* 	off in the wrong direction. The initial prototype was */}
-								{/* 	essential for validating the concept and inspiring the final */}
-								{/* 	project direction. */}
-								{/* </li> */}
-								{/* <li> */}
-								{/* 	<Strong>Pivoting Effectively:</Strong> Shifting focus from */}
-								{/* 	using the generator to building the generator itself resulted */}
-								{/* 	in a stronger, more focused project. */}
-								{/* </li> */}
 								<LI>
 									<Strong>AI-Powered Content: </Strong> Using AI to generate
 									ideas automated a core feature, allowing focus to shift to
@@ -552,29 +441,6 @@ function NextStepsSection() {
 	);
 }
 
-function EndSection() {
-	return (
-		<>
-			<Section>
-				<Container
-					className={cn(
-						"flex flex-col md:flex-row items-center justify-center gap-20 text-center",
-					)}
-					variant="narrow"
-				>
-					<div className={cn("flex flex-col")}>
-						<H2>Give it a shot!</H2>
-						<Button>View live demo</Button>
-					</div>
-					<div className={cn("flex flex-col")}>
-						<H2>View the code!</H2>
-						<Button>Github Repo</Button>
-					</div>
-				</Container>
-			</Section>
-		</>
-	);
-}
 function NextProjectSection() {
 	return (
 		<>
