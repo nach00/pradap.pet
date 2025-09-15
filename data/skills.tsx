@@ -131,6 +131,10 @@ export const skills = {
 			logo: "/images/logos/software/three.svg",
 		},
 		{
+			name: "Typescript",
+			logo: "/images/logos/software/typescript.svg",
+		},
+		{
 			name: "Vim",
 			logo: "/images/logos/software/vim.svg",
 		},

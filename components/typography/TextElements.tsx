@@ -59,8 +59,6 @@ export function Eyebrow({ children, className }: Omit<TypographyProps, "as">) {
 				"xxs:text-sm",
 				"xs:text-md",
 				"selection:bg-[var(--base-3)]",
-				"opacity-75 hover:opacity-100",
-				"transition-all duration-300 ease-out",
 				className,
 			)}
 			cheeseClassName="font-custom letter-spacing-wide text-[var(--accent-9)]"
@@ -123,9 +121,6 @@ export function LI({ children, className }: Omit<TypographyProps, "as">) {
 				"selection:bg-[var(--base-3)]",
 				"relative before:content-['—'] before:absolute before:-left-4",
 				"before:text-[var(--accent-7)] before:font-light",
-				// "xxxs:before:-left-3 xxs:before:-left-3.5 xs:before:-left-4",
-				"transition-colors duration-200 ease-out",
-				"hover:text-[var(--base-11)]",
 				className,
 			)}
 		>

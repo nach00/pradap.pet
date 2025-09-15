@@ -47,7 +47,8 @@ export default function SkillsSection() {
 											"group p-4 rounded-lg border border-[var(--base-5)]",
 											"bg-[var(--base-2)] hover:bg-[var(--base-3)]",
 											"hover:border-[var(--accent-7)] transition-all duration-300",
-											"cursor-pointer hover:scale-105",
+											// "cursor-pointer hover:scale-105",
+											"cursor-pointer hover:-translate-y-1 hover:shadow-md",
 										)}
 									>
 										<div className="text-center space-y-3">
