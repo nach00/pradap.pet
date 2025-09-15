@@ -268,7 +268,7 @@ function MobileButton() {
 	return (
 		<>
 			<div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon">
-				<Menu className="text-[var(--accent-11)]" />
+				<Menu className="text-7xl text-[var(--accent-11)] dark:text-[var(--accent-2)] cheese:text-[var(--accent-2)]" />
 			</div>
 		</>
 	);
