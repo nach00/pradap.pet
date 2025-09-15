@@ -102,7 +102,7 @@ function HeroSection() {
 						className={cn("w-min border-none xxxs:flex-col")}
 						label="Location"
 					>
-						Dallas, TX
+						Texas
 					</DataPair>
 					<DataPair
 						className={cn("w-min border-none xxxs:flex-col")}
