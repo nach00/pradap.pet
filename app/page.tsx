@@ -167,9 +167,9 @@ function HeroSection() {
 function ActionButtons({ className }: { className?: string }) {
 	return (
 		<div className={`flex gap-4 pointer-events-auto ${className || ""}`}>
-			<Button size="sm">
-				<Link href="/work">View work →</Link>
-			</Button>
+			{/* <Button size="sm"> */}
+			{/* 	<Link href="/work">View work →</Link> */}
+			{/* </Button> */}
 			<Button size="sm" variant="outline">
 				<Link href="mailto:natcha@pradap.pet">Contact →</Link>
 			</Button>
