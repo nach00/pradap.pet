@@ -268,9 +268,6 @@ function LoomSection() {
 					>
 						<iframe
 							src="https://www.loom.com/embed/198da3badc6547a8a52136c8993ec8dd?sid=9eb9c8bb-2431-4121-a027-2a42bf7b78c8"
-							frameBorder="0"
-							webkitAllowFullScreen
-							mozAllowFullScreen
 							allowFullScreen
 							style={{
 								position: "absolute",
