@@ -2,66 +2,31 @@ import React from "react";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 import { cn } from "@/lib/utils";
+import {
+	P,
+	UL,
+	Lede,
+	LI,
+	Small,
+	Eyebrow,
+	Caption,
+	Blockquote,
+	Strong,
+} from "@/components/typography/TextElements";
 
-// Reusable text components
-interface TextComponentProps {
-	children: React.ReactNode;
-	className?: string;
-}
-
-// const Container: React.FC<TextComponentProps> = ({ children, className }) => (
-// 	<div className={cn("container mx-auto px-4", className)}>{children}</div>
-// );
-
-const SectionTitle: React.FC<TextComponentProps> = ({
-	children,
-	className,
-}) => (
-	<h4 className={cn("text-lg font-black uppercase mt-6", className)}>
-		{children}
-	</h4>
-);
-
-const MainTitle: React.FC<TextComponentProps> = ({ children, className }) => (
-	<h3 className={cn("text-xl font-bold", className)}>{children}</h3>
-);
-
-const LargeTitle: React.FC<TextComponentProps> = ({ children, className }) => (
-	<div className={cn("text-xl font-black uppercase", className)}>
-		{children}
-	</div>
-);
-
-const BodyText: React.FC<TextComponentProps> = ({ children, className }) => (
-	<div className={cn("mt-4 text-sm", className)}>{children}</div>
-);
-
-const SmallText: React.FC<TextComponentProps> = ({ children, className }) => (
-	<div className={cn("text-sm mt-4", className)}>{children}</div>
-);
-
-const CompactText: React.FC<TextComponentProps> = ({ children, className }) => (
-	<div className={cn("mt-1", className)}>{children}</div>
-);
-
-const Divider: React.FC<{ className?: string }> = ({ className }) => (
-	<div className={cn("h-0.5 bg-orange-500 mb-5", className)} />
-);
-
-const BulletList: React.FC<TextComponentProps> = ({ children, className }) => (
-	<ul className={cn("list-disc list-inside", className)}>{children}</ul>
-);
+import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
 
 const Legal: React.FC = () => {
 	return (
-		<Section>
-			<Container className="max-w-[60ch]">
-				<MainTitle>Legal mumbo jumbo</MainTitle>
-				<BodyText>This is just boring stuff. Feel free to ignore.</BodyText>
-				<Divider />
+		<Section className={cn("mt-10")}>
+			<Container variant="">
+				<H1>Legal mumbo jumbo</H1>
+				<Lede className={cn("border-b pb-10 mb-5")}>
+					This is just boring stuff. Feel free to ignore.
+				</Lede>
 
-				<SectionTitle>Privacy Policy</SectionTitle>
-				<BodyText>
+				<H2>Privacy Policy</H2>
+				<P>
 					Welcome to www.pradap.pet (the "Site"), a website operated by Natcha
 					Pradappet and associates ("Company," "us," "our," and "we"). We are
 					committed to maintaining robust privacy protections for our users. We
@@ -70,16 +35,16 @@ const Legal: React.FC = () => {
 					Privacy Policy ("Privacy Policy") is designed to help you understand
 					how we collect, use and safeguard the information you provide to us
 					and to assist you in making informed decisions when using our Service.
-				</BodyText>
+				</P>
 
-				<SmallText>
+				<P>
 					By accepting our Privacy Policy, you consent to our collection,
 					storage, use and disclosure of your personal information as described
 					in this Privacy Policy.
-				</SmallText>
+				</P>
 
-				<SectionTitle>Types of Data We Collect</SectionTitle>
-				<CompactText>
+				<H2>Types of Data We Collect</H2>
+				<P>
 					We collect "Non-Personal Information" and "Personal Information."
 					Non-Personal Information includes information that cannot be used to
 					personally identify you, such as anonymous usage data, general
@@ -90,59 +55,59 @@ const Legal: React.FC = () => {
 					you, including, for example, your name, address, telephone number,
 					email address, as well as any other non-public information about you
 					that is associated with or linked to any of the foregoing data.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Children's Online Privacy Protection Act</SectionTitle>
-				<CompactText>
+				<H2>Children's Online Privacy Protection Act</H2>
+				<P>
 					We do not intentionally gather Personal Information from visitors who
 					are under the age of 13.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Information You Provide to Us</SectionTitle>
-				<CompactText>
-					<BulletList>
-						<li>
+				<H2>Information You Provide to Us</H2>
+				<P>
+					<UL>
+						<LI>
 							We may collect Personal Information from you, such as your first
 							and last name, email and mailing address, phone, and password when
 							you create an account to log in to our network ("Account").
-						</li>
-						<li>
+						</LI>
+						<LI>
 							When you subscribe to the Services on our Site, our payment
 							processor will collect all information necessary to complete the
 							transaction, including your name, credit card information, billing
 							information, and direct deposit information.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We retain information on your behalf, such as files and messages
 							that you store using your Account.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							If you provide us feedback or contact us via email, we will
 							collect your name and email address, as well as any other content
 							included in the email, in order to send you a reply.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							When you participate in one of our surveys, we may collect
 							additional information that you knowingly provide.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							When you post messages on the Services or on a Social Media Site
 							("SMS") where we have a page or presence (collectively "SMS
 							Pages"), the information contained in your posting may be
 							republished on our Site and other users may be able to see them.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We are committed to keeping your email address confidential, if
 							you provide it to us. We do not sell, rent, or lease our
 							subscription lists to third parties. We will not disclose your
 							email address to any third parties except as expressly allowed in
 							this Privacy Policy.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We will maintain the information you send via email in accordance
 							with applicable federal law.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							In compliance with the CAN-SPAM Act, all emails sent from our
 							organization will clearly state who the email is from and provide
 							clear information on how to contact the sender. In addition, all
@@ -155,14 +120,14 @@ const Legal: React.FC = () => {
 							longer wish to receive our newsletter or promotional materials may
 							opt-out of receiving these communications by clicking on the
 							unsubscribe link in the email.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<SectionTitle>Information Collected via Technology</SectionTitle>
-				<CompactText>
-					<BulletList>
-						<li>
+				<H2>Information Collected via Technology</H2>
+				<P>
+					<UL>
+						<LI>
 							In an effort to improve the quality of the Service, we reserve the
 							right to track information provided to us by your browser or by
 							our software application when you view or use the Service, such as
@@ -176,24 +141,24 @@ const Legal: React.FC = () => {
 							to a user's browser enables us to collect Non-Personal information
 							about that user and keep a record of the user's preferences when
 							utilizing our Services, both on an individual and aggregate basis.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We may also use third party analytics services such as Google
 							Analytics or Google Adsense to collect information about how you
 							use and interact with our Services. Such third-party analytics
 							services may use cookies to gather information such as the pages
 							you visited, your IP address, a date/time stamp for your visit and
 							which site referred you to the Site.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We reserve the right to use technological equivalents of cookies,
 							including social media pixels. These pixels allow social media
 							sites to track visitors to outside websites so as to tailor
 							advertising messages users see while visiting that social media
 							website. We reserve the right to use these pixels in compliance
 							with the policies of the various social media sites.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							Some content or applications, including advertisements, on the
 							Site are served by third-parties, including advertisers, ad
 							networks and servers, content providers, and application
@@ -209,52 +174,52 @@ const Legal: React.FC = () => {
 							third parties' tracking technologies or how they may be used. If
 							you have any questions about an advertisement or other targeted
 							content, you should contact the responsible provider directly.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<SectionTitle>Use of Your Personal Information</SectionTitle>
-				<CompactText>
+				<H2>Use of Your Personal Information</H2>
+				<P>
 					In general, Personal Information you submit to us is used either to
 					respond to requests that you make, or to aid us in serving you better.
 					We use your Personal Information in the following ways:
-				</CompactText>
+				</P>
 
-				<CompactText>
-					<BulletList>
-						<li>
+				<P>
+					<UL>
+						<LI>
 							to facilitate the creation of and secure your Account on our
 							network;
-						</li>
-						<li>to identify you as a user in our system;</li>
-						<li>to provide improved administration of our Services;</li>
-						<li>to provide the Services you request;</li>
-						<li>
+						</LI>
+						<LI>to identify you as a user in our system;</LI>
+						<LI>to provide improved administration of our Services;</LI>
+						<LI>to provide the Services you request;</LI>
+						<LI>
 							to improve the quality of experience when you interact with our
 							Services;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							to send you a welcome email to verify ownership of the email
 							address provided when your Account was created;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							to send you administrative email notifications, such as security
 							or support and maintenance advisories;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							to respond to your inquiries related to employment opportunities
 							or other requests;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							to send newsletters, surveys, offers, and other promotional
 							materials related to our Services and for other marketing purposes
 							including those of third parties;
-						</li>
-						<li>to perform marketing or data analysis.</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+						<LI>to perform marketing or data analysis.</LI>
+					</UL>
+				</P>
 
-				<CompactText>
+				<P>
 					If you opt to receive any free resources, participate in any free
 					training programs, register for a webinar, register for a live event,
 					register for a seminar, or purchase any products sold by us on this
@@ -264,10 +229,10 @@ const Legal: React.FC = () => {
 					link at the bottom of every email we send. If you ever have trouble
 					unsubscribing, you can send an email to the email address provided
 					below in order to request to unsubscribe from future emails.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Use of Non-Personal Information</SectionTitle>
-				<CompactText>
+				<H2>Use of Non-Personal Information</H2>
+				<P>
 					In general, we use Non-Personal Information to help us improve the
 					Service and customize the user experience. We also aggregate
 					Non-Personal Information in order to track trends and analyze use
@@ -275,41 +240,41 @@ const Legal: React.FC = () => {
 					our use or disclosure of Non-Personal Information and we reserve the
 					right to use and disclose such Non-Personal Information to our
 					partners, advertisers and other third parties at our discretion.
-				</CompactText>
+				</P>
 
-				<CompactText>
+				<P>
 					If our information practices change at any time in the future, we will
 					post the policy changes to the Site so that you may opt out of the new
 					information practices. We suggest that you check the Site periodically
 					if you are concerned about how your information is used.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Location-Based Data</SectionTitle>
-				<CompactText>
+				<H2>Location-Based Data</H2>
+				<P>
 					We make use of location-based data for our website to connect you with
 					other users near you that can either offer or are in need of the
 					Services. If you choose not to allow us to access your location, some
 					or all functionality may not be available to you.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Disclosure of Your Personal Information</SectionTitle>
-				<CompactText>
+				<H2>Disclosure of Your Personal Information</H2>
+				<P>
 					As a general rule, we do not sell, rent, lease or otherwise transfer
 					any information collected either automatically or through your
 					voluntary action. We may disclose your Personal Information as
 					described below and as described elsewhere in this Privacy Policy.
-				</CompactText>
+				</P>
 
-				<CompactText>
+				<P>
 					<span className="underline">Third Party Service Providers</span>. We
 					may share your Personal Information with third party service providers
 					to: provide you with the Services that we offer you through our Site;
 					to conduct quality assurance testing; to perform marketing; to run
 					data analysis; to facilitate creation of accounts; to provide
 					technical support; and/or to provide other services to you.
-				</CompactText>
+				</P>
 
-				<CompactText>
+				<P>
 					<span className="underline">Other Disclosures</span>. Regardless of
 					any choices you make regarding your Personal Information (as described
 					below), we may disclose Personal Information if it believes in good
@@ -320,10 +285,10 @@ const Legal: React.FC = () => {
 					Services; and/or (d) to investigate or assist in preventing any
 					violation or potential violation of the law, this Privacy Policy, or
 					Terms of Use.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Links to Third Party Websites</SectionTitle>
-				<CompactText>
+				<H2>Links to Third Party Websites</H2>
+				<P>
 					As part of the Service, we may provide links to or compatibility with
 					other websites or applications. However, we are not responsible for
 					the privacy practices employed by those websites or the information or
@@ -336,12 +301,10 @@ const Legal: React.FC = () => {
 					other website or application will apply to your access or use of that
 					site or application. We encourage our users to read the privacy
 					statements of other websites before proceeding to use them.
-				</CompactText>
+				</P>
 
-				<SectionTitle>
-					Your Rights Regarding the Use of Your Personal Information
-				</SectionTitle>
-				<CompactText>
+				<H2>Your Rights Regarding the Use of Your Personal Information</H2>
+				<P>
 					You have the right at any time to prevent us from contacting you for
 					marketing purposes. When we send a promotional communication to a
 					user, the user can opt out of further promotional communications by
@@ -353,10 +316,10 @@ const Legal: React.FC = () => {
 					Settings section of your Account, we may continue to send you
 					administrative emails including, for example, periodic updates to our
 					Privacy Policy.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Security of Your Personal Information</SectionTitle>
-				<CompactText>
+				<H2>Security of Your Personal Information</H2>
+				<P>
 					We implement security measures designed to protect your information
 					from unauthorized access. Any account you have with our Site is
 					protected by your account password and we urge you to take steps to
@@ -370,54 +333,54 @@ const Legal: React.FC = () => {
 					Information, we cannot guarantee its absolute security. By using our
 					Service, you acknowledge that you understand and agree to assume these
 					risks.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Visitors' GDPR Rights</SectionTitle>
-				<CompactText>
+				<H2>Visitors' GDPR Rights</H2>
+				<P>
 					If you are within the European Union, you are entitled to certain
 					information and have certain rights under the General Data Protection
 					Regulation (the "GDPR"). Those rights include the following:
-				</CompactText>
+				</P>
 
-				<CompactText>
-					<BulletList>
-						<li>
+				<P>
+					<UL>
+						<LI>
 							We will retain any information you choose to provide to us until
 							one of the following happens: (a) you ask us to delete the
 							information, (b) we decide to cease using our existing data
 							providers, or (c) we decide that the value in retaining the data
 							is outweighed by the costs of retaining it.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							You have the right to request access to your data that we store
 							and the rights to either rectify or erase your personal data.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							You have the right to seek restrictions on the processing of your
 							data. You have the right to object to the processing of your data
 							and the right to the portability of your data.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							To the extent that you provided consent to our processing of your
 							personal data, you have the right to withdraw that consent at any
 							time, without affecting the lawfulness of processing based upon
 							consent that occurred prior to your withdrawal of consent.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							You have the right to lodge a complaint with a supervisory
 							authority that has jurisdiction over issues related to the GDPR.
-						</li>
-						<li>
+						</LI>
+						<LI>
 							We require only the information that is reasonably required to
 							enter into a contract with you. We will not require you to provide
 							consent for any unnecessary processing as a condition of entering
 							into a contract with us.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<SectionTitle>Changes to This Privacy Policy</SectionTitle>
-				<CompactText>
+				<H2>Changes to This Privacy Policy</H2>
+				<P>
 					We reserve the right to change this policy and our Terms of Service at
 					any time. We may notify you of significant changes to our Privacy
 					Policy by sending a notice to the primary email address specified in
@@ -426,38 +389,31 @@ const Legal: React.FC = () => {
 					Non-material changes or clarifications will take effect immediately.
 					You should periodically check the Site and this privacy page for
 					updates.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Contact Information</SectionTitle>
-				<CompactText>
+				<H2>Contact Information</H2>
+				<P>
 					If you have any questions regarding this Privacy Policy or the
 					practices of the Site, please contact us by sending an email to{" "}
-					<a
-						href="mailto:natcha@pradap.pet"
-						className="text-blue-400 hover:text-blue-300"
-					>
+					<a href="mailto:natcha@pradap.pet" className="underline">
 						natcha@pradap.pet
 					</a>
 					.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Last Updated</SectionTitle>
-				<CompactText>
-					This Privacy Policy was last updated on August 29, 2025.
-				</CompactText>
+				<H2>Last Updated</H2>
+				<P>This Privacy Policy was last updated on August 29, 2025.</P>
 
-				<Divider />
+				<H2>TERMS OF USE</H2>
 
-				<LargeTitle>TERMS OF USE</LargeTitle>
-
-				<BodyText>
+				<P>
 					Welcome to www.pradap.pet (the "Site"), a website operated by Natcha
 					Pradappet and associates ("Company," "us," "our," and "we"). We
 					provide the Site and the services provided through the Site (the Site
 					and services will be collectively referred to as the "Services").
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					These Terms of Use ("Agreement") set forth the legally binding terms
 					for your use of the Services. By accessing or using the Services, you
 					are accepting this Agreement and you represent and warrant that you
@@ -465,19 +421,19 @@ const Legal: React.FC = () => {
 					If you do not agree with all of the provisions of this Agreement, do
 					not access and/or use the Services. You may not access or use the
 					Services or accept the Agreement if you are not at least 18 years old.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Privacy Policy</SectionTitle>
-				<BodyText>
+				<H2>Privacy Policy</H2>
+				<P>
 					The Company respects the privacy of its Service users. Please refer to
 					our Privacy Policy, linked in the footer of our website, which
 					explains how we collect, use, and disclose information that pertains
 					to your privacy. When you access or use the Service, you signify your
 					agreement to this Privacy Policy.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Accounts</SectionTitle>
-				<BodyText>
+				<H2>Accounts</H2>
+				<P>
 					Account Creation. In order to use certain features of the Services,
 					you may need to register for an account with us ("your Account") and
 					provide certain information about yourself as prompted by the
@@ -487,9 +443,9 @@ const Legal: React.FC = () => {
 					Account at any time, for any reason, by following the instructions on
 					the Site. We may suspend or terminate your Account in accordance with
 					the Terms and Termination.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Account Responsibilities. You are responsible for maintaining the
 					confidentiality of your Account login information and are fully
 					responsible for all activities that occur under your Account. You
@@ -497,15 +453,15 @@ const Legal: React.FC = () => {
 					unauthorized use, of your Account or any other breach of security. We
 					cannot and will not be liable for any loss or damage arising from your
 					failure to comply with the above requirements.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Rights and Licenses</SectionTitle>
-				<BodyText>
+				<H2>Rights and Licenses</H2>
+				<P>
 					License to Use Site. We grant you a non-transferable, non-exclusive,
 					right to access and use the Services for your personal use.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Certain Restrictions. The rights granted to you in this Agreement are
 					subject to the following restrictions: (a) you will not license, sell,
 					rent, lease, transfer, assign, distribute, host, or otherwise
@@ -520,23 +476,23 @@ const Legal: React.FC = () => {
 					subject to the terms of this Agreement. All copyright and other
 					proprietary notices on any Services content must be retained on all
 					copies.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Modification. We reserve the right, at any time, to modify, suspend,
 					or discontinue the Services with or without notice. You agree that we
 					will not be liable to you or to any third party for any modification,
 					suspension, or discontinuance of the Services, except and if otherwise
 					expressly set forth in these Terms.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					No Support or Maintenance. You acknowledge and agree that we will have
 					no obligation to provide you with any support or maintenance in
 					connection with the Services.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Ownership of the Services. Excluding your User Content (defined
 					below), you acknowledge that all the intellectual property rights,
 					including copyrights, patents, trademarks, and trade secrets, in the
@@ -544,10 +500,10 @@ const Legal: React.FC = () => {
 					provision of the Services does not transfer to you or any third party
 					any rights, title or interest in or to the intellectual property
 					rights. We reserve all rights not granted in this Agreement.
-				</BodyText>
+				</P>
 
-				<SectionTitle>User Content</SectionTitle>
-				<BodyText>
+				<H2>User Content</H2>
+				<P>
 					User Content. "User Content" means any and all information and content
 					that a user submits to or posts on: (a) the Services and (b) on social
 					networking sites where we have a page or presence. You will own your
@@ -557,38 +513,38 @@ const Legal: React.FC = () => {
 					the User Content that you post, upload, link to or otherwise make
 					available via the Service. We reserve the right to remove any User
 					Content from the Service at our discretion.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					The following rules pertain to User Content. By transmitting and
 					submitting any User Content while using the Service, you agree as
 					follows:
-				</BodyText>
+				</P>
 
-				<CompactText>
-					<BulletList>
-						<li>
+				<P>
+					<UL>
+						<LI>
 							You are solely responsible for your account and the activity that
 							occurs while signed in to or while using your account;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							You will not submit content that is copyrighted or subject to
 							third party proprietary rights, including privacy, publicity,
 							trade secret, etc., unless you are the owner of such rights or
 							have the appropriate permission from their rightful owner to
 							specifically submit such content;
-						</li>
-						<li>You will abide by our Acceptable Use Policy below; and</li>
-						<li>
+						</LI>
+						<LI>You will abide by our Acceptable Use Policy below; and</LI>
+						<LI>
 							You affirm we have the right to determine whether any of your User
 							Content submissions are appropriate and comply with these Terms of
 							Use, remove any and/or all of your submissions, and terminate your
 							account with or without prior notice.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<BodyText>
+				<P>
 					You understand and agree that any liability, loss or damage that
 					occurs as a result of the use of any User Content that you make
 					available or access through your use of the Service is solely your
@@ -597,9 +553,9 @@ const Legal: React.FC = () => {
 					monitor all User Content. However, at our discretion, we, or
 					technology we employ, may monitor and/or record your interactions with
 					the Service.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					License. You grant, and you represent and warrant that you have the
 					right to grant, to us an irrevocable, non-exclusive, royalty-free and
 					fully paid, worldwide license to reproduce, distribute, publicly
@@ -609,58 +565,58 @@ const Legal: React.FC = () => {
 					your User Content in the Site and Services. You agree to irrevocably
 					waive (and cause to be waived) any claims and assertions of moral
 					rights or attribution with respect to your User Content.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Acceptable Use Policy. Your permission to use the Services is
 					conditioned upon the following Use Restrictions and Conduct
 					Restrictions: You agree that you will not under any circumstances:
-				</BodyText>
+				</P>
 
-				<CompactText>
-					<BulletList>
-						<li>
+				<P>
+					<UL>
+						<LI>
 							post any information that is abusive, threatening, obscene,
 							defamatory, libelous, or racially, sexually, religiously, or
 							otherwise objectionable and offensive;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							use the service for any unlawful purpose or for the promotion of
 							illegal activities;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							attempt to, or harass, abuse or harm another person or group;
-						</li>
-						<li>use another user's account without permission;</li>
-						<li>
+						</LI>
+						<LI>use another user's account without permission;</LI>
+						<LI>
 							interfere or attempt to interfere with the proper functioning of
 							the Service;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							make any automated use of the system, or take any action that we
 							deem to impose or to potentially impose an unreasonable or
 							disproportionately large load on our servers or network
 							infrastructure;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							use the Site or any of its contents to advertise or solicit, for
 							any commercial purpose or to compete, directly or indirectly, with
 							our Service;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							bypass any robot exclusion headers or other measures we take to
 							restrict access to the Service or use any software, technology, or
 							device to scrape, spider, or crawl the Service or harvest or
 							manipulate data; or
-						</li>
-						<li>
+						</LI>
+						<LI>
 							publish or link to malicious content intended to damage or disrupt
 							another user's browser or computer.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<BodyText>
+				<P>
 					Feedback. If you provide us any feedback, comments, or suggestions
 					regarding the Services or purchased items ("Feedback"), you assign to
 					us all rights in the Feedback and agree that we will have the right to
@@ -672,9 +628,9 @@ const Legal: React.FC = () => {
 					compensating you in any way. You agree that you will not submit to us
 					any information or ideas that you consider to be confidential or
 					proprietary.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Indemnity. You agree to indemnify and hold us (and our officers,
 					employees, and agents) harmless, including costs and attorney's fees,
 					from any claim or demand made by any third party due to or arising out
@@ -686,10 +642,10 @@ const Legal: React.FC = () => {
 					claims. You agree not to settle any matter without our prior written
 					consent. We will use reasonable efforts to notify you of any such
 					claim, action or proceeding upon becoming aware of it.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Links to Other Sites and/or Materials</SectionTitle>
-				<BodyText>
+				<H2>Links to Other Sites and/or Materials</H2>
+				<P>
 					Third Party Sites, Ads and Ad Networks. As part of the Service, we may
 					provide you with convenient links to third party website(s)
 					("Third-Party Sites") as well as content or items belonging to or
@@ -707,9 +663,9 @@ const Legal: React.FC = () => {
 					terms and policies, including privacy and data gathering practices, of
 					any site to which you navigate from the Site or relating to any
 					applications you use or install from the site.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Links to Our Site. You are permitted to link to our Site for
 					noncommercial purposes, provided that you do so in a way that is fair
 					and legal and does not damage our reputation. You may not link to our
@@ -718,9 +674,9 @@ const Legal: React.FC = () => {
 					not deep-link to any page of this site for any purpose whatsoever
 					unless the link is expressly authorized in writing by us. We reserve
 					the right to withdraw permission for any link.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Release. You release and forever discharge us (and our officers,
 					employees, agents, successors, and assigns) from, and waive and
 					relinquish, each and every past, present and future dispute, claim,
@@ -735,10 +691,10 @@ const Legal: React.FC = () => {
 					SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF EXECUTING THE
 					RELEASE, WHICH IF KNOWN BY HIM OR HER MUST HAVE MATERIALLY AFFECTED
 					HIS OR HER SETTLEMENT WITH THE DEBTOR."
-				</BodyText>
+				</P>
 
-				<SectionTitle>Disclaimers</SectionTitle>
-				<BodyText>
+				<H2>Disclaimers</H2>
+				<P>
 					THE SERVICES, INCLUDING THE SITE, ARE PROVIDED "AS-IS" AND "AS
 					AVAILABLE" AND WE EXPRESSLY DISCLAIM ANY WARRANTIES AND CONDITIONS OF
 					ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTIES OR
@@ -749,15 +705,15 @@ const Legal: React.FC = () => {
 					(c) WILL BE ACCURATE, RELIABLE, FREE OF VIRUSES OR OTHER HARMFUL CODE,
 					COMPLETE, LEGAL, OR SAFE OR (d) THAT THE SERVICES WILL BE TO YOUR
 					SATISFACTION.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES,
 					SO THE ABOVE EXCLUSION MAY NOT APPLY TO YOU.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Limitation on Liability</SectionTitle>
-				<BodyText>
+				<H2>Limitation on Liability</H2>
+				<P>
 					IN NO EVENT WILL WE BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY LOST
 					PROFIT OR ANY INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL
 					OR PUNITIVE DAMAGES ARISING FROM OR RELATING TO THIS AGREEMENT OR YOUR
@@ -766,24 +722,24 @@ const Legal: React.FC = () => {
 					SERVICES ARE AT YOUR OWN DISCRETION AND RISK, AND YOU WILL BE SOLELY
 					RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR LOSS OF DATA
 					RESULTING THEREFROM.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					IN NO EVENT WILL OUR TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES,
 					AND CAUSES OF ACTION (WHETHER IN CONTRACT, TORT (INCLUDING, BUT NOT
 					LIMITED TO, NEGLIGENCE), OR OTHERWISE EXCEED THE AMOUNTS YOU'VE PAID
 					US IN THE PRIOR 12 MONTHS (IF ANY). THE EXISTENCE OF MORE THAN ONE
 					CLAIM WILL NOT ENLARGE THIS LIMIT.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF
 					LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE
 					LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Term and Termination</SectionTitle>
-				<BodyText>
+				<H2>Term and Termination</H2>
+				<P>
 					This Agreement will remain in full force and effect while you use the
 					Services. We may (a) suspend your rights to use the Site and/or
 					Services (including your Account) or (b) terminate this Agreement, at
@@ -797,10 +753,10 @@ const Legal: React.FC = () => {
 					Account or deletion of your User Content. Upon termination of this
 					Agreement, all of the provisions will terminate except those that by
 					their nature should survive.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Copyright Policy</SectionTitle>
-				<BodyText>
+				<H2>Copyright Policy</H2>
+				<P>
 					We respect the intellectual property of others and ask that users of
 					our Site and Services do the same. In connection with our Site and
 					Services and in accordance with the Digital Millennium Copyright Act
@@ -814,92 +770,89 @@ const Legal: React.FC = () => {
 					material removed, the following information in the form of a written
 					notification (pursuant to 17 U.S.C. § 512(c)) must be provided to our
 					designated Copyright Agent:
-				</BodyText>
+				</P>
 
-				<CompactText>
-					<BulletList>
-						<li>your physical or electronic signature;</li>
-						<li>
+				<P>
+					<UL>
+						<LI>your physical or electronic signature;</LI>
+						<LI>
 							identification of the copyrighted work(s) that you claim to have
 							been infringed;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							identification of the material on our Services that you claim is
 							infringing and that you request us to remove;
-						</li>
-						<li>
+						</LI>
+						<LI>
 							sufficient information to permit us to locate such material;
-						</li>
-						<li>your address, telephone number, and email address;</li>
-						<li>
+						</LI>
+						<LI>your address, telephone number, and email address;</LI>
+						<LI>
 							a statement that you have a good faith belief that use of the
 							objectionable material is not authorized by the copyright owner,
 							its agent, or under the law; and
-						</li>
-						<li>
+						</LI>
+						<LI>
 							a statement that the information in the notification is accurate,
 							and under penalty of perjury, that you are either the owner of the
 							copyright that has allegedly been infringed or that you are
 							authorized to act on behalf of the copyright owner.
-						</li>
-					</BulletList>
-				</CompactText>
+						</LI>
+					</UL>
+				</P>
 
-				<BodyText>
+				<P>
 					Please note that, pursuant to 17 U.S.C. § 512(f), any
 					misrepresentation of material fact (falsities) in a written
 					notification automatically subjects the complaining party to liability
 					for any damages, costs and attorney's fees incurred by us in
 					connection with the written notification and allegation of copyright
 					infringement.
-				</BodyText>
+				</P>
 
-				<BodyText>Our designated Copyright Agent is:</BodyText>
-				<CompactText>Planet Nacho</CompactText>
-				<CompactText>Attn: Privacy Officer</CompactText>
-				<CompactText>
+				<P>Our designated Copyright Agent is:</P>
+				<P>Planet Nacho</P>
+				<P>Attn: Privacy Officer</P>
+				<P>
 					Email:{" "}
-					<a
-						href="mailto:natcha@pradap.pet"
-						className="text-blue-400 hover:text-blue-300"
-					>
+					<a href="mailto:natcha@pradap.pet" className="underline">
 						natcha@pradap.pet
 					</a>
 					.
-				</CompactText>
+				</P>
 
-				<SectionTitle>Legal Disputes</SectionTitle>
-				<BodyText>
+				<H2>Legal Disputes</H2>
+				<P>
 					PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR RIGHTS AND WILL
 					HAVE A SUBSTANTIAL IMPACT ON HOW ANY CLAIMS YOU HAVE AGAINST US WILL
 					BE RESOLVED.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					You agree that any claim or dispute at law or equity that has arisen
 					or may arise between you and us relating in any way to or arising out
 					of this or previous versions of our Terms of Service Agreement, your
 					use of or access to the Services, or any products or services sold or
 					purchased through the Services, will be resolved in accordance with
 					the provisions set forth in this Legal Disputes Section.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Choice of Law. This Agreement is made under and will be governed by
 					and construed in accordance with the laws of the State of State Name,
 					without giving effect to any principles that provide for the
 					application of the law of another jurisdiction.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Claim Limitations. You agree that any cause of action arising out of
 					or related to the Services must commence within one (1) year after the
 					cause of action accrues. Otherwise, such cause of action is
 					permanently barred.
-				</BodyText>
+				</P>
 
-				<SectionTitle>Agreement to Arbitrate</SectionTitle>
-				<BodyText>
+				<H2>Agreement to Arbitrate</H2>
+				<P>
 					You agree that any and all disputes or claims that have arisen or may
 					arise between you and us relating in any way to or arising out of this
 					or previous versions of the Terms of Service Agreement, your use of or
@@ -911,25 +864,25 @@ const Legal: React.FC = () => {
 					court and advances only on an individual (non-class name,
 					non-representative) basis. The Federal Arbitration Act governs the
 					interpretation and enforcement of this Agreement to Arbitrate.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					The arbitration will be conducted by JAMS Arbitration ("JAMS") under
 					its applicable rules and procedures, as modified by this Agreement to
 					Arbitrate. The arbitration will be conducted before one commercial
 					arbitrator with substantial experience in resolving commercial
 					contract disputes.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Your rights will be determined by a neutral arbitrator and not a judge
 					or jury. You understand that arbitration procedures can be more
 					limited than rules applicable in court. Arbitrator decisions are as
 					enforceable as any court order and are subject to very limited review
 					in court.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					You and we must abide by the following rules: (a) ANY CLAIMS BROUGHT
 					BY YOU OR US MUST BE BROUGHT IN THE PARTIES' INDIVIDUAL CAPACITY, AND
 					NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR
@@ -947,9 +900,9 @@ const Legal: React.FC = () => {
 					prevailing party to be paid its fees and litigation expenses, and then
 					in such instance, the fees and costs awarded will be determined by the
 					applicable law.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					With the exception of subparts (a) and (b) in the paragraph above
 					(prohibiting arbitration on a class name or collective basis), if any
 					part of this arbitration provision is deemed to be invalid,
@@ -964,10 +917,10 @@ const Legal: React.FC = () => {
 					court rather than in arbitration, the dispute will be exclusively
 					brought in state or federal court in the county and state referenced
 					above.
-				</BodyText>
+				</P>
 
-				<SectionTitle>General</SectionTitle>
-				<BodyText>
+				<H2>General</H2>
+				<P>
 					Changes to Agreement. This Agreement is subject to occasional
 					revision, and if we make any substantial changes, we may notify you by
 					sending you an email to the last email address you provided to us (if
@@ -982,31 +935,28 @@ const Legal: React.FC = () => {
 					Continued use of our Site or Services following notice of such changes
 					will indicate your acknowledgement of such changes and agreement to be
 					bound by the terms and conditions of such changes.
-				</BodyText>
+				</P>
 
-				<BodyText>
+				<P>
 					Copyright/Trademark Information. Copyright © Pradappet. All rights
 					reserved. All trademarks, logos and service marks ("Marks") displayed
 					on the Site are our property or the property of other third parties.
 					You are not permitted to use these Marks without our prior written
 					consent or the consent of such third party which may own the Marks.
-				</BodyText>
+				</P>
 
-				<BodyText>Contact Information:</BodyText>
-				<CompactText>Planet Nacho</CompactText>
-				<CompactText>
+				<P>Contact Information:</P>
+				<P>Planet Nacho</P>
+				<P>
 					Email:{" "}
-					<a
-						href="mailto:natcha@pradap.pet"
-						className="text-blue-400 hover:text-blue-300"
-					>
+					<a href="mailto:natcha@pradap.pet" className="underline">
 						natcha@pradap.pet
 					</a>
 					.
-				</CompactText>
+				</P>
 
-				<BodyText>Last Updated</BodyText>
-				<BodyText>This Agreement was last updated on August 29, 2025.</BodyText>
+				<P>Last Updated</P>
+				<P>This Agreement was last updated on August 29, 2025.</P>
 			</Container>
 		</Section>
 	);

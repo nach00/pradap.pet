@@ -334,6 +334,7 @@ function ExperienceItem({
 					"xxxs:space-y-1.5 xxxs:mb-4",
 					"xxs:space-y-1.5 xxs:mb-5",
 					"xs:space-y-2 xs:mb-6",
+					className,
 				)}
 			>
 				{jobTitle && (
