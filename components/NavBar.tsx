@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThreeModeThemeSwitcher from "./ThreeModeThemeSwitcher";
 import { MenuIcon } from "./icons/wb-icons";
+import Menu from "@/components/icons/menu";
 import BackButton from "./BackButton";
 interface props {
 	className?: string;
@@ -267,7 +268,7 @@ function MobileButton() {
 	return (
 		<>
 			<div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon">
-				<MenuIcon className="text-5xl text-[var(--accent-8)]" />
+				<Menu className="text-[var(--accent-11)]" />
 			</div>
 		</>
 	);
