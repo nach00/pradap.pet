@@ -27,6 +27,11 @@ const links = [
 		link: "/about",
 	},
 	// {
+	// 	name: "Blog",
+	// 	link: "/blog",
+	// },
+
+	// {
 	// 	name: "Work",
 	// 	link: "/work",
 	// },

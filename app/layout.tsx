@@ -1,18 +1,13 @@
 import { cn } from "@/lib/utils";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/layout/Footer";
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { LoadingProvider } from "@/components/LoadingProvider";
+import { ClientLayout } from "@/components/ClientLayout";
 import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { LoadingProvider } from "@/components/LoadingProvider";
-import { ClientLayout } from "@/components/ClientLayout";
-import LoadingScreen from "@/components/LoadingScreen";
-
-import { useLoading } from "@/components/LoadingProvider";
 
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",
@@ -62,6 +57,8 @@ export default function RootLayout({
 						"bg-background",
 					)}
 				>
+					<SpeedInsights />
+					<Analytics />
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="light"
@@ -72,8 +69,6 @@ export default function RootLayout({
 							<ClientLayout>{children}</ClientLayout>
 						</LoadingProvider>
 					</ThemeProvider>
-					<SpeedInsights />
-					<Analytics />
 				</body>
 			</html>
 		</>

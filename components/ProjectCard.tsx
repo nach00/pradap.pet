@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
@@ -103,7 +104,7 @@ export function ProjectCard({
 						/>
 						<P className="pt-6 max-w-[50ch]">{description}</P>
 
-						<H6 className="pt-8">View project →</H6>
+						<H6 className="py-8">View project →</H6>
 					</div>
 				</div>
 				<div className="hidden lg:block lg:w-full lg:min-h-full lg:bg-[var(--base-3)]/50 lg:p-[1em]">
