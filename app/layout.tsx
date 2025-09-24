@@ -43,8 +43,6 @@ export default function RootLayout({
 }>) {
 	return (
 		<>
-			<SpeedInsights />
-			<Analytics />
 			<html lang="en" suppressHydrationWarning>
 				<head />
 				<body
@@ -70,6 +68,9 @@ export default function RootLayout({
 						{children}
 						<Footer />
 					</ThemeProvider>
+
+					<SpeedInsights />
+					<Analytics />
 				</body>
 			</html>
 		</>
