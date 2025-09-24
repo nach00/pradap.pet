@@ -8,6 +8,12 @@ import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { LoadingProvider } from "@/components/LoadingProvider";
+import { ClientLayout } from "@/components/ClientLayout";
+import LoadingScreen from "@/components/LoadingScreen";
+
+import { useLoading } from "@/components/LoadingProvider";
+
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",
 	variable: "--font-birdie",
@@ -47,7 +53,6 @@ export default function RootLayout({
 				<head />
 				<body
 					className={cn(
-						// "overflow-x-hidden",
 						rubik.variable,
 						rubik.className,
 						jetbrainsMono.variable,
@@ -63,12 +68,10 @@ export default function RootLayout({
 						enableSystem
 						disableTransitionOnChange
 					>
-						<NavBar />
-						{/* <BackButton /> */}
-						{children}
-						<Footer />
+						<LoadingProvider initialLoading={true} autoHideDelay={2500}>
+							<ClientLayout>{children}</ClientLayout>
+						</LoadingProvider>
 					</ThemeProvider>
-
 					<SpeedInsights />
 					<Analytics />
 				</body>

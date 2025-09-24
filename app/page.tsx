@@ -12,10 +12,9 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
-
 import { H1, H2 } from "@/components/typography/Headings";
-
 import { P } from "@/components/typography/TextElements";
+
 const pageTitle: string = "Design Engineer & Strategist";
 const pageDescription: string =
 	"Crafting digital experiences where precision meets elegance. Currently exploring AI-enhanced design systems.";
