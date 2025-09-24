@@ -6,7 +6,8 @@ import "@/styles/global.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",
 	variable: "--font-birdie",
@@ -42,6 +43,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<>
+			<SpeedInsights />
+			<Analytics />
 			<html lang="en" suppressHydrationWarning>
 				<head />
 				<body
