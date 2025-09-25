@@ -99,7 +99,9 @@ function BlogStats({ posts }: { posts: any[] }) {
 				<div className="text-sm text-muted-foreground">Posts</div>
 			</div>
 			<div className="text-center">
-				<div className="text-2xl font-bold text-foreground">{categories.length}</div>
+				<div className="text-2xl font-bold text-foreground">
+					{categories.length}
+				</div>
 				<div className="text-sm text-muted-foreground">Categories</div>
 			</div>
 			<div className="text-center">
@@ -139,7 +141,7 @@ function FeaturedCategories({ posts }: { posts: any[] }) {
 
 export default function BlogPage() {
 	const posts = getAllPosts();
-	console.log('Posts found:', posts.length, posts);
+	console.log("Posts found:", posts.length, posts);
 	const featuredPost = posts[0]; // Most recent post as featured
 	const otherPosts = posts.slice(1);
 
@@ -157,7 +159,7 @@ export default function BlogPage() {
 							</P>
 						</div>
 
-						<BlogStats posts={posts} />
+						{/* <BlogStats posts={posts} /> */}
 					</div>
 				</Container>
 			</Section>
@@ -244,39 +246,39 @@ export default function BlogPage() {
 			)}
 
 			{/* All Posts */}
-			<Section className="py-12 border-t border-border">
-				<Container>
-					<div className="space-y-8">
-						<div className="flex items-center justify-between">
-							<H2>All Posts</H2>
-							<P className="text-sm text-muted-foreground">
-								{posts.length} {posts.length === 1 ? "post" : "posts"}
-							</P>
-						</div>
-
-						{posts.length > 0 ? (
-							<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-								{otherPosts.map((post) => (
-									<BlogCard key={post.slug} {...post} />
-								))}
-							</div>
-						) : (
-							<div className="text-center py-12">
-								<P className="text-muted-foreground">No posts found.</P>
-							</div>
-						)}
-					</div>
-				</Container>
-			</Section>
+			{/* <Section className="py-12 border-t border-border"> */}
+			{/* 	<Container> */}
+			{/* 		<div className="space-y-8"> */}
+			{/* 			<div className="flex items-center justify-between"> */}
+			{/* 				<H2>All Posts</H2> */}
+			{/* 				<P className="text-sm text-muted-foreground"> */}
+			{/* 					{posts.length} {posts.length === 1 ? "post" : "posts"} */}
+			{/* 				</P> */}
+			{/* 			</div> */}
+			{/**/}
+			{/* 			{posts.length > 0 ? ( */}
+			{/* 				<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"> */}
+			{/* 					{otherPosts.map((post) => ( */}
+			{/* 						<BlogCard key={post.slug} {...post} /> */}
+			{/* 					))} */}
+			{/* 				</div> */}
+			{/* 			) : ( */}
+			{/* 				<div className="text-center py-12"> */}
+			{/* 					<P className="text-muted-foreground">No posts found.</P> */}
+			{/* 				</div> */}
+			{/* 			)} */}
+			{/* 		</div> */}
+			{/* 	</Container> */}
+			{/* </Section> */}
 
 			{/* Categories */}
-			{posts.length > 0 && (
-				<Section className="py-12 border-t border-border">
-					<Container>
-						<FeaturedCategories posts={posts} />
-					</Container>
-				</Section>
-			)}
+			{/* {posts.length > 0 && ( */}
+			{/* 	<Section className="py-12 border-t border-border"> */}
+			{/* 		<Container> */}
+			{/* 			<FeaturedCategories posts={posts} /> */}
+			{/* 		</Container> */}
+			{/* 	</Section> */}
+			{/* )} */}
 		</>
 	);
 }
