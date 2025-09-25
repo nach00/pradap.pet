@@ -92,7 +92,7 @@ export function BlogLayout({
 					>
 						<article className="max-w-3xl">
 							{/* Article Header */}
-							<header className="my-20">
+							<header className="mb-8">
 								<div
 									className="flex items-center gap-2 mb-4 text-sm
   text-muted-foreground"
