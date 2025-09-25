@@ -10,7 +10,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
 	return (
 		<>
-			<LoadingScreen isLoading={isLoading} />
+			{/* <LoadingScreen isLoading={isLoading} /> */}
 			<NavBar />
 			{children}
 			<Footer />

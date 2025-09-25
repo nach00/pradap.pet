@@ -1,8 +1,6 @@
 "use client";
-import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
-
-import Section from "@/components/layout/Section";
-
+import Image from "next/image";
+import { H2, H4 } from "@/components/typography/Headings";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -10,7 +8,6 @@ import Container from "@/components/layout/Container";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThreeModeThemeSwitcher from "./ThreeModeThemeSwitcher";
-import { MenuIcon } from "./icons/wb-icons";
 import Menu from "@/components/icons/menu";
 import BackButton from "./BackButton";
 interface props {
@@ -26,25 +23,11 @@ const links = [
 		name: "About",
 		link: "/about",
 	},
-	// {
-	// 	name: "Blog",
-	// 	link: "/blog",
-	// },
-
-	// {
-	// 	name: "Work",
-	// 	link: "/work",
-	// },
-	// {
-	// 	name: "Contact",
-	// 	link: "/contact",
-	// },
 ];
 
 export default function NavBar({ className }: props) {
 	return (
 		<>
-			{/* Desktop NavBar */}
 			<section
 				className={cn(
 					"z-50 fixed min-w-screen pt-10 pb-10 hidden border-b",
@@ -54,20 +37,11 @@ export default function NavBar({ className }: props) {
 					className,
 				)}
 			>
-				<Container
-					className={cn(
-						"flex flex-row justify-between w-full z-50",
-						// "bg-[var(--base-a9)] text-[var(--accent-9)]",
-					)}
-				>
+				<Container className={cn("flex flex-row justify-between w-full z-50")}>
 					<Logo />
 					<DesktopNavLinks />
 					<ThreeModeThemeSwitcher className="" />
 				</Container>
-
-				{/* <div className="absolute inset-y-0 w-full bg-gradient-to-b from-background backdrop-blur-lg"></div> */}
-				{/* <Container className=""> */}
-				{/* </Container> */}
 			</section>
 			<Container className={cn("translate-y-30")}>
 				<BackButton />
@@ -92,18 +66,16 @@ function DesktopNavLinks() {
 						transformStyle: "preserve-3d",
 					}}
 				>
-					{/* This motion.div creates the animated background effect */}
 					{pathname === link.link && (
 						<motion.div
-							layoutId="active-nav-link" // Unique ID for the animation layout
+							layoutId="active-nav-link"
 							transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
 							className={cn(
 								"absolute inset-0 rounded-full",
-								"bg-[var(--base-4)] dark:bg-[var(--accent-4)]", // Style for the active link's background
+								"bg-[var(--base-4)] dark:bg-[var(--accent-4)]",
 							)}
 						/>
 					)}
-					{/* The link text, styled conditionally */}
 					<span
 						className={cn(
 							"relative block",
@@ -136,7 +108,6 @@ function MobileNavMenu() {
 
 	return (
 		<>
-			{/* Backdrop Overlay */}
 			<div
 				className={`fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300 ease-in-out ${
 					isOverlayVisible
@@ -147,7 +118,6 @@ function MobileNavMenu() {
 				onClick={closeOverlay}
 			/>
 
-			{/* Sliding Panel */}
 			<div
 				className={`py-4 backdrop-blur-md flex items-center justify-center fixed left-10 right-10 bottom-20 bg-[var(--base-3)]/80 rounded-2xl shadow-2xl transition-all duration-500 ease-out ${
 					isOverlayVisible
@@ -156,18 +126,9 @@ function MobileNavMenu() {
 				}`}
 				style={{ zIndex: 50 }}
 				onClick={(e) => e.stopPropagation()}
-				// onClick={closeOverlay}
 			>
 				<div className="flex flex-col items-center space-y-6">
-					<H2
-						className={
-							cn("font-stretch-extra-expanded", "mb-4")
-							// "text-xl font-light text-[var(--base-11)]",
-							// "cheese:font-custom cheese:font-stretch-extra-expanded cheese:text-[var(--accent-9)] cheese:text-4xl",
-						}
-					>
-						Menu
-					</H2>
+					<H2 className={cn("font-stretch-extra-expanded", "mb-4")}>Menu</H2>
 					<nav className="flex flex-col space-y-4 w-full">
 						{links.map((link) => (
 							<Link
@@ -175,22 +136,13 @@ function MobileNavMenu() {
 								href={link.link}
 								onClick={closeOverlay}
 								className={cn(
-									// --- Base styles for all states ---
 									"transition-all text-center",
-									// Default text color for the inactive state
 									"text-[var(--base-9)]",
-									// "hover:text-[var(--base-7)]",
-									// "hover:text-[var(--accent-9)]",
-
-									// --- 'cheese' variant styles ---
 									"cheese:font-custom cheese:font-stretch-extra-condensed cheese:text-3xl",
 
-									// --- Conditional styles ---
 									pathname === link.link
-										? // Active state: Underlined, scaled, and uses accent color
-											"bg-[var(--base-5)] p-2 rounded-full border border-[var(--base-7)] shadow-md"
-										: // Inactive state: Scales and changes color on hover
-											"opacity-75",
+										? "bg-[var(--base-5)] p-2 rounded-full border border-[var(--base-7)] shadow-md"
+										: "opacity-75",
 								)}
 							>
 								<H4
@@ -208,7 +160,6 @@ function MobileNavMenu() {
 				</div>
 			</div>
 
-			{/* Navigation Menu */}
 			<div
 				className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10"
 				style={{ zIndex: 60 }}
@@ -216,13 +167,6 @@ function MobileNavMenu() {
 			>
 				<MobileButton />
 			</div>
-			{/* <div */}
-			{/* 	className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10 opacity-50 hover:opacity-100 hover:drop-shadow-[0_0_10px_var(--accent-9)] hover:animate-pulse" */}
-			{/* 	style={{ zIndex: 60 }} */}
-			{/* 	onClick={toggleOverlay} */}
-			{/* > */}
-			{/* 	<MobileButton /> */}
-			{/* </div> */}
 		</>
 	);
 }
@@ -234,14 +178,14 @@ function Logo() {
 				href="/"
 				className="relative z-20 mr-4 flex items-center gap-2 text-sm font-normal text-black"
 			>
-				<img
+				<Image
 					src="/images/icons/n-logo-black.svg"
 					alt="logo"
 					width={30}
 					height={30}
 					className="block dark:hidden cheese:hidden"
 				/>
-				<img
+				<Image
 					src="/images/icons/n-logo-yellow.svg"
 					alt="logo"
 					width={30}
@@ -278,57 +222,3 @@ function MobileButton() {
 		</>
 	);
 }
-
-// function MobileButton() {
-// 	return (
-// 		<>
-// 			<div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon">
-// 				<MenuIcon className="text-5xl text-[var(--accent-8)]" />
-// 			</div>
-// 		</>
-// 	);
-// }
-//
-interface BlurGradientContainerProps {
-	children: React.ReactNode;
-	className?: string;
-}
-
-const BlurGradientContainer = ({
-	children,
-	className = "",
-}: BlurGradientContainerProps) => {
-	return (
-		<div className={`relative overflow-hidden ${className}`}>
-			{/* Background content */}
-			<div className="absolute inset-0">{children}</div>
-
-			{/* Blur overlay with gradient fade */}
-			<div className="absolute inset-0 pointer-events-none">
-				{/* Top 50% - Full blur */}
-				<div
-					className="absolute top-0 left-0 w-full h-1/2 backdrop-blur-xl"
-					style={{
-						maskImage: "linear-gradient(to bottom, black 0%, black 100%)",
-						WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 100%)",
-					}}
-				/>
-
-				{/* Bottom 50% - Gradient blur fade */}
-				<div
-					className="absolute top-1/2 left-0 w-full h-1/2 backdrop-blur-xl"
-					style={{
-						maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-						WebkitMaskImage:
-							"linear-gradient(to bottom, black 0%, transparent 100%)",
-					}}
-				/>
-			</div>
-
-			{/* Content overlay (if you want content on top of the blur) */}
-			<div className="relative z-10 pointer-events-auto">
-				{/* Add any overlay content here */}
-			</div>
-		</div>
-	);
-};

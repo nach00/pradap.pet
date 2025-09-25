@@ -64,12 +64,7 @@ export function LoadingProvider({
 			}, 300);
 		};
 
-		// For Next.js App Router, we'll listen to navigation events
-		// This is a simplified version - you might want to integrate with Next.js navigation events
-
-		return () => {
-			// Cleanup if needed
-		};
+		return () => {};
 	}, []);
 
 	const contextValue: LoadingContextType = {
