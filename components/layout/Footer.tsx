@@ -52,12 +52,6 @@ export default function Footer() {
 			<div className="border-t border-[var(--base-6)] mb-10">
 				<Container className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm text-[var(--base-11)]">
 					<Small>© 2077 Natcha Pradappet. All rights reserved.</Small>
-					<Link
-						href="/legal"
-						className="underline underline-offset-2 hover:text-[var(--base-12)] transition-colors"
-					>
-						Legal Mumbo Jumbo
-					</Link>
 				</Container>
 			</div>
 		</footer>
