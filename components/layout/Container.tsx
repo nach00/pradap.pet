@@ -1,68 +1,86 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Slot } from "@radix-ui/react-slot"; // Import Slot
+import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 
-// Refactored to make "mx-auto" a base style for all variants.
+/**
+ * Container component providing responsive width and padding variants.
+ * All variants are horizontally centered via mx-auto.
+ */
 export const containerVariants = cva("mx-auto", {
 	variants: {
 		variant: {
 			/**
-			 * Use Case: Ideal for hero sections or image galleries where you want an immersive, edge-to-edge feel on mobile, but a standard wide layout on tablets and desktops.
-			 * Details:
-			 * - max-w-7xl: Sets a maximum width of 80rem (1280px).
-			 * - sm:px-6: At the 'sm' breakpoint (min-width: 640px), applies 1.5rem (24px) of horizontal padding.
-			 * - lg:px-8: At the 'lg' breakpoint (min-width: 1024px), applies 2rem (32px) of horizontal padding.
-			 * - Below 640px, there is no horizontal padding, creating an edge-to-edge effect.
+			 * Edge-to-edge on mobile, standard wide layout on larger screens.
+			 * Perfect for hero sections and immersive image galleries.
+			 *
+			 * Breakpoints:
+			 * - Mobile (<640px): Full width, no padding
+			 * - Small (≥640px): 24px horizontal padding
+			 * - Large (≥1024px): 32px horizontal padding
+			 * - Max width: 1280px
 			 */
 			edgeToEdgeWide: "max-w-7xl sm:px-6 lg:px-8",
 
 			/**
-			 * Use Case: A standard, all-purpose container for main site content. It provides a wide content area with safe padding on all screen sizes.
-			 * Details:
-			 * - max-w-7xl: Sets a maximum width of 80rem (1280px).
-			 * - px-4: Applies 1rem (16px) of horizontal padding by default on all screen sizes.
-			 * - sm:px-6: At 640px and up, overrides the base padding to 1.5rem (24px).
-			 * - lg:px-8: At 1024px and up, overrides again to 2rem (32px).
+			 * Standard wide container with consistent padding across all screens.
+			 * Best for main content areas requiring maximum width.
+			 *
+			 * Breakpoints:
+			 * - Mobile: 16px horizontal padding
+			 * - Small (≥640px): 24px horizontal padding
+			 * - Large (≥1024px): 32px horizontal padding
+			 * - Max width: 1280px
 			 */
 			wide: "max-w-7xl px-4 sm:px-6 lg:px-8",
 
 			/**
-			 * Use Case: For edge-to-edge mobile experiences where the content width needs to snap to standard breakpoint sizes on larger screens, ensuring design consistency.
-			 * Details:
-			 * - container: Sets a responsive max-width that matches the min-width of the current breakpoint.
-			 * - sm:px-6: At 640px and up, applies 1.5rem (24px) of horizontal padding.
-			 * - lg:px-8: At 1024px and up, applies 2rem (32px) of horizontal padding.
-			 * - Below 640px, it is full-width with no padding.
+			 * Responsive container matching Tailwind breakpoint widths.
+			 * Edge-to-edge on mobile with breakpoint-snapped widths on larger screens.
+			 *
+			 * Breakpoints:
+			 * - Mobile (<640px): Full width, no padding
+			 * - Small (≥640px): 24px padding, 640px max width
+			 * - Medium (≥768px): 768px max width
+			 * - Large (≥1024px): 32px padding, 1024px max width
+			 * - XL (≥1280px): 1280px max width
 			 */
 			edgeToEdgeResponsive: "container sm:px-6 lg:px-8",
 
 			/**
-			 * Use Case: The most common "go-to" container. It provides a centered, responsive content column that is padded on all screen sizes, perfect for general page content.
-			 * Details:
-			 * - container: Sets a responsive max-width to match the current breakpoint.
-			 * - px-4: Applies 1rem (16px) of horizontal padding by default.
-			 * - sm:px-6: At 640px and up, overrides to 1.5rem (24px).
-			 * - lg:px-8: At 1024px and up, overrides to 2rem (32px).
+			 * Default responsive container - the most versatile option.
+			 * Provides centered, padded content across all screen sizes.
+			 *
+			 * Breakpoints:
+			 * - Mobile: 16px horizontal padding
+			 * - Small (≥640px): 24px padding, 640px max width
+			 * - Medium (≥768px): 768px max width
+			 * - Large (≥1024px): 32px padding, 1024px max width
+			 * - XL (≥1280px): 1280px max width
 			 */
 			responsive: "container px-4 sm:px-6 lg:px-8",
 
 			/**
-			 * Use Case: Best for text-heavy content like blog posts or documentation. The narrower width improves readability.
-			 * Details:
-			 * - max-w-3xl: Sets a maximum width of 48rem (768px).
-			 * - px-4: Applies 1rem (16px) of horizontal padding by default.
-			 * - sm:px-6: At 640px and up, overrides to 1.5rem (24px).
-			 * - lg:px-8: At 1024px and up, overrides to 2rem (32px).
+			 * Narrow container optimized for readability.
+			 * Ideal for blog posts, articles, and text-heavy content.
+			 *
+			 * Breakpoints:
+			 * - Mobile: 16px horizontal padding
+			 * - Small (≥640px): 24px horizontal padding
+			 * - Large (≥1024px): 32px horizontal padding
+			 * - Max width: 768px
 			 */
 			narrow: "max-w-3xl px-4 sm:px-6 lg:px-8",
+
 			/**
-			 * Use Case: A medium-width container perfect for feature sections, testimonials, or complex forms where the `narrow` variant is too constraining.
-			 * Details:
-			 * - max-w-5xl: Sets a maximum width of 64rem (1024px).
-			 * - px-4: Applies 1rem (16px) of horizontal padding by default.
-			 * - sm:px-6: At 640px and up, overrides to 1.5rem (24px).
-			 * - lg:px-8: At 1024px and up, overrides to 2rem (32px).
+			 * Medium-width container for balanced layouts.
+			 * Perfect for feature sections, forms, and testimonials.
+			 *
+			 * Breakpoints:
+			 * - Mobile: 16px horizontal padding
+			 * - Small (≥640px): 24px horizontal padding
+			 * - Large (≥1024px): 32px horizontal padding
+			 * - Max width: 1024px
 			 */
 			medium: "max-w-5xl px-4 sm:px-6 lg:px-8",
 		},
@@ -75,17 +93,39 @@ export const containerVariants = cva("mx-auto", {
 export interface ContainerProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof containerVariants> {
+	/**
+	 * When true, merges props with immediate child instead of rendering a div.
+	 * Useful for semantic HTML or avoiding wrapper divs.
+	 */
 	asChild?: boolean;
 }
 
+/**
+ * Container component for consistent page layouts and content width management.
+ *
+ * @example
+ * ```tsx
+ * // Standard container
+ * <Container>Content here</Container>
+ *
+ * // Narrow variant for articles
+ * <Container variant="narrow">Article content</Container>
+ *
+ * // Using asChild to avoid wrapper div
+ * <Container asChild variant="wide">
+ *   <main>Main content</main>
+ * </Container>
+ * ```
+ */
 export default function Container({
-	asChild,
+	asChild = false,
 	className,
 	children,
 	variant,
 	...props
 }: ContainerProps) {
 	const Comp = asChild ? Slot : "div";
+
 	return (
 		<Comp className={cn(containerVariants({ variant }), className)} {...props}>
 			{children}
