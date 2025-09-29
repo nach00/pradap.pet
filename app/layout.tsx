@@ -8,8 +8,8 @@ import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
-
+// import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",
 	variable: "--font-birdie",
@@ -59,19 +59,7 @@ export default function RootLayout({
 						"bg-background",
 					)}
 				>
-					<Script
-						src="https://www.googletagmanager.com/gtag/js?id=G-8E9N083LW4"
-						strategy="afterInteractive"
-					/>
-					<Script id="google-analytics" strategy="afterInteractive">
-						{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-8E9N083LW4');
-            `}
-					</Script>
-
+					<GoogleAnalytics gaId="G-8E9N083LW4" />
 					<SpeedInsights />
 					<Analytics />
 					<ThemeProvider
