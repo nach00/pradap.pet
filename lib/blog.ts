@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
-
 export interface BlogPost {
 	slug: string;
 	title: string;
@@ -14,20 +13,25 @@ export interface BlogPost {
 	tags: string[];
 	category: string;
 	content: string;
-	excerpt?: string;
+}
+
+export interface TableOfContentsItem {
+	id: string;
+	title: string;
+	level: number;
 }
 
 export function getAllPosts(): BlogPost[] {
 	try {
-		console.log('Checking posts directory:', postsDirectory);
+		console.log("Checking posts directory:", postsDirectory);
 
 		if (!fs.existsSync(postsDirectory)) {
-			console.log('Posts directory does not exist');
+			console.log("Posts directory does not exist");
 			return [];
 		}
 
 		const fileNames = fs.readdirSync(postsDirectory);
-		console.log('Found files:', fileNames);
+		console.log("Found files:", fileNames);
 
 		const allPostsData = fileNames
 			.filter((fileName) => fileName.endsWith(".mdx"))
@@ -39,7 +43,7 @@ export function getAllPosts(): BlogPost[] {
 					const { data, content } = matter(fileContents);
 					const stats = readingTime(content);
 
-					console.log('Processing post:', slug, 'with data:', data);
+					console.log("Processing post:", slug, "with data:", data);
 
 					return {
 						slug,
@@ -48,17 +52,17 @@ export function getAllPosts(): BlogPost[] {
 						...data,
 					} as BlogPost;
 				} catch (fileError) {
-					console.error('Error processing file:', fileName, fileError);
+					console.error("Error processing file:", fileName, fileError);
 					return null;
 				}
 			})
 			.filter(Boolean) // Remove null entries
 			.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
 
-		console.log('Processed posts:', allPostsData.length);
+		console.log("Processed posts:", allPostsData.length);
 		return allPostsData;
 	} catch (error) {
-		console.error('Error in getAllPosts:', error);
+		console.error("Error in getAllPosts:", error);
 		return [];
 	}
 }

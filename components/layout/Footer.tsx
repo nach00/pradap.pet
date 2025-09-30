@@ -49,7 +49,7 @@ export default function Footer() {
 			</Section>
 
 			{/* Bottom Bar */}
-			<div className="border-t border-[var(--base-6)] mb-10">
+			<div className="border-t border-[var(--base-6)] mb-24">
 				<Container className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 text-sm text-[var(--base-11)]">
 					<Small>© 2077 Natcha Pradappet. All rights reserved.</Small>
 				</Container>

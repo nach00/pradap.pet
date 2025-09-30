@@ -1,13 +1,17 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import type { Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import {
 	getPostBySlug,
 	getAllPosts,
 	generateTableOfContents,
+	type BlogPost,
+	type TableOfContentsItem,
 } from "@/lib/blog";
 import { BlogLayout } from "@/app/blog/BlogLayout";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
 import { H1, H2, H3 } from "@/components/typography/Headings";
 import { P } from "@/components/typography/TextElements";
 
@@ -17,18 +21,33 @@ interface BlogPostPageProps {
 	};
 }
 
-export async function generateStaticParams() {
+interface MarkdownComponentProps {
+	id?: string;
+	className?: string;
+	children?: React.ReactNode;
+}
+
+interface CodeComponentProps extends MarkdownComponentProps {
+	inline?: boolean;
+}
+
+export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
 	const posts = getAllPosts();
 	return posts.map((post) => ({
 		slug: post.slug,
 	}));
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({
+	params,
+}: BlogPostPageProps): Promise<Metadata> {
 	const post = getPostBySlug(params.slug);
 
 	if (!post) {
-		return {};
+		return {
+			title: "Post Not Found",
+			description: "The requested blog post could not be found.",
+		};
 	}
 
 	return {
@@ -37,34 +56,85 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 	};
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-	const post = getPostBySlug(params.slug);
+const createMarkdownComponents = (): Components => ({
+	h1: ({ id, children, ...props }: MarkdownComponentProps) => (
+		<H1 id={id} className="scroll-mt-20" {...props}>
+			{children}
+		</H1>
+	),
+	h2: ({ id, children, ...props }: MarkdownComponentProps) => (
+		<H2 id={id} className="scroll-mt-20 mt-12 mb-4" {...props}>
+			{children}
+		</H2>
+	),
+	h3: ({ id, children, ...props }: MarkdownComponentProps) => (
+		<H3 id={id} className="scroll-mt-20 mt-8 mb-3" {...props}>
+			{children}
+		</H3>
+	),
+	p: ({ children, ...props }: MarkdownComponentProps) => (
+		<P className="mb-4 leading-relaxed" {...props}>
+			{children}
+		</P>
+	),
+	pre: ({ children, ...props }: MarkdownComponentProps) => (
+		<pre
+			className="bg-muted p-4 rounded-lg overflow-x-auto border my-6"
+			{...props}
+		>
+			{children}
+		</pre>
+	),
+	code: ({ inline, children, ...props }: CodeComponentProps) => (
+		<code
+			className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono border"
+			{...props}
+		>
+			{children}
+		</code>
+	),
+	ul: ({ children, ...props }: MarkdownComponentProps) => (
+		<ul className="list-disc list-inside space-y-2 mb-4 ml-4" {...props}>
+			{children}
+		</ul>
+	),
+	ol: ({ children, ...props }: MarkdownComponentProps) => (
+		<ol className="list-decimal list-inside space-y-2 mb-4 ml-4" {...props}>
+			{children}
+		</ol>
+	),
+	li: ({ children, ...props }: MarkdownComponentProps) => (
+		<li className="text-foreground/90" {...props}>
+			{children}
+		</li>
+	),
+	hr: (props: MarkdownComponentProps) => (
+		<hr className="my-8 border-border" {...props} />
+	),
+	blockquote: ({ children, ...props }: MarkdownComponentProps) => (
+		<blockquote
+			className="border-l-4 border-accent pl-4 py-2 bg-accent/5 rounded-r-lg my-4"
+			{...props}
+		>
+			{children}
+		</blockquote>
+	),
+});
+
+export default function BlogPostPage({
+	params,
+}: BlogPostPageProps): JSX.Element {
+	const post: BlogPost | null = getPostBySlug(params.slug);
 
 	if (!post) {
 		notFound();
 	}
 
-	const tableOfContents = generateTableOfContents(post.content);
+	const tableOfContents: TableOfContentsItem[] = generateTableOfContents(
+		post.content,
+	);
 
-	const components = {
-		h1: (props: any) => <H1 id={props.id} className="scroll-mt-20" {...props} />,
-		h2: (props: any) => <H2 id={props.id} className="scroll-mt-20 mt-12 mb-4" {...props} />,
-		h3: (props: any) => <H3 id={props.id} className="scroll-mt-20 mt-8 mb-3" {...props} />,
-		p: (props: any) => <P className="mb-4 leading-relaxed" {...props} />,
-		pre: (props: any) => (
-			<pre className="bg-muted p-4 rounded-lg overflow-x-auto border my-6" {...props} />
-		),
-		code: (props: any) => (
-			<code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono border" {...props} />
-		),
-		ul: (props: any) => <ul className="list-disc list-inside space-y-2 mb-4 ml-4" {...props} />,
-		ol: (props: any) => <ol className="list-decimal list-inside space-y-2 mb-4 ml-4" {...props} />,
-		li: (props: any) => <li className="text-foreground/90" {...props} />,
-		hr: (props: any) => <hr className="my-8 border-border" {...props} />,
-		blockquote: (props: any) => (
-			<blockquote className="border-l-4 border-accent pl-4 py-2 bg-accent/5 rounded-r-lg my-4" {...props} />
-		),
-	};
+	const markdownComponents = createMarkdownComponents();
 
 	return (
 		<BlogLayout
@@ -82,7 +152,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 				<ReactMarkdown
 					remarkPlugins={[remarkGfm]}
 					rehypePlugins={[rehypeHighlight]}
-					components={components}
+					components={markdownComponents}
 				>
 					{post.content}
 				</ReactMarkdown>

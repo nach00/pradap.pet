@@ -49,7 +49,14 @@ function HeroSection() {
 						className={cn("w-min border-none xxxs:flex-col")}
 						label="Status"
 					>
-						Available
+						<div className={cn("flex flex-row items-center")}>
+							<div
+								className={cn(
+									"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-4)]",
+								)}
+							/>
+							Available
+						</div>
 					</DataPair>
 				</div>
 				<ActionButtons className="xxxs:mt-4 xxs:mt-12" />

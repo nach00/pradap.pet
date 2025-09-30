@@ -123,7 +123,7 @@ function MobileNavMenu() {
 			/>
 
 			<div
-				className={`py-4 backdrop-blur-md flex items-center justify-center fixed left-10 right-10 bottom-20 bg-[var(--base-3)]/80 rounded-2xl shadow-2xl transition-all duration-500 ease-out ${
+				className={`py-4 backdrop-blur-md flex items-center justify-center fixed left-10 right-10 bottom-30 bg-[var(--base-3)]/80 rounded-2xl shadow-2xl transition-all duration-500 ease-out ${
 					isOverlayVisible
 						? "opacity-100 scale-100"
 						: "opacity-0 translate-y-[200%] scale-95"
@@ -165,7 +165,7 @@ function MobileNavMenu() {
 			</div>
 
 			<div
-				className="fixed bottom-4 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 flex justify-center h-10"
+				className="fixed bottom-15 left-10 right-10 landscape:hidden cursor-pointer transition-all duration-200 scale-95 hover:scale-100 active:scale-95 flex justify-center h-10"
 				style={{ zIndex: 60 }}
 				onClick={toggleOverlay}
 			>
@@ -220,8 +220,31 @@ function Logo() {
 function MobileButton() {
 	return (
 		<>
-			<div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon">
-				<Menu className="text-7xl text-[var(--accent-11)] dark:text-[var(--accent-2)] cheese:text-[var(--accent-2)]" />
+			{/* <div className="bg-[var(--accent-9)] rounded-full w-full h-10 grid place-content-center text-sm font-bold menu-icon"> */}
+			{/* 	<Menu className="text-7xl text-[var(--accent-11)] dark:text-[var(--accent-2)] cheese:text-[var(--accent-2)]" /> */}
+			{/* </div> */}
+			<div
+				className={cn(
+					// Layout
+					"flex w-full h-[4em] justify-center items-center gap-2.5",
+
+					// Border
+					"rounded-full border-[0.5px] border-[var(--accent-7)]",
+
+					// Background gradient
+					"bg-gradient-to-b from-[var(--accent-3)] via-[var(--accent-2)] to-[var(--accent-4)]",
+
+					// Complex box-shadow (needs to be in style prop)
+					"[box-shadow:0_0_0.25px_1.25px_var(--accent-4)_inset,3px_5px_2px_-4.75px_var(--accent-12)_inset,1.25px_1.5px_0_0_rgba(0,0,0,0.75)_inset,0_4.75px_0.25px_-2.5px_var(--accent-12)_inset,1px_1px_3px_3px_var(--accent-2)_inset,0_-3px_1px_0_rgba(0,0,0,0.50)_inset,2.5px_-2px_3px_0_var(--accent-8)_inset,0_-3px_3px_1px_var(--accent-3)_inset]",
+				)}
+			>
+				<H4
+					className={cn(
+						"text-[var(--accent-9)] cheese:font-custom cheese:font-stretch-extra-expanded",
+					)}
+				>
+					Menu
+				</H4>
 			</div>
 		</>
 	);
