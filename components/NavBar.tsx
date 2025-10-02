@@ -240,7 +240,7 @@ function MobileButton() {
 			>
 				<H4
 					className={cn(
-						"text-[var(--accent-9)] cheese:font-custom cheese:font-stretch-extra-expanded",
+						"text-[var(--accent-11)] dark:text-[var(--accent-9)] cheese:text-[var(--accent-9)] cheese:font-custom cheese:font-stretch-extra-expanded",
 					)}
 				>
 					Menu
