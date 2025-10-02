@@ -284,9 +284,9 @@ export const Scene: React.FC = () => {
 				toneMapping: 1,
 			}}
 		>
-			{process.env.NODE_ENV === "development" && (
-				<Perf className="!top-24 !left-4" />
-			)}
+			{/* {process.env.NODE_ENV === "development" && ( */}
+			{/* 	<Perf className="!top-24 !left-4" /> */}
+			{/* )} */}
 
 			<color attach="background" args={[backgroundColor]} />
 
