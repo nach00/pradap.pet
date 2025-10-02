@@ -250,13 +250,11 @@ const SceneContent: React.FC<SceneContentProps> = React.memo(
 
 SceneContent.displayName = "SceneContent";
 
-// Main Scene component
 export const Scene: React.FC = () => {
 	const [isSettled, setIsSettled] = useState(false);
 	const toyRigidBodyRef = useRef<RigidBodyApi>(null);
 	const { theme } = useTheme();
 
-	// Handle settling with smooth transition
 	const handleSettled = useCallback(() => {
 		console.log("Toy settled after drop");
 		requestAnimationFrame(() => {
@@ -264,7 +262,6 @@ export const Scene: React.FC = () => {
 		});
 	}, []);
 
-	// Clean background color
 	const backgroundColor = useMemo(
 		() => (theme === "light" ? "#fafafa" : "#0a0a0a"),
 		[theme],
@@ -274,7 +271,7 @@ export const Scene: React.FC = () => {
 		<Canvas
 			shadows
 			camera={VISUAL_CONFIG.camera}
-			frameloop={isSettled ? "demand" : "always"}
+			frameloop={isSettled ? "never" : "always"} // Changed from "demand" to "never"
 			dpr={[1, 2]}
 			performance={{ min: 0.5 }}
 			gl={{
@@ -284,10 +281,6 @@ export const Scene: React.FC = () => {
 				toneMapping: 1,
 			}}
 		>
-			{/* {process.env.NODE_ENV === "development" && ( */}
-			{/* 	<Perf className="!top-24 !left-4" /> */}
-			{/* )} */}
-
 			<color attach="background" args={[backgroundColor]} />
 
 			<SceneContent
@@ -297,3 +290,51 @@ export const Scene: React.FC = () => {
 		</Canvas>
 	);
 };
+
+// Main Scene component
+// export const Scene: React.FC = () => {
+// 	const [isSettled, setIsSettled] = useState(false);
+// 	const toyRigidBodyRef = useRef<RigidBodyApi>(null);
+// 	const { theme } = useTheme();
+//
+// 	// Handle settling with smooth transition
+// 	const handleSettled = useCallback(() => {
+// 		console.log("Toy settled after drop");
+// 		requestAnimationFrame(() => {
+// 			setIsSettled(true);
+// 		});
+// 	}, []);
+//
+// 	// Clean background color
+// 	const backgroundColor = useMemo(
+// 		() => (theme === "light" ? "#fafafa" : "#0a0a0a"),
+// 		[theme],
+// 	);
+//
+// 	return (
+// 		<Canvas
+// 			shadows
+// 			camera={VISUAL_CONFIG.camera}
+// 			frameloop={isSettled ? "demand" : "always"}
+// 			dpr={[1, 2]}
+// 			performance={{ min: 0.5 }}
+// 			gl={{
+// 				antialias: true,
+// 				alpha: false,
+// 				powerPreference: "high-performance",
+// 				toneMapping: 1,
+// 			}}
+// 		>
+// 			{/* {process.env.NODE_ENV === "development" && ( */}
+// 			{/* 	<Perf className="!top-24 !left-4" /> */}
+// 			{/* )} */}
+//
+// 			<color attach="background" args={[backgroundColor]} />
+//
+// 			<SceneContent
+// 				toyRigidBodyRef={toyRigidBodyRef}
+// 				onSettled={handleSettled}
+// 			/>
+// 		</Canvas>
+// 	);
+// };
