@@ -1,15 +1,10 @@
-import React, {
-	useState,
-	useEffect,
-	useRef,
-	useCallback,
-	useMemo,
-} from "react";
+import React, { useState, useRef, useCallback, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Physics, RigidBodyApi } from "@react-three/rapier";
+import { Physics, RigidBody, RigidBodyApi } from "@react-three/rapier";
 import { SoftShadows } from "@react-three/drei";
 import { useTheme } from "next-themes";
 import { Perf } from "r3f-perf";
+
 // Import your existing components
 import { CameraTracker } from "./CameraTracker";
 import { Toy } from "./Toy";
@@ -17,120 +12,128 @@ import { Ground } from "./Ground";
 import { SpotlightTracker } from "./SpotlightTracker";
 import { Wall } from "./Wall";
 
-// Refined physics constants for natural, artistic motion
+// Refined physics for 2-3 bounces then quick settle
 const PHYSICS_CONFIG = {
-	gravity: [0, -9.81, 0] as [number, number, number],
-	velocityThreshold: 0.005, // More sensitive threshold for subtle movements
-	angularThreshold: 0.02, // Separate threshold for rotation
-	settledFramesRequired: 120, // ~2 seconds for complete stillness
-	minSettleTime: 3000, // Minimum 3 seconds before considering settled
-	damping: {
-		linear: 0.4, // Subtle linear damping for natural deceleration
-		angular: 0.5, // Slightly higher angular damping for controlled spin
+	gravity: [0, -25, 0] as [number, number, number], // Strong gravity for decisive drops
+	settling: {
+		velocityThreshold: 0.05,
+		angularThreshold: 0.1,
+		settledFrames: 60, // 1 second of stillness
+		maxSettleTime: 4000, // 4 seconds max
 	},
-	restitution: 0.6, // Bounciness - balanced for natural motion
-	friction: 0.7, // Ground friction for realistic sliding
-	mass: 1.0, // Standard mass for predictable physics
-} as const;
-
-const CAMERA_CONFIG = {
-	position: [0, 6, 8] as [number, number, number],
-	fov: 50,
-} as const;
-
-const LIGHTING_CONFIG = {
-	ambient: 0.5,
-	shadows: {
-		size: 25,
-		samples: 10,
-		focus: 0,
+	initial: {
+		dropHeight: 3, // Fixed height for consistent behavior
+		minimalSpin: 0.3, // Very gentle rotation
 	},
 } as const;
 
-// Enhanced physics monitoring with smooth settling detection
+const VISUAL_CONFIG = {
+	camera: {
+		position: [0, 6, 8] as [number, number, number],
+		fov: 50,
+	},
+	lighting: {
+		ambient: 0.5,
+		shadows: {
+			size: 25,
+			samples: 10,
+			focus: 0.5,
+		},
+	},
+} as const;
+
+// Simplified physics monitor focused on detecting settlement
 interface PhysicsMonitorProps {
 	rigidBodyRef: React.RefObject<RigidBodyApi>;
 	onSettled: () => void;
-	threshold?: number;
-	angularThreshold?: number;
-	requiredFrames?: number;
-	minSettleTime?: number;
 }
 
 const PhysicsMonitor: React.FC<PhysicsMonitorProps> = React.memo(
-	({
-		rigidBodyRef,
-		onSettled,
-		threshold = PHYSICS_CONFIG.velocityThreshold,
-		angularThreshold = PHYSICS_CONFIG.angularThreshold,
-		requiredFrames = PHYSICS_CONFIG.settledFramesRequired,
-		minSettleTime = PHYSICS_CONFIG.minSettleTime,
-	}) => {
-		const settledFramesCount = useRef(0);
+	({ rigidBodyRef, onSettled }) => {
+		const stillFrames = useRef(0);
 		const hasSettled = useRef(false);
 		const startTime = useRef(Date.now());
-		const lastVelocities = useRef<number[]>([]);
-		const velocityHistorySize = 10;
+		const lastPositionY = useRef<number | null>(null);
+		const bounceCount = useRef(0);
 
 		useFrame(() => {
 			if (hasSettled.current || !rigidBodyRef.current) return;
 
-			const currentTime = Date.now();
-			const elapsedTime = currentTime - startTime.current;
+			const body = rigidBodyRef.current;
+			const position = body.translation();
+			const linvel = body.linvel();
+			const angvel = body.angvel();
 
-			// Don't consider settled until minimum time has passed
-			if (elapsedTime < minSettleTime) {
-				return;
+			// Track bounces by detecting upward velocity after being near ground
+			if (
+				lastPositionY.current !== null &&
+				position.y < 0.3 &&
+				linvel.y > 0.5
+			) {
+				bounceCount.current++;
+
+				// After 2 bounces, apply extra damping
+				if (bounceCount.current >= 2) {
+					body.setLinvel(
+						{
+							x: linvel.x * 0.2,
+							y: linvel.y * 0.3,
+							z: linvel.z * 0.2,
+						},
+						true,
+					);
+					body.setAngvel(
+						{
+							x: angvel.x * 0.1,
+							y: angvel.y * 0.1,
+							z: angvel.z * 0.1,
+						},
+						true,
+					);
+				}
 			}
+			lastPositionY.current = position.y;
 
-			const linvel = rigidBodyRef.current.linvel();
-			const angvel = rigidBodyRef.current.angvel();
-
-			// Calculate linear and angular velocities separately for fine control
-			const linearVelocitySquared =
-				linvel.x ** 2 + linvel.y ** 2 + linvel.z ** 2;
-
-			const angularVelocitySquared =
-				angvel.x ** 2 + angvel.y ** 2 + angvel.z ** 2;
-
-			// Track velocity history for smooth settling detection
-			const currentVelocity = Math.sqrt(
-				linearVelocitySquared + angularVelocitySquared,
+			// Calculate velocities
+			const linearSpeed = Math.sqrt(
+				linvel.x ** 2 + linvel.y ** 2 + linvel.z ** 2,
 			);
-			lastVelocities.current.push(currentVelocity);
-			if (lastVelocities.current.length > velocityHistorySize) {
-				lastVelocities.current.shift();
-			}
+			const angularSpeed = Math.sqrt(
+				angvel.x ** 2 + angvel.y ** 2 + angvel.z ** 2,
+			);
 
-			// Calculate average velocity over recent frames
-			const avgVelocity =
-				lastVelocities.current.reduce((a, b) => a + b, 0) /
-				lastVelocities.current.length;
+			// Check if settled
+			const isStill =
+				linearSpeed < PHYSICS_CONFIG.settling.velocityThreshold &&
+				angularSpeed < PHYSICS_CONFIG.settling.angularThreshold &&
+				position.y < 0.2; // Must be on ground
 
-			// Check if both linear and angular velocities are below their thresholds
-			const isLinearSettled = linearVelocitySquared < threshold ** 2;
-			const isAngularSettled = angularVelocitySquared < angularThreshold ** 2;
-			const isAverageSettled = avgVelocity < threshold * 2;
+			if (isStill) {
+				stillFrames.current++;
 
-			if (isLinearSettled && isAngularSettled && isAverageSettled) {
-				settledFramesCount.current++;
-
-				// Progressive settling - require more frames as time goes on
-				const dynamicRequiredFrames = Math.min(
-					requiredFrames,
-					Math.floor(requiredFrames * (elapsedTime / minSettleTime) * 0.5),
-				);
-
-				if (settledFramesCount.current >= dynamicRequiredFrames) {
+				if (stillFrames.current >= PHYSICS_CONFIG.settling.settledFrames) {
+					// Complete stop
+					body.setLinvel({ x: 0, y: 0, z: 0 }, true);
+					body.setAngvel({ x: 0, y: 0, z: 0 }, true);
+					body.sleep();
 					hasSettled.current = true;
 					onSettled();
 				}
 			} else {
-				// Reset counter but with dampening to prevent jitter
-				settledFramesCount.current = Math.max(
-					0,
-					settledFramesCount.current - 2,
-				);
+				stillFrames.current = 0;
+			}
+
+			// Force settle after max time or 3 bounces
+			const elapsedTime = Date.now() - startTime.current;
+			if (
+				elapsedTime > PHYSICS_CONFIG.settling.maxSettleTime ||
+				bounceCount.current >= 3
+			) {
+				body.setLinvel({ x: 0, y: 0, z: 0 }, true);
+				body.setAngvel({ x: 0, y: 0, z: 0 }, true);
+				body.sleep();
+				hasSettled.current = true;
+				onSettled();
 			}
 		});
 
@@ -140,158 +143,137 @@ const PhysicsMonitor: React.FC<PhysicsMonitorProps> = React.memo(
 
 PhysicsMonitor.displayName = "PhysicsMonitor";
 
-// Enhanced Toy wrapper with physics properties
-interface EnhancedToyProps {
-	position: [number, number, number];
-	rotation: [number, number, number];
-	rigidBodyRef: React.RefObject<RigidBodyApi>;
-}
-
-const EnhancedToy: React.FC<EnhancedToyProps> = React.forwardRef(
-	({ position, rotation }, ref) => {
-		// Apply subtle initial velocity for more interesting drop
-		const initialVelocity = useMemo(
-			() => ({
-				x: (Math.random() - 0.5) * 0.5, // Slight horizontal movement
-				y: -2, // Downward initial velocity
-				z: (Math.random() - 0.5) * 0.5,
-			}),
-			[],
-		);
-
-		const initialAngularVelocity = useMemo(
-			() => ({
-				x: (Math.random() - 0.5) * 2,
-				y: (Math.random() - 0.5) * 3,
-				z: (Math.random() - 0.5) * 2,
-			}),
-			[],
-		);
-
-		return (
-			<Toy
-				ref={ref}
-				position={position}
-				rotation={rotation}
-				// These props would need to be supported by your Toy component
-				// You may need to wrap Toy with RigidBody from Rapier
-				restitution={PHYSICS_CONFIG.restitution}
-				friction={PHYSICS_CONFIG.friction}
-				linearDamping={PHYSICS_CONFIG.damping.linear}
-				angularDamping={PHYSICS_CONFIG.damping.angular}
-				mass={PHYSICS_CONFIG.mass}
-				linearVelocity={initialVelocity}
-				angularVelocity={initialAngularVelocity}
-			/>
-		);
-	},
+// Ground wrapper with proper physics
+const GroundWrapper: React.FC = () => (
+	<RigidBody
+		type="fixed"
+		restitution={0.05} // Almost no bounce from ground
+		friction={1.0} // Maximum friction
+	>
+		<Ground />
+	</RigidBody>
 );
 
-EnhancedToy.displayName = "EnhancedToy";
+// Wall wrapper
+const WallWrapper: React.FC = () => (
+	<RigidBody type="fixed" friction={0.8}>
+		<Wall />
+	</RigidBody>
+);
 
-// Scene content with enhanced physics
+// Scene content
 interface SceneContentProps {
 	toyRigidBodyRef: React.RefObject<RigidBodyApi>;
-	toyPosition: [number, number, number];
-	toyRotation: [number, number, number];
 	onSettled: () => void;
 }
 
 const SceneContent: React.FC<SceneContentProps> = React.memo(
-	({ toyRigidBodyRef, toyPosition, toyRotation, onSettled }) => (
-		<>
-			<SoftShadows {...LIGHTING_CONFIG.shadows} />
-			<CameraTracker targetRef={toyRigidBodyRef} />
-			<ambientLight intensity={LIGHTING_CONFIG.ambient} />
+	({ toyRigidBodyRef, onSettled }) => {
+		// Simple, clean initial position
+		const toyPosition = useMemo<[number, number, number]>(
+			() => [
+				1, 2,
+				3,
 
-			<Physics
-				gravity={PHYSICS_CONFIG.gravity}
-				timeStep="vary" // Variable timestep for smoother motion
-				interpolate={true} // Interpolation for visual smoothness
-			>
-				<Wall />
-				<Ground
-					// Enhanced ground properties for better interaction
-					restitution={0.3} // Less bouncy ground
-					friction={0.8} // Higher friction for natural rolling
-				/>
-				<EnhancedToy
-					ref={toyRigidBodyRef}
-					position={toyPosition}
-					rotation={toyRotation}
-				/>
-				<PhysicsMonitor rigidBodyRef={toyRigidBodyRef} onSettled={onSettled} />
-			</Physics>
+				// 0, PHYSICS_CONFIG.initial.dropHeight, 0
+			],
+			[],
+		);
 
-			<SpotlightTracker targetRef={toyRigidBodyRef} />
-		</>
-	),
+		// Minimal initial rotation for elegance
+		const toyRotation = useMemo<[number, number, number]>(
+			() => [
+				Math.PI / -4,
+				Math.random() * 1.5,
+				0,
+				// Math.random() * PHYSICS_CONFIG.initial.minimalSpin,
+				// Math.random() * Math.PI * 2,
+				// Math.random() * PHYSICS_CONFIG.initial.minimalSpin,
+			],
+			[],
+		);
+
+		// Very subtle initial velocities
+		const linearVelocity = useMemo<[number, number, number]>(
+			() => [0, 0, 0], // Let gravity do all the work
+			[],
+		);
+
+		const angularVelocity = useMemo<[number, number, number]>(
+			() => [
+				(Math.random() - 0.5) * 0.5,
+				(Math.random() - 0.5) * 0.5,
+				(Math.random() - 0.5) * 0.5,
+			],
+			[],
+		);
+
+		return (
+			<>
+				<SoftShadows {...VISUAL_CONFIG.lighting.shadows} />
+				<CameraTracker targetRef={toyRigidBodyRef} />
+				<ambientLight intensity={VISUAL_CONFIG.lighting.ambient} />
+
+				<Physics
+					gravity={PHYSICS_CONFIG.gravity}
+					timeStep="vary"
+					interpolate={true}
+				>
+					<WallWrapper />
+					<GroundWrapper />
+
+					<Toy
+						ref={toyRigidBodyRef}
+						position={toyPosition}
+						rotation={toyRotation}
+						linearVelocity={linearVelocity}
+						angularVelocity={angularVelocity}
+						// Override default physics properties for quick settling
+						mass={2.0}
+						restitution={0.1}
+						friction={1.0}
+						linearDamping={2.5}
+						angularDamping={5.0}
+					/>
+
+					<PhysicsMonitor
+						rigidBodyRef={toyRigidBodyRef}
+						onSettled={onSettled}
+					/>
+				</Physics>
+
+				<SpotlightTracker targetRef={toyRigidBodyRef} />
+			</>
+		);
+	},
 );
 
 SceneContent.displayName = "SceneContent";
 
-// Main Scene component with refined animation
+// Main Scene component
 export const Scene: React.FC = () => {
 	const [isSettled, setIsSettled] = useState(false);
 	const toyRigidBodyRef = useRef<RigidBodyApi>(null);
 	const { theme } = useTheme();
 
-	// More interesting initial positions for dramatic drop
-	const initialPosition = useMemo<[number, number, number]>(
-		() => [
-			1, 2,
-			3,
-			// (Math.random() - 0.5) * 2, // Random X between -1 and 1
-			// 4 + Math.random() * 2, // Random Y between 4 and 6
-			// (Math.random() - 0.5) * 1.5, // Random Z for depth variation
-		],
-		[],
-	);
-
-	// Varied initial rotation for unique drops
-	const initialRotation = useMemo<[number, number, number]>(
-		() => [
-			1,
-			2 + Math.random() * 1.5,
-			-3,
-			// Math.random() * Math.PI * 2,
-			// Math.random() * Math.PI * 2,
-			// Math.random() * Math.PI * 2,
-		],
-		[],
-	);
-
-	const [toyPosition, setToyPosition] = useState<[number, number, number]>([
-		0, 5, 0,
-	]);
-	const [toyRotation, setToyRotation] = useState<[number, number, number]>([
-		0, 0, 0,
-	]);
-
-	// Initialize positions on mount
-	useEffect(() => {
-		setToyPosition(initialPosition);
-		setToyRotation(initialRotation);
-	}, [initialPosition, initialRotation]);
-
-	// Smooth settling callback
+	// Handle settling with smooth transition
 	const handleSettled = useCallback(() => {
-		// Add a small delay for visual polish
-		setTimeout(() => {
+		console.log("Toy settled after drop");
+		requestAnimationFrame(() => {
 			setIsSettled(true);
-		}, 100);
+		});
 	}, []);
 
-	// Memoized background color
+	// Clean background color
 	const backgroundColor = useMemo(
-		() => (theme === "light" ? "white" : "black"),
+		() => (theme === "light" ? "#fafafa" : "#0a0a0a"),
 		[theme],
 	);
 
 	return (
 		<Canvas
 			shadows
-			camera={CAMERA_CONFIG}
+			camera={VISUAL_CONFIG.camera}
 			frameloop={isSettled ? "demand" : "always"}
 			dpr={[1, 2]}
 			performance={{ min: 0.5 }}
@@ -299,14 +281,17 @@ export const Scene: React.FC = () => {
 				antialias: true,
 				alpha: false,
 				powerPreference: "high-performance",
+				toneMapping: 1,
 			}}
 		>
-			{/* <Perf className="translate-y-40 -translate-x-40 scale-200" /> */}
+			{process.env.NODE_ENV === "development" && (
+				<Perf className="!top-24 !left-4" />
+			)}
+
 			<color attach="background" args={[backgroundColor]} />
+
 			<SceneContent
 				toyRigidBodyRef={toyRigidBodyRef}
-				toyPosition={toyPosition}
-				toyRotation={toyRotation}
 				onSettled={handleSettled}
 			/>
 		</Canvas>

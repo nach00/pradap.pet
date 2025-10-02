@@ -23,7 +23,12 @@ export function Ground() {
 	const groundColor = getGroundColor(theme);
 
 	return (
-		<RigidBody type="fixed" colliders="cuboid">
+		<RigidBody
+			type="fixed"
+			colliders="cuboid"
+			restitution={0.3} // Slightly less bouncy ground for controlled bouncing
+			friction={0.9} // High friction to help toy settle
+		>
 			<mesh receiveShadow position={[0, -2, 0]}>
 				<boxGeometry args={[4000, 0.5, 4000]} />
 				<meshStandardMaterial color={groundColor} />
