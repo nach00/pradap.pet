@@ -8,19 +8,19 @@ import Section from "@/components/layout/Section";
 
 import { Metadata } from "next";
 
-const pageTitle: string = "Contact";
-const pageDescription: string = "Let's work together";
+const pageTitle: string = "Lab";
+const pageDescription: string = "Collection of random works";
 
 export const metadata: Metadata = {
 	title: pageTitle,
 	description: pageDescription,
 };
 
-export default function ContactPage() {
+export default function LabPage() {
 	return (
 		<>
 			<HeroSection />
-			<ContactFormSection />
+			<LabSection />
 		</>
 	);
 }
@@ -37,7 +37,7 @@ function HeroSection() {
 	);
 }
 
-function ContactFormSection() {
+function LabSection() {
 	return (
 		<Section>
 			<Container
@@ -50,29 +50,11 @@ function ContactFormSection() {
 					<H6>Direct Contact</H6>
 					<div className="flex flex-col gap-6">
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-							<DirectContactCard
-								type="Email"
-								id="natcha@pradap.pet"
-								link="mailto:natcha@pradap.pet"
-								description="Good ol' fashioned inboxing"
-							/>
-							<DirectContactCard
-								type="X"
-								id="@nach0s"
-								link="https://x.com/nach0s"
-								description="Don't @ me"
-							/>
-							<DirectContactCard
-								type="LinkedIn"
-								id="@natcha-pradappet"
-								link="https://www.linkedin.com/in/natcha-pradappet/"
-								description="Professional stuff"
-							/>
-							<DirectContactCard
-								type="Dribbble"
-								id="@nach00"
-								link="https://dribbble.com/nach00"
-								description="More project showcase"
+							<ExperimentCard
+								type="Experiment 1"
+								id="Experiment 1"
+								link="/lab/experiment1"
+								description="Experiment 1"
 							/>
 						</div>
 					</div>
@@ -82,19 +64,14 @@ function ContactFormSection() {
 	);
 }
 
-interface DirectContactCardProps {
+interface ExperimentCardProps {
 	type?: string;
 	id?: string;
 	link?: string;
 	description?: string;
 }
 
-function DirectContactCard({
-	type,
-	id,
-	link,
-	description,
-}: DirectContactCardProps) {
+function ExperimentCard({ type, id, link, description }: ExperimentCardProps) {
 	return (
 		<>
 			{link && (

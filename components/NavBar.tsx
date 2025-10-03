@@ -24,6 +24,10 @@ const links = [
 		link: "/about",
 	},
 	{
+		name: "Lab",
+		link: "/lab",
+	},
+	{
 		name: "Blog",
 		link: "/blog",
 	},
