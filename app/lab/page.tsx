@@ -54,7 +54,13 @@ function LabSection() {
 								type="Experiment 1"
 								id="Experiment 1"
 								link="/lab/experiment1"
-								description="Experiment 1"
+								description="Fancy cubes"
+							/>
+							<ExperimentCard
+								type="Experiment 2"
+								id="Experiment 2"
+								link="/lab/experiment2"
+								description="Farm animals"
 							/>
 						</div>
 					</div>

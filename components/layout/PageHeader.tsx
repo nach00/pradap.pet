@@ -1,7 +1,7 @@
 // import P from "@/components/typography/P";
 // import H1 from "@/components/typography/H1";
 import React from "react";
-import { P, Lede } from "@/components/typography/TextElements";
+import { Lede } from "@/components/typography/TextElements";
 import { H1 } from "@/components/typography/Headings";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ export default function PageHeader({
 	className,
 }: PageHeaderProps) {
 	return (
-		<div className={cn("max-w-[40ch] mt-50 flex flex-col")}>
+		<div className={cn("mt-50 flex flex-col", className)}>
 			<H1>{title}</H1>
 			<Lede>{description}</Lede>
 		</div>
