@@ -13,9 +13,7 @@ import { Button } from "@/components/ui/button";
 import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
 import { H1, H2 } from "@/components/typography/Headings";
-import { P } from "@/components/typography/TextElements";
-
-import { Highlighter } from "@/components/TextEffects";
+import { Eyebrow, P, Small } from "@/components/typography/TextElements";
 
 const pageTitle: string = "Design Engineer & Strategist";
 const pageDescription: string =
@@ -35,52 +33,58 @@ function HeroSection() {
 		<Section className="h-screen relative">
 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
 
-			<Container className="flex relative flex-col z-10 w-full h-full justify-end portrait:justify-end">
-				<H1
+			<Container className="flex relative flex-col z-10 w-full h-full justify-center portrait:justify-end">
+				<div
 					className={cn(
-						"w-[14ch] mb-2",
-						"xxs:mb-12",
-						"bg-[var(--base-12)]/80 text-[var(--base-1)] rounded-md",
-						"p-2 -translate-x-1",
+						// "bg-[var(--base-12)]",
+						" p-[2em] flex flex-shrink w-min flex-col",
+						"gap-[1em] md:gap-[2em]",
 					)}
 				>
-					{pageTitle}
-				</H1>
-
-				<P className="max-w-[30ch] xxs:block mix-blend-difference">
-					Crafting digital experiences where precision meets elegance. Currently
-					exploring AI-enhanced design systems.
-				</P>
-
-				<div className="gap-12 mt-12 hidden xxs:flex">
-					<DataPair
+					<H1
 						className={cn(
-							"w-min border-none xxxs:flex-col mix-blend-difference",
+							// "text-[var(--base-1)]",
+							" w-[13ch]",
+							"text-[1.5em] md:text-[3em]",
 						)}
-						label="Location"
 					>
-						Texas
-					</DataPair>
-					<DataPair
+						Design Engineer & Strategist
+					</H1>
+
+					<P
 						className={cn(
-							"w-min border-none xxxs:flex-col mix-blend-difference",
+							"text-[var(--base-2)] max-w-[30ch]",
+							"text-[0.2em] md:text-[1.4em]",
+
+							"text-shadow-br-1",
 						)}
-						label="Status"
 					>
-						<div className={cn("flex flex-row items-center")}>
-							<div
-								className={cn(
-									"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-4)]",
-								)}
-							/>
-							Available
+						{pageDescription}
+					</P>
+
+					<div className={cn("flex flex-row gap-12")}>
+						<div className={cn("flex flex-col gap-2")}>
+							<Eyebrow className={cn("text-[var(--base-2)]")}>Location</Eyebrow>
+							<Small className={cn("text-[var(--base-1)]")}>Texas, USA</Small>
 						</div>
-					</DataPair>
-				</div>
+						<div className={cn("flex flex-col gap-2")}>
+							<Eyebrow className={cn("text-[var(--base-2)]")}>Status</Eyebrow>
 
-				<Button size="sm" variant="cheese">
-					<Link href="mailto:natcha@pradap.pet">Contact →</Link>
-				</Button>
+							<div className={cn("flex flex-row items-center")}>
+								<div
+									className={cn(
+										"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-4)] text-[var(--base-1)]",
+									)}
+								/>
+								<Small className={cn("text-[var(--base-1)]")}>Available</Small>
+							</div>
+						</div>
+					</div>
+
+					<Button size="sm" variant="cheese">
+						<Link href="mailto:natcha@pradap.pet">Contact →</Link>
+					</Button>
+				</div>
 			</Container>
 		</Section>
 	);

@@ -21,6 +21,8 @@ const buttonVariants = cva(
 				link: "text-primary underline-offset-4 hover:underline decoration-1 p-0 h-auto",
 				disabled:
 					"bg-[var(--base-6)] text-[var(--base-9)] cursor-not-allowed pointer-events-none opacity-50 shadow-none hover:bg-[var(--base-6)] hover:text-[var(--base-9)] active:scale-100 cheese:font-custom",
+				cheese:
+					"bg-[var(--accent-9)] text-[var(--accent-12)] hover:bg-[var(--accent-7)] hover:-translate-y-1 active:translate-y-1 transition-all w-min",
 			},
 			size: {
 				default: "h-11 px-6 py-2.5",

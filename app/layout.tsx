@@ -8,7 +8,6 @@ import localFont from "next/font/local";
 import { Rubik, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-// import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 const whirlyBirdie = localFont({
 	src: "../public/fonts/WhirlyBirdieVariable.ttf",

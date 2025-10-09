@@ -474,10 +474,17 @@
 	.text-outline-white {
 		-webkit-text-stroke: 2px white;
 	}
+	.text-outline-accessible {
+		-webkit-text-stroke: 3px var(--base-1);
+		paint-order: stroke fill;
+	}
 	.text-shadow-br-1 {
 		text-shadow: 1px 1px 0px black; /* x-offset y-offset blur color */
 	}
 	.text-shadow-br-2 {
 		text-shadow: 2px 2px 0px black; /* x-offset y-offset blur color */
+	}
+	.text-accessible {
+		text-shadow: 1px 1px 0px var(--base-1); /* x-offset y-offset blur color */
 	}
 }
