@@ -38,6 +38,7 @@ const VISUAL_CONFIG = {
 			size: 25,
 			samples: 10,
 			focus: 0.5,
+			// bias: -0.0001,
 		},
 	},
 } as const;

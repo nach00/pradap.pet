@@ -60,7 +60,8 @@ export function SpotlightTracker({ targetRef }: SpotlightTrackerProps) {
 				shadow-mapSize-height={4096}
 				shadow-camera-near={0.1}
 				shadow-camera-far={30}
-				shadow-bias={-0.00005}
+				// shadow-bias={-0.0005}
+				// shadow-bias={-0.00005}
 				intensity={500}
 				color="#f4f1ea"
 				distance={30}

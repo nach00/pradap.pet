@@ -5,7 +5,7 @@ import Section from "@/components/layout/Section";
 import Scene from "./Scene";
 import Experiment from "@/app/lab/Experiment";
 
-const pageTitle: string = "Experiment 2";
+const pageTitle: string = "Experiment 3";
 const pageDescription: string = "Random 3D project";
 
 export default function ExperimentPage() {

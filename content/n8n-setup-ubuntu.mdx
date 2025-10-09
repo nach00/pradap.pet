@@ -1,0 +1,154 @@
+---
+title: "Setting up n8n on Ubuntu"
+description: ""
+date: "2025-10-07"
+category: "Automation"
+tags:
+  [
+    "n8n",
+    "nodemation",
+    "Productivity",
+    "Tools",
+  ]
+---
+
+So, I have a spare PC laying around and want do use it to run n8n processes. Googling "n8n setup ubuntu" lead me to a post on the n8n forum by Bread_Sultan, who convienetly provides the list of command to get n8n running from scratch, but his post had a few errors.
+
+Mostly, these errors were not his fault, but just a side effect of the forum site itself, such as double qoutation marks being displayed as "smart quotes" (aka 6699 style). Also, some command contain URLs, and the site automagically displays the metadata for the site, rather than the URL itself.
+
+These do not play well with the terminal when trying to copy/paste. Therefore, this post should help to resolve any conflicts and ease with the copy/paste setup.
+
+You can read the original post here: https://community.n8n.io/t/ubuntu-24-04-lts-clean-install-n8n-running-local-cheat-sheet/76427
+
+For this post, I'm only going to show the command and none of the notes or comments Bread_Sultan wrote.
+
+
+`sudo apt update && sudo apt upgrade -y`
+
+`sudo apt install -y curl wget unzip git vim build-essential`
+
+`sudo apt install -y python3 python3-pip python3-dev`
+
+`python3 --version`
+
+`pip3 --version`
+
+`curl -fsSL https://ollama.com/install.sh | sh`
+
+
+`sudo apt install -y apt-transport-https ca-certificates curl software-properties-common`
+
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+
+`echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+
+`sudo apt update`
+
+`sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose`
+
+`sudo curl -L "https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64" -o ~/Downloads/docker-compose-linux-x86_64`
+
+`sudo chmod +x ~/Downloads/docker-compose-linux-x86_64`
+
+`sudo chmod +x /usr/local/bin/docker-compose`
+
+`docker-compose --version`
+
+Here are all the commands properly formatted for Ubuntu:
+
+## 1. Check Your GPU and CUDA Version
+
+```bash
+nvidia-smi
+```
+
+You should see CUDA 12.xx listed.
+
+---
+
+## 2. Install NVIDIA Container Toolkit
+
+Add the repository:
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+Update and install:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+```
+
+---
+
+## 3. Install Node.js (LTS version 18)
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+Verify installation:
+
+```bash
+node --version
+npm --version
+```
+
+---
+
+## 4. Configure NVIDIA Container Runtime for Docker
+
+```bash
+sudo nvidia-ctk runtime configure --runtime=docker
+```
+
+Expected output:
+```
+INFO[0000] Config file does not exist; using empty config
+INFO[0000] Wrote updated config to /etc/docker/daemon.json
+INFO[0000] It is recommended that docker daemon be restarted.
+```
+
+---
+
+## 5. Restart Docker
+
+```bash
+sudo systemctl restart docker
+```
+
+---
+
+## 6. Reboot Your System
+
+```bash
+sudo reboot
+```
+
+---
+
+## 7. Test Docker After Reboot
+
+```bash
+sudo docker run hello-world
+```
+
+If you get a permission error, add your user to the docker group:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+Then test again without sudo:
+
+```bash
+docker run hello-world
+```
+
+---
+
+All commands are now ready to copy and paste into your Ubuntu terminal!

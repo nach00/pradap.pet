@@ -29,13 +29,36 @@ const rubik = Rubik({
 	display: "swap",
 });
 
-const pageTitle: string = "Natcha Pradappet";
+const pageTitle: string = "Natcha Pradappet: Design Engineer and Strategist";
 const pageDescription: string =
 	"A collection of projects exploring the intersection of design, engineering, and artificial intelligence.";
 
 export const metadata: Metadata = {
 	title: pageTitle,
 	description: pageDescription,
+	metadataBase: new URL("https://pradap.pet"),
+	openGraph: {
+		title: pageTitle,
+		description: pageDescription,
+		url: "https://pradap.pet",
+		siteName: pageTitle,
+		images: [
+			{
+				url: "/preview.jpg",
+				width: 1849,
+				height: 1161,
+				alt: pageTitle,
+			},
+		],
+		locale: "en_US",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: pageTitle,
+		description: pageDescription,
+		images: ["/preview.jpg"],
+	},
 };
 
 export default function RootLayout({
