@@ -5,15 +5,15 @@ import HeroBackground from "@/components/3d/HeroBackground";
 import Section from "@/components/layout/Section";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import { DataPair } from "@/components/DataPair";
 import { getProjectDetails as apideasProjectDetails } from "@/app/work/apideas/page";
+import { H1, H2 } from "@/components/typography/Headings";
+import { P } from "@/components/typography/TextElements";
 import { getProjectDetails as zconsoleProjectDetails } from "@/app/work/zconsole/page";
 import { getProjectDetails as scoutifyProjectDetails } from "@/app/work/scoutify/page";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { DataPair } from "@/components/DataPair";
 import { ProjectCard } from "@/components/ProjectCard";
-import { H1, H2 } from "@/components/typography/Headings";
-import { P } from "@/components/typography/TextElements";
 
 import { Highlighter } from "@/components/TextEffects";
 
@@ -34,54 +34,6 @@ function HeroSection() {
 	return (
 		<Section className="h-screen relative">
 			<HeroBackground className="w-full h-full absolute inset-0 z-0" />
-
-			<Container className="flex relative flex-col z-10 w-full h-full justify-end portrait:justify-end">
-				<H1
-					className={cn(
-						"w-[14ch] mb-2",
-						"xxs:mb-12",
-						"bg-[var(--base-12)]/80 text-[var(--base-1)] rounded-md",
-						"p-2 -translate-x-1",
-					)}
-				>
-					{pageTitle}
-				</H1>
-
-				<P className="max-w-[30ch] xxs:block mix-blend-difference">
-					Crafting digital experiences where precision meets elegance. Currently
-					exploring AI-enhanced design systems.
-				</P>
-
-				<div className="gap-12 mt-12 hidden xxs:flex">
-					<DataPair
-						className={cn(
-							"w-min border-none xxxs:flex-col mix-blend-difference",
-						)}
-						label="Location"
-					>
-						Texas
-					</DataPair>
-					<DataPair
-						className={cn(
-							"w-min border-none xxxs:flex-col mix-blend-difference",
-						)}
-						label="Status"
-					>
-						<div className={cn("flex flex-row items-center")}>
-							<div
-								className={cn(
-									"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-4)]",
-								)}
-							/>
-							Available
-						</div>
-					</DataPair>
-				</div>
-
-				<Button size="sm" variant="cheese">
-					<Link href="mailto:natcha@pradap.pet">Contact →</Link>
-				</Button>
-			</Container>
 		</Section>
 	);
 }

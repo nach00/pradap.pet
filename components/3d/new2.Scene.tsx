@@ -11,7 +11,7 @@ import { SoftShadows, Html } from "@react-three/drei";
 import { H1 } from "@/components/typography/Headings";
 import { useTheme } from "next-themes";
 import { Perf } from "r3f-perf";
-import BlurContainer from "@/components/BlurContainer";
+
 // Import your existing components
 import { CameraTracker } from "./CameraTracker";
 import { Toy } from "./Toy";
@@ -305,75 +305,58 @@ export const Scene: React.FC = () => {
 function HtmlContent() {
 	return (
 		<>
+			{/* <Html> */}
 			<Container
 				className={cn(
 					"absolute z-10",
-					"flex flex-col justify-end w-full bottom-30 gap-[1em]",
-					"w-full",
-					"h-min md:w-min",
+					// "mix-blend-difference md:mix-blend-normal",
+					"flex flex-col justify-end w-full bottom-30 ml-[1em]",
+					// "bg-black"
+					"backdrop-blur-xl",
+					"h-min w-min",
+					"p-[1em] rounded-md border-[var(--base-4)]/20 border shadow-sm",
 				)}
 			>
-				<BlurContainer className={cn("flex flex-col gap-[1em] w-full")}>
-					<H1 className={cn("w-[13ch] mb-2 text-[var(--base-12)]")}>
-						Design Engineer & Strategist
-					</H1>
-					<div>
-						<P
-							className={cn(
-								// "hidden sm:block",
-								"max-w-[40ch] xxs:block text-[var(--base-12)]",
-							)}
-						>
-							{/* Crafting digital experiences where precision meets elegance. */}
-							Crafting digital experiences from ideaton to implementation.{" "}
-							<span className={cn("hidden sm:inline")}>
-								Currently exploring AI-enhanced design systems and development
-								workflows.
-							</span>
-						</P>
-						{/* <P */}
-						{/* 	className={cn( */}
-						{/* 		"max-w-[40ch] xxs:block text-[var(--base-12)]", */}
-						{/* 		"hidden sm:block", */}
-						{/* 	)} */}
-						{/* > */}
-						{/* 	Currently exploring AI-enhanced design systems. */}
-						{/* </P> */}
-					</div>
-				</BlurContainer>
+				<H1 className={cn("w-[13ch] mb-2 xxs:mb-12 text-[var(--base-12)]")}>
+					Design Engineer & Strategist
+				</H1>
 
-				<div className="hidden xxs:flex">
-					<BlurContainer className={cn("flex-row flex gap-20 w-full")}>
-						<DataPair
-							className={cn("w-full border-none xxxs:flex-col pb-0")}
-							label="Location"
-						>
-							Texas
-						</DataPair>
-						<DataPair
-							className={cn("w-full border-none xxxs:flex-col")}
-							label="Status"
-						>
-							<div className={cn("flex flex-row items-center")}>
-								<div
-									className={cn(
-										"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-11)]",
-									)}
-								/>
-								Available
-							</div>
-						</DataPair>
-					</BlurContainer>
+				<P className={cn("max-w-[30ch] xxs:block text-[var(--base-12)]")}>
+					Crafting digital experiences where precision meets elegance. Currently
+					exploring AI-enhanced design systems.
+				</P>
+
+				<div className="gap-12 mt-12 hidden xxs:flex">
+					<DataPair
+						className={cn(
+							"w-min border-none xxxs:flex-col mix-blend-difference",
+						)}
+						label="Location"
+					>
+						Texas
+					</DataPair>
+					<DataPair
+						className={cn(
+							"w-min border-none xxxs:flex-col mix-blend-difference",
+						)}
+						label="Status"
+					>
+						<div className={cn("flex flex-row items-center")}>
+							<div
+								className={cn(
+									"h-[0.5em] w-[0.5em] bg-[var(--accent-9)] rounded-full absolute -translate-x-4 -translate-y-[0.1em] animate-pulse border border-[var(--accent-4)]",
+								)}
+							/>
+							Available
+						</div>
+					</DataPair>
 				</div>
 
-				<Button
-					size="sm"
-					variant="cheese"
-					className={cn("hidden sm:block w-full")}
-				>
+				<Button size="sm" variant="cheese" className={cn("w-min")}>
 					<Link href="mailto:natcha@pradap.pet">Contact →</Link>
 				</Button>
 			</Container>
+			{/* </Html> */}
 		</>
 	);
 }

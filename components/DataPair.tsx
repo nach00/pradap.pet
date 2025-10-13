@@ -14,9 +14,9 @@ export const DataPair = ({ label, children, className }: DataPairProps) => {
 		<div
 			className={cn(
 				"flex flex-row gap-[.5em] w-full",
-				"border-b border-[var(--base-4)] pb-[2em]",
+				"border-b border-[var(--base-4)]",
+				// "pb-[2em]",
 				"md:flex-col",
-
 				className,
 			)}
 		>

@@ -11,7 +11,7 @@ export function P({ children, className }: Omit<TypographyProps, "as">) {
 				"font-light tracking-[0.01em] leading-[1.75em]",
 				"mb-[1em] last:mb-0",
 				"text-[var(--base-12)]",
-				"xxxs:text-lg",
+				"xxxs:text-md",
 				"xxs:text-lg",
 				"xs:text-lg",
 				"selection:bg-[var(--base-3)]",

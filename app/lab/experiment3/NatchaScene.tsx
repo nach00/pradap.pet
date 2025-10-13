@@ -1,7 +1,8 @@
 import * as THREE from "three";
+
 import { cn } from "@/lib/utils";
 import React, { useCallback, useState } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, Html } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { useControls, button } from "leva";
@@ -11,9 +12,8 @@ type Object3DProps = ThreeElements["object3D"];
 
 export default function Scene() {
 	return (
-		<div className="w-full h-[800px] rounded-lg overflow-hidden shadow-2xl relative">
+		<div className="w-full h-[800px] rounded-lg overflow-hidden shadow-2xl bg-gray-100">
 			<Canvas
-				className="absolute inset-0"
 				camera={{
 					position: [5, 5, 5],
 					fov: 50,
@@ -26,13 +26,15 @@ export default function Scene() {
 					<BasicLighting />
 					<Toy />
 					<Ground />
+					<TextOverlay />
 				</Physics>
 			</Canvas>
 			<div
-				className={cn(
-					"absolute mix-blend-difference text-white translate-y-0 translate-x-0 inset-0 flex justify-center items-center font-custom text-[25em] font-stretch-extra-condensed z-10",
-					"hover:text-[12em] hover:font-stretch-extra-expanded transition-all",
-				)}
+				className="absolute inset-0 flex justify-center items-center font-custom text-[30em] font-stretch-extra-condensed pointer-events-none"
+				style={{
+					color: "white",
+					mixBlendMode: "difference",
+				}}
 			>
 				NATCHA
 			</div>
@@ -69,11 +71,13 @@ function Ground() {
 
 function CameraController() {
 	const { camera } = useThree();
+
 	const [position, setPosition] = useControls("Camera Position", () => ({
 		x: { value: 0, min: -20, max: 20, step: 1 },
 		y: { value: 5, min: -20, max: 20, step: 1 },
 		z: { value: 5, min: -20, max: 20, step: 1 },
 	}));
+
 	const [rotation, setRotation] = useControls("Camera Rotation", () => ({
 		x: {
 			value: -Math.PI / 4,
@@ -84,17 +88,21 @@ function CameraController() {
 		y: { value: 0, min: -Math.PI / 2, max: Math.PI / 2, step: Math.PI / 16 },
 		z: { value: 0, min: -Math.PI / 2, max: Math.PI / 2, step: Math.PI / 16 },
 	}));
+
 	const [{ fov }, setFov] = useControls("FOV", () => ({
 		fov: { value: 50, min: 0, max: 120, step: 10 },
 	}));
+
 	const handleReset = useCallback(() => {
 		setPosition({ x: 0, y: 5, z: 5 });
 		setRotation({ x: -Math.PI / 4, y: 0, z: 0 });
 		setFov({ fov: 50 });
 	}, [setPosition, setRotation, setFov]);
+
 	useControls("Reset Camera", {
 		reset: button(handleReset),
 	});
+
 	useFrame(() => {
 		if (camera && camera instanceof THREE.PerspectiveCamera) {
 			camera.position.set(position.x, position.y, position.z);
@@ -103,6 +111,7 @@ function CameraController() {
 			camera.updateProjectionMatrix();
 		}
 	});
+
 	return null;
 }
 
@@ -111,6 +120,40 @@ function BasicLighting() {
 		<>
 			<directionalLight position={[-3, 5, 3]} intensity={5} color="#ffffff" />
 			<ambientLight intensity={2} color="#ffffff" />
+		</>
+	);
+}
+
+function TextOverlay() {
+	return (
+		<>
+			<Html
+				fullscreen
+				style={{
+					mixBlendMode: "difference",
+					pointerEvents: "none",
+				}}
+			>
+				<div
+					className={cn(
+						"flex w-full h-full justify-center items-center font-custom text-[25em] font-stretch-extra-condensed",
+					)}
+					style={{
+						color: "white",
+					}}
+				>
+					NATCHA
+				</div>
+				<div
+					className="absolute inset-0 flex justify-center items-center font-custom text-[30em] font-stretch-extra-condensed pointer-events-none"
+					style={{
+						color: "white",
+						mixBlendMode: "difference",
+					}}
+				>
+					NATCHA
+				</div>
+			</Html>
 		</>
 	);
 }

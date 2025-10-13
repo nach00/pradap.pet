@@ -10,9 +10,9 @@ export function H1({ children, className }: Omit<TypographyProps, "as">) {
 			className={cn(
 				"font-extralight tracking-[0.025em] leading-[1.25em] mb-[.5em] last:mb-0",
 				"text-[var(--base-12)]",
-				"xxxs:text-3xl",
+				"xxxs:text-2xl",
 				"xxs:text-4xl",
-				"xs:text-5xl",
+				"xs:text-6xl",
 				"selection:bg-[var(--base-3)]",
 				"transition-all duration-300 ease-out",
 				className,
