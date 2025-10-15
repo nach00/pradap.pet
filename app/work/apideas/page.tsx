@@ -13,7 +13,7 @@ import { H2, H4 } from "@/components/typography/Headings";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 
-const projectDetails: ProjectDetails = {
+const projectDetails = {
 	id: "01",
 	year: "2025",
 	status: "Live",
@@ -47,7 +47,8 @@ const projectDetails: ProjectDetails = {
 	icon: "/images/logos/apideas-white.svg",
 	logo: "/images/logos/apideas-white.svg",
 	logoDark: "/images/logos/apideas-black.svg",
-} as const;
+	cardPreviewImage: "/images/apideas/preview.png",
+};
 
 export function getProjectDetails() {
 	return projectDetails;

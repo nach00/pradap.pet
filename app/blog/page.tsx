@@ -37,7 +37,7 @@ function Card({
 				<Link href={`/blog/${slug}`} className="block">
 					<div
 						className={cn(
-							"flex flex-col border border-[var(--base-7)] rounded-md shadow-md",
+							"flex flex-col border border-[var(--base-7)] rounded-md shadow-md overflow-clip",
 							"hover:-translate-y-1 transition-all",
 						)}
 					>
@@ -82,7 +82,7 @@ function Card({
 							<P>{description}</P>
 
 							<div className="flex flex-wrap gap-2 mt-4">
-								<Badge variant="secondary" className="text-xs">
+								<Badge variant="default" className="text-xs">
 									{category}
 								</Badge>
 								{tags.slice(0, 3).map((tag) => (
@@ -96,7 +96,14 @@ function Card({
 									</Badge>
 								)}
 							</div>
-							<H6 className={cn("pt-6")}>Read full post →</H6>
+							<H6
+								className={cn(
+									"py-6",
+									"group-hover:underline group-hover:underline-offset-3",
+								)}
+							>
+								Read full post →
+							</H6>
 						</div>
 					</div>
 				</Link>

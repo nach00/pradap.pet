@@ -23,7 +23,7 @@ interface ProjectCardProps {
 	logo?: string;
 	logoDark?: string;
 	className?: string;
-	cardPreview?: string;
+	cardPreviewImage?: string;
 }
 
 export function ProjectCard({
@@ -37,7 +37,7 @@ export function ProjectCard({
 	logo,
 	logoDark,
 	className,
-	cardPreview,
+	cardPreviewImage,
 }: ProjectCardProps) {
 	const { theme, resolvedTheme } = useTheme();
 
@@ -113,16 +113,23 @@ export function ProjectCard({
 				</div>
 				<div className="hidden lg:block lg:w-full lg:min-h-full lg:bg-[var(--base-3)]/50 lg:p-[1em]">
 					<div className="hidden lg:flex lg:w-full lg:min-h-full lg:bg-[var(--base-2)]/50 lg:justify-center lg:items-center lg:text-7xl lg:text-mono lg:text-[var(--base-4)]">
-						{cardPreview && (
-							<Image
-								src={cardPreview}
-								width={500}
-								height={500}
-								alt={title}
-								className="rounded-sm"
-							/>
+						{cardPreviewImage ? (
+							<div
+								className={cn(
+									"scale-90 p-8 rounded-4xl border border-[var(--base-7)] bg-[var(--base-5)] shadow-md",
+								)}
+							>
+								<Image
+									src={cardPreviewImage}
+									width={800}
+									height={600}
+									alt={title}
+									className={cn("border border-[var(--base-9)]")}
+								/>
+							</div>
+						) : (
+							<>{id}</>
 						)}
-						{id}
 					</div>
 				</div>
 			</Link>

@@ -58,10 +58,16 @@ export default function NavBar({ className }: props) {
 		</>
 	);
 }
+
 function DesktopNavLinks() {
 	const pathname = usePathname();
 	return (
-		<div className="flex flex-row items-center gap-1">
+		<div
+			className={cn(
+				"flex flex-row items-center gap-1",
+				"bg-[var(--base-3)] py-1 px-2 rounded-full",
+			)}
+		>
 			{links.map((link) => (
 				<Link
 					key={link.name}

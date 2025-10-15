@@ -47,6 +47,7 @@ const projectDetails = {
 
 	logo: "/images/logos/scoutify-black.svg",
 	logoDark: "/images/logos/scoutify-white.svg",
+	cardPreviewImage: "/images/scoutify/preview.png",
 };
 
 export function getProjectDetails() {

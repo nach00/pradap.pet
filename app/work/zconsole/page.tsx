@@ -42,12 +42,13 @@ const projectDetails = {
 	industry: "Cybersecurity",
 	logo: "/images/logos/zimperium-white.svg",
 	logoDark: "/images/logos/zimperium-white.svg",
-	cardPreview: "/images/zconsole/zconsole-card-preview.png",
+	cardPreviewImage: "/images/zconsole/v5-dash.png",
 };
 
 export function getProjectDetails() {
 	return projectDetails;
 }
+
 export default function ZConsole() {
 	return (
 		<div className="pt-50">
