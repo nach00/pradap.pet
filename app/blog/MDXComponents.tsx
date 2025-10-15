@@ -1,8 +1,11 @@
 import { H1, H2, H3 } from "@/components/typography/Headings";
+
 import { P } from "@/components/typography/TextElements";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
+import ScreenshotPreview from "@/app/work/ScreenshotPreview";
+
 import {
 	ReactNode,
 	HTMLAttributes,
@@ -94,20 +97,21 @@ function BlockQuote({ children }: BlockQuoteProps) {
 function CustomImage({
 	src,
 	alt,
-	width = 800,
-	height = 600,
-	...props
+	// width = 800,
+	// height = 600,
+	// ...props
 }: CustomImageProps) {
 	return (
 		<div className="my-8">
-			<Image
-				src={src}
-				alt={alt}
-				width={width}
-				height={height}
-				className="rounded-lg border border-[var(--base-6)] shadow-sm"
-				{...props}
-			/>
+			<ScreenshotPreview imageSrc={src} description={alt} />
+			{/* <Image */}
+			{/* 	src={src} */}
+			{/* 	alt={alt} */}
+			{/* 	width={width} */}
+			{/* 	height={height} */}
+			{/* 	className="rounded-lg border border-[var(--base-6)] shadow-sm" */}
+			{/* 	{...props} */}
+			{/* /> */}
 			{alt && (
 				<p className="text-sm text-[var(--base-11)] text-center mt-2 italic">
 					{alt}
@@ -117,47 +121,52 @@ function CustomImage({
 	);
 }
 
-function CustomLink({ href, children, className, ...props }: CustomLinkProps) {
-	const isExternal = href.startsWith("http");
+// <ScreenshotPreview
+// imageSrc="/images/scoutify/scoutify-wireframe-3.png"
+// description="Refined athlete profile wireframes"
+// />
 
-	// Override prose styles with !important equivalent classes
-	const linkClasses = `
-    !text-[var(--accent-11)]
-    hover:!text-[var(--accent-12)]
-    !underline
-    !underline-offset-2
-    !decoration-[var(--accent-11)]
-    hover:!decoration-[var(--accent-12)]
-    !cursor-pointer
-    !transition-colors
-    !duration-200
-    prose-a:!text-[var(--accent-11)]
-    prose-a:hover:!text-[var(--accent-12)]
-    ${className || ""}
-  `
-		.trim()
-		.replace(/\s+/g, " ");
-
-	if (isExternal) {
-		return (
-			<a
-				href={href}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={linkClasses}
-				{...props}
-			>
-				{children}
-			</a>
-		);
-	}
-
-	return (
-		<Link href={href} className={linkClasses} {...props}>
-			{children}
-		</Link>
-	);
-}
+// function CustomLink({ href, children, className, ...props }: CustomLinkProps) {
+// 	const isExternal = href.startsWith("http");
+//
+// 	// Override prose styles with !important equivalent classes
+// 	const linkClasses = `
+//     !text-[var(--accent-11)]
+//     hover:!text-[var(--accent-12)]
+//     !underline
+//     !underline-offset-2
+//     !decoration-[var(--accent-11)]
+//     hover:!decoration-[var(--accent-12)]
+//     !cursor-pointer
+//     !transition-colors
+//     !duration-200
+//     prose-a:!text-[var(--accent-11)]
+//     prose-a:hover:!text-[var(--accent-12)]
+//     ${className || ""}
+//   `
+// 		.trim()
+// 		.replace(/\s+/g, " ");
+//
+// 	if (isExternal) {
+// 		return (
+// 			<a
+// 				href={href}
+// 				target="_blank"
+// 				rel="noopener noreferrer"
+// 				className={linkClasses}
+// 				{...props}
+// 			>
+// 				{children}
+// 			</a>
+// 		);
+// 	}
+//
+// 	return (
+// 		<Link href={href} className={linkClasses} {...props}>
+// 			{children}
+// 		</Link>
+// 	);
+// }
 
 // MDX Components mapping
 export const mdxComponents = {
@@ -195,7 +204,15 @@ export const mdxComponents = {
 	// Other elements
 	blockquote: BlockQuote,
 	img: CustomImage,
-	a: CustomLink,
+	// a: CustomLink,
+
+	a: ({ className, href, ...props }) => (
+		<Link
+			href={href}
+			className={`mb-4 leading-relaxed text-[var(--base-12)] ${className || ""}`}
+			{...props}
+		/>
+	),
 
 	// Lists
 	ul: ({ className, ...props }: ListProps) => (

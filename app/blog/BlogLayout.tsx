@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import Container from "@/components/layout/Container";
 import { H1 } from "@/components/typography/Headings";
@@ -34,103 +35,117 @@ export function BlogLayout({
 
 	return (
 		<div className="min-h-screen bg-background">
-			{/* Header */}
-			{/* 	<div */}
-			{/* 		className="border-b border-border bg-background/95 backdrop-blur */}
-			{/* supports-[backdrop-filter]:bg-background/60" */}
-			{/* 	> */}
-			{/* 		<Container className="py-4"> */}
-			{/* 			<div className="flex items-center justify-between"> */}
-			{/* 				<div className="flex items-center gap-4"> */}
-			{/* 					<Link */}
-			{/* 						href="/blog" */}
-			{/* 						className="flex items-center gap-2 text-muted-foreground */}
-			{/* hover:text-foreground transition-colors" */}
-			{/* 					> */}
-			{/* 						<ArrowLeft className="h-4 w-4" /> */}
-			{/* 						Back to Blog */}
-			{/* 					</Link> */}
-			{/* 				</div> */}
-			{/* 				<div className="text-muted-foreground text-sm">Theme</div> */}
-			{/* 			</div> */}
-			{/* 		</Container> */}
-			{/* 	</div> */}
-
 			<Container className="py-8">
 				<div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 					{/* Table of Contents - Left Sidebar */}
 					{tableOfContents && tableOfContents.length > 0 && (
-						<div className="lg:col-span-1 order-2 lg:order-1">
-							<div className="fixed mt-30">
-								<div className="space-y-4">
-									<h3 className="font-semibold text-foreground">
+						<aside className="lg:col-span-1 order-2 lg:order-1">
+							<div className="lg:sticky lg:top-8">
+								<nav
+									className="space-y-4 translate-y-0 lg:translate-y-30 pb-0 lg:pb-30"
+									aria-label="Table of contents"
+								>
+									<h3 className="font-semibold text-foreground text-sm uppercase tracking-wide">
 										Table of Contents
 									</h3>
-									<nav className="space-y-2">
+									<ul className="space-y-2">
 										{tableOfContents.map((item) => (
-											<a
-												key={item.id}
-												href={`#${item.id}`}
-												className={`block text-sm text-muted-foreground
-  hover:text-foreground transition-colors ${
-		item.level === 2 ? "pl-0" : item.level === 3 ? "pl-4" : "pl-8"
-	}`}
-											>
-												{item.title}
-											</a>
+											<li key={item.id}>
+												<a
+													href={`#${item.id}`}
+													className={cn(
+														"block text-sm transition-colors duration-200",
+														"text-[var(--base-11)] hover:text-[var(--accent-11)]",
+														"hover:underline hover:underline-offset-4",
+														"decoration-[var(--accent-9)]",
+														{
+															"pl-0": item.level === 2,
+															"pl-4": item.level === 3,
+															"pl-8": item.level > 3,
+														},
+													)}
+												>
+													{item.title}
+												</a>
+											</li>
 										))}
-									</nav>
-								</div>
+									</ul>
+								</nav>
 							</div>
-						</div>
+						</aside>
 					)}
 
 					{/* Main Content */}
 					<div
-						className={`${tableOfContents ? "lg:col-span-3" : "lg:col-span-4"}
-  order-1 lg:order-2`}
+						className={cn(
+							"order-1 lg:order-2",
+							tableOfContents ? "lg:col-span-3" : "lg:col-span-4",
+						)}
 					>
-						<article className="max-w-3xl">
+						<article className="max-w-3xl my-30 lg:my-0">
 							{/* Article Header */}
-							<header className="mb-8">
-								<div
-									className="flex items-center gap-2 mb-4 text-sm
-  text-muted-foreground"
-								>
-									<time dateTime={date}>
+							<header className="mb-12 space-y-6">
+								{/* Metadata */}
+								<div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+									<time dateTime={date} className="font-medium">
 										{new Date(date).toLocaleDateString("en-US", {
 											year: "numeric",
 											month: "long",
 											day: "numeric",
 										})}
 									</time>
-									<Badge variant="secondary" className="text-xs">
+									<span className="text-border">•</span>
+									<Badge variant="secondary" className="text-xs font-medium">
 										{category}
 									</Badge>
-									<div className="flex items-center gap-1">
-										<Clock className="h-3 w-3" />
+									<span className="text-border">•</span>
+									<div className="flex items-center gap-1.5">
+										<Clock className="h-3.5 w-3.5" />
 										<span>{readTime}</span>
 									</div>
 								</div>
 
-								<H1 className="mb-4">{title}</H1>
+								{/* Title */}
+								<H1 className="mb-0">{title}</H1>
 
-								<P className="text-muted-foreground mb-6 text-lg">
+								{/* Description */}
+								<P className="text-muted-foreground text-lg leading-relaxed">
 									{description}
 								</P>
 
 								{/* Tags */}
-								<div className="flex flex-wrap gap-2">
-									{tags.map((tag) => (
-										<Badge key={tag} variant="outline" className="text-xs">
-											{tag}
-										</Badge>
-									))}
-								</div>
+								{tags.length > 0 && (
+									<div className="flex flex-wrap gap-2 pt-2">
+										{tags.map((tag) => (
+											<Badge
+												key={tag}
+												variant="outline"
+												className="text-xs font-normal"
+											>
+												{tag}
+											</Badge>
+										))}
+									</div>
+								)}
 							</header>
 
-							{/* Article Content */}
-							<div className="prose prose-gray dark:prose-invert max-w-none">
+							{/* Article Content with Link Styling */}
+							<div
+								className={cn(
+									"max-w-none",
+									"prose-links",
+									// Global link styles for article content
+									"[&_a]:text-[var(--accent-11)]",
+									"[&_a]:underline",
+									"[&_a]:underline-offset-4",
+									"[&_a]:decoration-[var(--accent-9)]",
+									"[&_a]:transition-colors",
+									"[&_a]:duration-200",
+									"[&_a:hover]:text-[var(--accent-12)]",
+									"[&_a:hover]:decoration-[var(--accent-11)]",
+									"[&_a]:cursor-pointer",
+								)}
+							>
 								{children}
 							</div>
 						</article>
