@@ -1,13 +1,9 @@
 import { cn } from "@/lib/utils";
 import { VideoModal } from "@/components/VideoModal";
-import SoftwareSkillsPortfolio from "./SoftwareSkills";
-import { ReactNode } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import { Marquee } from "@/components/Marquee";
-import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
-import StatStack from "@/components/StatStack";
+import { H2, H3, H4 } from "@/components/typography/Headings";
 import {
 	P,
 	UL,
@@ -15,8 +11,6 @@ import {
 	Small,
 	Lede,
 	Eyebrow,
-	Caption,
-	Blockquote,
 } from "@/components/typography/TextElements";
 import PageHeader from "@/components/layout/PageHeader";
 import Container from "@/components/layout/Container";

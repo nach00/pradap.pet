@@ -11,13 +11,11 @@ import {
 	Lede,
 	LI,
 	Small,
-	Eyebrow,
-	Caption,
 	Blockquote,
 	Strong,
 } from "@/components/typography/TextElements";
 
-import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import { H2, H3 } from "@/components/typography/Headings";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 
@@ -44,6 +42,7 @@ const projectDetails = {
 	industry: "Cybersecurity",
 	logo: "/images/logos/zimperium-white.svg",
 	logoDark: "/images/logos/zimperium-white.svg",
+	cardPreview: "/images/zconsole/zconsole-card-preview.png",
 };
 
 export function getProjectDetails() {
@@ -62,12 +61,6 @@ export default function ZConsole() {
 			<ReportsSection />
 			<ReferencesSection />
 			<NextProjectSection />
-			{/* <DeckSection /> */}
-			{/* <LoomSection /> */}
-			{/* <ResultsAndImpactSection /> */}
-			{/* <LessonsLearnedSection /> */}
-			{/* <NextStepsSection /> */}
-			{/* <PreviewSection /> */}
 		</div>
 	);
 }
@@ -364,7 +357,7 @@ function FeatureDesignTasksSection() {
 
 						<div className="grid grid-cols-2 gap-6">
 							<ScreenshotPreview
-								imageSrc="/images/zconsole/zimperium-19.png"
+								imageSrc="/images/zconsole/v4-1.png"
 								description="New V4 Dashboard"
 							/>
 							<ScreenshotPreview

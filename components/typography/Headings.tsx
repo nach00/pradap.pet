@@ -123,8 +123,6 @@ export function H6({ children, className }: Omit<TypographyProps, "as">) {
 				"xxs:text-md",
 				"xs:text-lg",
 				"selection:bg-[var(--base-3)]",
-				"transition-all duration-300 ease-out",
-				"opacity-75 hover:opacity-100",
 				className,
 			)}
 		>

@@ -13,6 +13,7 @@ export interface BlogPost {
 	tags: string[];
 	category: string;
 	content: string;
+	cardPreviewImage?: string;
 }
 
 export interface TableOfContentsItem {

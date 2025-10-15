@@ -22,4 +22,5 @@ export type ProjectDetails = {
 	icon: string;
 	logo: string;
 	logoDark: string;
+	cardPreview: string;
 };

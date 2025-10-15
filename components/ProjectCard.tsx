@@ -1,7 +1,9 @@
 "use client";
 import { cn } from "@/lib/utils";
+
+import Image from "next/image";
 import Link from "next/link";
-import { H1, H2, H3, H4, H5, H6 } from "@/components/typography/Headings";
+import { H3, H6 } from "@/components/typography/Headings";
 import { P } from "@/components/typography/TextElements";
 import { ProjectBadges } from "./ProjectBadges";
 import { useTheme } from "next-themes";
@@ -21,6 +23,7 @@ interface ProjectCardProps {
 	logo?: string;
 	logoDark?: string;
 	className?: string;
+	cardPreview?: string;
 }
 
 export function ProjectCard({
@@ -34,6 +37,7 @@ export function ProjectCard({
 	logo,
 	logoDark,
 	className,
+	cardPreview,
 }: ProjectCardProps) {
 	const { theme, resolvedTheme } = useTheme();
 
@@ -109,6 +113,15 @@ export function ProjectCard({
 				</div>
 				<div className="hidden lg:block lg:w-full lg:min-h-full lg:bg-[var(--base-3)]/50 lg:p-[1em]">
 					<div className="hidden lg:flex lg:w-full lg:min-h-full lg:bg-[var(--base-2)]/50 lg:justify-center lg:items-center lg:text-7xl lg:text-mono lg:text-[var(--base-4)]">
+						{cardPreview && (
+							<Image
+								src={cardPreview}
+								width={500}
+								height={500}
+								alt={title}
+								className="rounded-sm"
+							/>
+						)}
 						{id}
 					</div>
 				</div>
