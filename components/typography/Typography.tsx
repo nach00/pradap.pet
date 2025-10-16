@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 export interface TypographyProps {
+	id?: string;
 	children: React.ReactNode;
 	className?: string;
 	darkClassName?: string;
@@ -13,6 +14,7 @@ export interface TypographyProps {
 }
 
 export function Typography({
+	id,
 	children,
 	className,
 	darkClassName,
@@ -39,6 +41,7 @@ export function Typography({
 	return React.createElement(
 		Component,
 		{
+			id: id,
 			className: cn(
 				className,
 				addThemePrefix(darkClassName, "dark"),

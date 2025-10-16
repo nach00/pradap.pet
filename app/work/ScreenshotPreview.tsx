@@ -15,7 +15,7 @@ interface ScreenshotPreviewProps {
 export default function ScreenshotPreview({
 	imageSrc = "/images/placeholder.png",
 	description = "",
-	url = "",
+	// url = "#",
 	imageWidth = 800,
 	imageHeight = 600,
 }: ScreenshotPreviewProps) {

@@ -4,6 +4,8 @@ import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+
+import ScreenshotPreview from "@/app/work/ScreenshotPreview";
 import {
 	getPostBySlug,
 	getAllPosts,
@@ -14,6 +16,7 @@ import {
 import { BlogLayout } from "@/app/blog/BlogLayout";
 import { H1, H2, H3 } from "@/components/typography/Headings";
 import { P } from "@/components/typography/TextElements";
+import React from "react";
 
 interface BlogPostPageProps {
 	params: {
@@ -25,6 +28,11 @@ interface MarkdownComponentProps {
 	id?: string;
 	className?: string;
 	children?: React.ReactNode;
+}
+
+interface ImageComponentProps {
+	src?: string | Blob;
+	alt?: string;
 }
 
 interface CodeComponentProps extends MarkdownComponentProps {
@@ -85,7 +93,7 @@ const createMarkdownComponents = (): Components => ({
 			{children}
 		</pre>
 	),
-	code: ({ inline, children, ...props }: CodeComponentProps) => (
+	code: ({ children, ...props }: CodeComponentProps) => (
 		<code
 			className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono border"
 			{...props}
@@ -119,11 +127,14 @@ const createMarkdownComponents = (): Components => ({
 			{children}
 		</blockquote>
 	),
+	img: ({ src, alt, ...props }: ImageComponentProps) => (
+		<ScreenshotPreview imageSrc={src} description={alt} {...props} />
+	),
 });
 
 export default function BlogPostPage({
 	params,
-}: BlogPostPageProps): JSX.Element {
+}: BlogPostPageProps): React.JSX.Element {
 	const post: BlogPost | null = getPostBySlug(params.slug);
 
 	if (!post) {

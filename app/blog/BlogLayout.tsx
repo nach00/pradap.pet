@@ -6,8 +6,7 @@ import Container from "@/components/layout/Container";
 import { H1 } from "@/components/typography/Headings";
 import { P } from "@/components/typography/TextElements";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { ArrowLeft, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 
 interface BlogLayoutProps {
 	children: ReactNode;
@@ -133,7 +132,7 @@ export function BlogLayout({
 							<div
 								className={cn(
 									"max-w-none",
-									"prose-links",
+									// "prose-links",
 									// Global link styles for article content
 									"[&_a]:text-[var(--accent-11)]",
 									"[&_a]:underline",
