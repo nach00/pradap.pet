@@ -157,6 +157,10 @@ export const skills = {
 			logo: "/images/logos/software/gemini.svg",
 		},
 		{
+			name: "n8n",
+			logo: "/images/logos/software/n8n.svg",
+		},
+		{
 			name: "Perplexity",
 			logo: "/images/logos/software/perplexity.svg",
 		},
